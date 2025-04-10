@@ -53,8 +53,8 @@ void davkujSlozku(float cilovaHmotnost, Servo &servo, int offsetServo, const cha
             break;
         }
 
-        Serial.print("Davkuji: "); Serial.print(vhodnyUhel);
-        Serial.print("°, hmotnost: "); Serial.println(data[vhodnyUhel / 5].hmotnost);
+        Serial.print("Davkuji uhel: "); Serial.print(vhodnyUhel);
+        Serial.print(", hmotnost: "); Serial.println(data[vhodnyUhel / 5].hmotnost);
 
         // Nastaveni serva a davkovani
         servo.write(offsetServo + vhodnyUhel);

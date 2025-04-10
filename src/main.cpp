@@ -408,8 +408,8 @@ if (currentState == LEARNING_OFFSET_B && learningOffsetB_Active) {
 
 
 
-  Serial.print("Loop trvala: ");
-  Serial.println(millis() - start);
+//  Serial.print("Loop trvala: ");
+//  Serial.println(millis() - start);
   
 
 } //end loop
