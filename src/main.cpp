@@ -125,12 +125,9 @@ bool keyB_Pressed = false;
 
 unsigned long lastDoseTime = 0;
 
-// Použití Serial2 pro Nextion displej
+// Použití Serial2 pro Nextion displej  
 //#define RX2 15
-//#define TX2 4
-
-Serial2.begin(9600, SERIAL_8N1, NEXTION_RX, NEXTION_TX);
-
+//#define TX2 
 
 // Proměnné pro pravidelnou aktualizaci inputWeight
 unsigned long lastInputWeightUpdate = 0;
@@ -161,7 +158,7 @@ void vypisDataServoB();
 void setup() {
 
 
-
+  Serial2.begin(9600, SERIAL_8N1, NEXTION_RX, NEXTION_TX);
 
   inicializujBzucak();
   inicializujSerial();
