@@ -12,7 +12,6 @@
 void updateNextionText(String objectName, String text);
 void hrajZvuk(int delka);
 
-
 void uciciRezimServoA() {
   updateNextionText("status", "Učení servo A start");
   Serial.println("=== Učící režim servo A zahájen ===");
@@ -77,20 +76,19 @@ void uciciRezimServoA() {
   flowPrefsA.end();
 }
 
+void uciciRezimServoA() {
+  updateNextionText("status", "Učení servo A start");
+  Serial.println("=== Učící režim servo A zahájen ===");
 
-void uciciRezimServoB() {
-  updateNextionText("status", "Učení servo B start");
-  Serial.println("=== Učící režim servo B zahájen ===");
-
-  Preferences flowPrefsB;
-  flowPrefsB.begin("flowmapB", false); // Jiný namespace
+  Preferences flowPrefsA;
+  flowPrefsA.begin("flowmapA", false); // Jiný namespace
   grafData.clear();
 
   int krok = 5; // Změna kroku na 5 stupňů
   float predchoziHmotnost = 0.0f;
 
   for (int relativeAngle = 0; relativeAngle <= 90; relativeAngle += krok) {
-      int absoluteAngle = offsetServoB + relativeAngle;
+      int absoluteAngle = offsetServoA + relativeAngle;
       float rozdil = 0.0f;
 
       updateNextionText("status", "Úhel " + String(absoluteAngle));
@@ -102,9 +100,9 @@ void uciciRezimServoB() {
       zpracujHX711(); delay(200);
       float pred = currentWeight;
 
-      servoB.write(absoluteAngle);
+      servoA.write(absoluteAngle);
       delay(1000); // Servo zůstane otevřené 1 sekundu
-      servoB.write(offsetServoB);
+      servoA.write(offsetServoA);
 
       delay(500);
       zpracujHX711(); delay(200);
@@ -113,21 +111,21 @@ void uciciRezimServoB() {
       rozdil = po - pred;
       Serial.print("Rozdíl: "); Serial.println(rozdil, 3);
 
-      String key = "B" + String(absoluteAngle);
+      String key = "A" + String(absoluteAngle);
 
       if (rozdil < 0.4f) { // Pokud je rozdíl menší než 0.4 g
           Serial.println("!!! Úhel " + String(absoluteAngle) + " přeskočen (malý rozdíl)");
           updateNextionText("status", "Úhel " + String(absoluteAngle) + " přeskočen");
-          flowPrefsB.putFloat((key + "g").c_str(), 0.0f); // Uložení 0 pro tento úhel
-          flowPrefsB.putUInt((key + "t").c_str(), 1000);  // Výchozí čas
+          flowPrefsA.putFloat((key + "g").c_str(), 0.0f); // Uložení 0 pro tento úhel
+          flowPrefsA.putUInt((key + "t").c_str(), 1000);  // Výchozí čas
           delay(500);
           continue;
       }
 
       predchoziHmotnost = rozdil;
 
-      flowPrefsB.putFloat((key + "g").c_str(), rozdil);
-      flowPrefsB.putUInt((key + "t").c_str(), 1000);
+      flowPrefsA.putFloat((key + "g").c_str(), rozdil);
+      flowPrefsA.putUInt((key + "t").c_str(), 1000);
       grafData.push_back(rozdil);
 
       Serial.print("✔ Uloženo pro úhel "); Serial.print(absoluteAngle);
@@ -137,7 +135,7 @@ void uciciRezimServoB() {
       delay(1000);
   }
 
-  updateNextionText("status", "Učení servo B dokončeno");
+  updateNextionText("status", "Učení servo A dokončeno");
   Serial.println("=== Učící režim dokončen ===");
-  flowPrefsB.end();
+  flowPrefsA.end();
 }
