@@ -7,6 +7,9 @@
 #include "hx711_utils.h"
 #include "utils.h"
 
+//pokus zmena
+//pokus dalsi radek
+
 void updateNextionText(String objectName, String text);
 
 
