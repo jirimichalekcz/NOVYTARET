@@ -2,7 +2,7 @@
 
 
 // Makro pro ladicí výstupy
-//#define DEBUG_MODE // zakomentuj tento řádek pro zakázání všech Serial.print
+#define DEBUG_MODE // zakomentuj tento řádek pro zakázání všech Serial.print
 
 #ifdef DEBUG_MODE
   #define DEBUG_PRINT(x) Serial.print(x)
@@ -191,7 +191,20 @@ offsetServoB = preferences.getInt("offsetB", 0);
   totalWeightA = preferences.getFloat("totalWeightA", 0.0f);
   totalWeightB = preferences.getFloat("totalWeightB", 0.0f);
   calibrationFactor = preferences.getFloat("CALFACTOR", 3.55f); // Kalibrační faktor
-  lastDesiredWeight = preferences.getFloat("lastWeight", 0.0f); // Poslední dávka
+
+
+  //lastDesiredWeight = preferences.getFloat("lastWeight", 0.0f); // Poslední dávka
+  
+
+  if (preferences.isKey("lastWeight")) {
+    lastDesiredWeight = preferences.getFloat("lastWeight");
+  } else {
+    Serial.println("Klíč 'lastWeight' nebyl nalezen. Ukládám výchozí hodnotu.");
+    lastDesiredWeight = 0.0f; // výchozí hodnota
+    preferences.putFloat("lastWeight", lastDesiredWeight);
+  }
+
+  
 
   // === Výstupy do Serial monitoru ===
   Serial.print("Načtená hodnota CALFACTOR: ");
@@ -224,6 +237,7 @@ offsetServoB = preferences.getInt("offsetB", 0);
 void loop() {
 
 
+  unsigned long start = millis();
 
   //sendNextionCommand("draw 319,0,0,239,63488");
 
@@ -260,7 +274,16 @@ void loop() {
 
   // Pravidelná aktualizace inputWeight na displeji
   if (millis() - lastInputWeightUpdate >= inputWeightUpdateInterval) {
-    lastDesiredWeight = preferences.getFloat("lastWeight", 0.0f); // Defaultní hodnota 0.0
+    
+    
+    if (preferences.isKey("lastWeight")) {
+      lastDesiredWeight = preferences.getFloat("lastWeight");
+    } else {
+      Serial.println("Klíč 'lastWeight' nebyl nalezen. Ukládám výchozí hodnotu.");
+      lastDesiredWeight = 0.0f; // výchozí hodnota
+      preferences.putFloat("lastWeight", lastDesiredWeight);
+    }
+    
 
     lastInputWeightUpdate = millis();
     updateNextionText("inputWeight", inputWeight);
@@ -384,6 +407,10 @@ if (currentState == LEARNING_OFFSET_B && learningOffsetB_Active) {
   ///////uceni B stop 
 
 
+
+  Serial.print("Loop trvala: ");
+  Serial.println(millis() - start);
+  
 
 } //end loop
 
