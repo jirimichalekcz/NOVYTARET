@@ -7,8 +7,7 @@
 #include "hx711_utils.h"
 #include "utils.h"
 
-//pokus zmena
-//pokus dalsi radek
+//odmazan pokus  a prepsan radek v dosing_utis
 
 void updateNextionText(String objectName, String text);
 
