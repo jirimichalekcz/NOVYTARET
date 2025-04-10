@@ -8,8 +8,9 @@
 #include <vector>
 
 // === Serial komunikace (Nextion displej) ===
-const int RX2 = 15;
-const int TX2 = 4;
+const int NEXTION_RX = 15;
+const int NEXTION_TX = 4;
+
 
 
 

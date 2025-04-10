@@ -55,7 +55,9 @@ void inicializujBzucak() {
   
   void inicializujSerial() {
     Serial.begin(9600);
-    Serial2.begin(9600, SERIAL_8N1, RX2, TX2);  // RX2 a TX2 máš v globals.h
+
+    Serial2.begin(9600, SERIAL_8N1, NEXTION_RX, NEXTION_TX);
+
   }
   
   void inicializujHX711() {

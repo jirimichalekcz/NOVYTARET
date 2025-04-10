@@ -402,7 +402,8 @@ void inicializujSerial() {
     #endif
 
 
-  Serial2.begin(9600, SERIAL_8N1, RX2, TX2); // Serial2 pro Nextion displej
+  Serial2.begin(9600, SERIAL_8N1, NEXTION_RX, NEXTION_TX);
+
 }
 
 void inicializujHX711() {
