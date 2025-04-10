@@ -8,8 +8,9 @@
 #include <vector>
 
 // === Serial komunikace (Nextion displej) ===
-#define RX2 15
-#define TX2 4
+const int RX2 = 15;
+const int TX2 = 4;
+
 
 
 extern int manualAngleA;
