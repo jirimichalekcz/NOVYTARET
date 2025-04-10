@@ -126,8 +126,11 @@ bool keyB_Pressed = false;
 unsigned long lastDoseTime = 0;
 
 // Použití Serial2 pro Nextion displej
-#define RX2 15
-#define TX2 4
+//#define RX2 15
+//#define TX2 4
+
+Serial2.begin(9600, SERIAL_8N1, NEXTION_RX, NEXTION_TX);
+
 
 // Proměnné pro pravidelnou aktualizaci inputWeight
 unsigned long lastInputWeightUpdate = 0;
