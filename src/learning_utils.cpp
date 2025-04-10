@@ -22,19 +22,19 @@ void uciciRezimServoB() {
 }
 
 void uciciRezimServo(Servo &servo, int offsetServo, const char *namespaceName) {
-    updateNextionText("status", String("Učení ") + namespaceName + " start");
-    Serial.println(String("=== Učící režim ") + namespaceName + " zahájen ===");
+    updateNextionText("status", String("Uceni ") + namespaceName + " start");
+    Serial.println(String("=== Ucici režim ") + namespaceName + " zahajen ===");
 
     Preferences prefs;
-    prefs.begin(namespaceName, false); // Otevření namespace
-    prefs.clear(); // Vymazání všech předchozích dat
+    prefs.begin(namespaceName, false); // Otevřeni namespace
+    prefs.clear(); // Vymazani všech předchozich dat
     prefs.end();
 
-    prefs.begin(namespaceName, false); // Znovu otevření namespace
+    prefs.begin(namespaceName, false); // Znovu otevřeni namespace
 
     const int krok = 5; // Krok 5 stupňů
     const int pocetUhlu = 19; // Pro úhly 0, 5, 10, ..., 90
-    DosingData data[pocetUhlu]; // Pole pro uložení dat
+    DosingData data[pocetUhlu]; // Pole pro uloženi dat
 
     for (int i = 0; i < pocetUhlu; i++) {
         int relativeAngle = i * krok;
@@ -42,7 +42,7 @@ void uciciRezimServo(Servo &servo, int offsetServo, const char *namespaceName) {
 
         updateNextionText("status", "Úhel " + String(absoluteAngle));
         Serial.println("---------------");
-        Serial.print("Úhel "); Serial.print(absoluteAngle); Serial.println("°, nové měření");
+        Serial.print("Úhel "); Serial.print(absoluteAngle); Serial.println("°, nové měřeni");
 
         tareScale();
         delay(500);
@@ -58,14 +58,14 @@ void uciciRezimServo(Servo &servo, int offsetServo, const char *namespaceName) {
         float po = currentWeight;
 
         float rozdil = po - pred;
-        Serial.print("Rozdíl: "); Serial.println(rozdil, 3);
+        Serial.print("Rozdil: "); Serial.println(rozdil, 3);
 
         data[i].uhel = relativeAngle;
-        data[i].hmotnost = (rozdil < 0.4f) ? 0.0f : rozdil; // Pokud je rozdíl menší než 0.4 g, uložíme 0
+        data[i].hmotnost = (rozdil < 0.4f) ? 0.0f : rozdil; // Pokud je rozdil menši než 0.4 g, uložime 0
 
         if (rozdil < 0.4f) {
-            Serial.println("!!! Úhel " + String(absoluteAngle) + " přeskočen (malý rozdíl)");
-            updateNextionText("status", "Úhel " + String(absoluteAngle) + " přeskočen");
+            Serial.println("!!! Úhel " + String(absoluteAngle) + " přeskocen (malý rozdil)");
+            updateNextionText("status", "Úhel " + String(absoluteAngle) + " přeskocen");
         } else {
             Serial.print("✔ Uloženo pro úhel "); Serial.print(absoluteAngle);
             Serial.print("°: "); Serial.print(rozdil, 3); Serial.println(" g");
@@ -74,11 +74,11 @@ void uciciRezimServo(Servo &servo, int offsetServo, const char *namespaceName) {
         delay(1000);
     }
 
-    // Uložení celého pole jako blob do NVS
+    // Uloženi celého pole jako blob do NVS
     prefs.putBytes("dosingData", data, sizeof(data));
     Serial.println("✔ Všechna data byla uložena jako blob.");
 
-    updateNextionText("status", String("Učení ") + namespaceName + " dokončeno");
-    Serial.println(String("=== Učící režim ") + namespaceName + " dokončen ===");
+    updateNextionText("status", String("Uceni ") + namespaceName + " dokonceno");
+    Serial.println(String("=== Ucici režim ") + namespaceName + " dokoncen ===");
     prefs.end();
 }

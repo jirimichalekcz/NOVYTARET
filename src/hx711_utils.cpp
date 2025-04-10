@@ -7,7 +7,7 @@
 void updateNextionText(String objectName, String text);
 
 
-// Časové proměnné a surová data z váhy
+// casové proměnné a surova data z vahy
 static unsigned long lastReadTime = 0;
 const unsigned long readInterval = 200;
 
@@ -30,7 +30,7 @@ void tareScale() {
     delay(10);
   }
   offset = sum / readings;
-  Serial.print("Offset po tarování nastaven na: ");
+  Serial.print("Offset po tarovani nastaven na: ");
   Serial.println(offset);
   updateNextionText("offset", String(offset));
 }
@@ -58,7 +58,7 @@ void zpracujHX711() {
       }
 
     } else {
-      Serial.println("Rozdíl mezi měřeními je příliš velký.");
+      Serial.println("Rozdil mezi měřenimi je přiliš velký.");
       updateNextionText("status", "Measurement ...");
     }
   }
@@ -74,7 +74,7 @@ void vypisHmotnost(float hmotnost) {
 void kontrolujWatchdog() {
   if (dosingMode != NONE && currentState != WAITING_FOR_INPUT) {
     if (millis() - lastWeightChangeTime > WATCHDOG_TIMEOUT) {
-      Serial.println("WATCHDOG: Hmotnost se nezměnila 10 sekund! Přerušení dávkování.");
+      Serial.println("WATCHDOG: Hmotnost se nezměnila 10 sekund! Přerušeni davkovani.");
 
       if (servoAOpened) {
         servoA.write(offsetServoA);

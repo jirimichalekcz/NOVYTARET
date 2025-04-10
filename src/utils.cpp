@@ -1,5 +1,5 @@
 #include "utils.h"
-#include "globals.h"  // pro přístup k bzucak, Servo apod.
+#include "globals.h"  // pro přistup k bzucak, Servo apod.
 
 String formatTime(unsigned long timeMs) {
     unsigned long totalMinutes = timeMs / 60000;
@@ -61,6 +61,6 @@ void inicializujBzucak() {
   }
   
   void inicializujHX711() {
-    delay(500);       // Nech čas na stabilizaci
+    delay(500);       // Nech cas na stabilizaci
     tareScale();      // Spusť tare hned na start
   }

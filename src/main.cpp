@@ -1,15 +1,15 @@
 
 
 
-// Makro pro ladicí výstupy
-#define DEBUG_MODE // zakomentuj tento řádek pro zakázání všech Serial.print
+// Makro pro ladici vystupy
+#define DEBUG_MODE // zakomentuj tento radek pro zakazani všech Serial.print
 
 #ifdef DEBUG_MODE
   #define DEBUG_PRINT(x) Serial.print(x)
   #define DEBUG_PRINTLN(x) Serial.println(x)
 #else
-  #define DEBUG_PRINT(x)   // Nic se neprovádí
-  #define DEBUG_PRINTLN(x) // Nic se neprovádí
+  #define DEBUG_PRINT(x)   // Nic se neprovadi
+  #define DEBUG_PRINTLN(x) // Nic se neprovadi
 #endif
 
 #include "globals.h"
@@ -31,18 +31,18 @@
 //#include <Keypad.h>
 #include <Q2HX711.h>
 #include <esp_system.h> // Knihovna pro funkci esp_restart
-#include <Preferences.h> // Knihovna pro práci s NVS pamětí
-//Preferences preferences; // Objekt pro práci s NVS pamětí
+#include <Preferences.h> // Knihovna pro praci s NVS pameti
+//Preferences preferences; // Objekt pro praci s NVS pameti
 #include <ESP32Servo.h>
 
 
 
 
 const float ZAVRIT_PRED_KONCEM_A = 0.0f;
-const float ZAVRIT_PRED_KONCEM_B = 3.5f;  // Přidáno pro složku B
+const float ZAVRIT_PRED_KONCEM_B = 3.5f;  // Pridano pro slozku B
 
-//int offsetServoA = 0;  // Posun zavřené pozice serva A
-//int offsetServoB = 0;  // Posun zavřené pozice serva B
+//int offsetServoA = 0;  // Posun zavrene pozice serva A
+//int offsetServoB = 0;  // Posun zavrene pozice serva B
 
 float korekceZavreniB = 0.0f;
 
@@ -73,15 +73,15 @@ unsigned long lastLearningTimeB = 0;
 
 
 
-// Maximální úhly otevření pro jednotlivé složky (nastavitelné)
-const int MAX_UHEL_A = 115;  // např. plné otevření ventilu A
-const int MAX_UHEL_B = 90;   // např. plné otevření ventilu B
+// Maximalni uhly otevreni pro jednotlive slozky (nastavitelne)
+const int MAX_UHEL_A = 115;  // napr. plne otevreni ventilu A
+const int MAX_UHEL_B = 90;   // napr. plne otevreni ventilu B
 
 
 
-// Proměnné pro čtení z HX711
+// Promenne pro cteni z HX711
 unsigned long lastReadTime = 0;
-const unsigned long readInterval = 200; // Interval čtení v milisekundách
+const unsigned long readInterval = 200; // Interval cteni v milisekundach
 long jaRaw = 0;
 long naRaw = 0;
 //long prumerRaw = 0;
@@ -92,7 +92,7 @@ unsigned long lastWeightChangeTime = 0;
 const unsigned long WATCHDOG_TIMEOUT = 10000; // 10 sekund
 
 
-// --- Globální proměnné pro mikrofázi dávkování složky B ---
+// --- Globalni promenne pro mikrofazi davkovani slozky B ---
 unsigned long lastMicroStepTime = 0;
 float lastMicroWeight = 0.0f;
 unsigned long lastWeightIncreaseTime = 0;
@@ -104,18 +104,18 @@ bool mikrofazeAktivni = false;
 
 
 
-// Přidání globálních proměnných pro čas sepnutí relé
-unsigned long lastSaveTime = 0; // Čas posledního uložení do paměti
+// Pridani globalnich promennych pro cas sepnuti rele
+unsigned long lastSaveTime = 0; // cas posledniho ulozeni do pameti
 const unsigned long saveInterval = 60000; // 1 minuta (v ms)
 
-unsigned long keyPressStartTime = 0; // Uložení času stisku klávesy
-bool timeCounting = false;           // Indikace, zda je aktivní časovač
+unsigned long keyPressStartTime = 0; // Ulozeni casu stisku klavesy
+bool timeCounting = false;           // Indikace, zda je aktivni casovac
 
 
 
 
 
-// Globální proměnné pro sledování stavu kláves
+// Globalni promenne pro sledovani stavu klaves
 bool keyA_Pressed = false;
 bool keyB_Pressed = false;
 
@@ -125,19 +125,19 @@ bool keyB_Pressed = false;
 
 unsigned long lastDoseTime = 0;
 
-// Použití Serial2 pro Nextion displej  
+// Pouziti Serial2 pro Nextion displej  
 //#define RX2 15
 //#define TX2 
 
-// Proměnné pro pravidelnou aktualizaci inputWeight
+// Promenne pro pravidelnou aktualizaci inputWeight
 unsigned long lastInputWeightUpdate = 0;
 const unsigned long inputWeightUpdateInterval = 500; // Interval aktualizace v ms
 
 
 
 
-// Globální proměnná pro sledování aktuální stránky na displeji
-int currentPage = 0; // Výchozí stránka je 0
+// Globalni promenna pro sledovani aktualni stranky na displeji
+int currentPage = 0; // Vychozi stranka je 0
 
 
 
@@ -166,10 +166,10 @@ void setup() {
 
    //registrujStrankuGrafu();
 
-  // === OTEVŘENÍ NVS PAMĚTI ===
-  preferences.begin("davsyst", false); // "davsyst" = název prostoru pro ukládání
+  // === OTEVrENi NVS PAMeTI ===
+  preferences.begin("davsyst", false); // "davsyst" = nazev prostoru pro ukladani
 
-offsetServoA = preferences.getInt("offsetA", 0); // Výchozí hodnota 0
+offsetServoA = preferences.getInt("offsetA", 0); // Vychozi hodnota 0
 offsetServoB = preferences.getInt("offsetB", 0);
 
 
@@ -177,42 +177,42 @@ offsetServoB = preferences.getInt("offsetB", 0);
 
 
 
-  // === Připojení serv ===
+  // === Pripojeni serv ===
   servoA.attach(pinServoA);
   servoB.attach(pinServoB);
  
- servoA.write(offsetServoA); // zavřená pozice pro A
- servoB.write(offsetServoB); // zavřená pozice pro B
+ servoA.write(offsetServoA); // zavrena pozice pro A
+ servoB.write(offsetServoB); // zavrena pozice pro B
 
 
-  // === Načtení hodnot ze záznamu ===
-  slozkaA = preferences.getInt("slozkaA", 100);       // Poměr složky A
-  slozkaB = preferences.getInt("slozkaB", 40);        // Poměr složky B
+  // === Nacteni hodnot ze zaznamu ===
+  slozkaA = preferences.getInt("slozkaA", 100);       // Pomer slozky A
+  slozkaB = preferences.getInt("slozkaB", 40);        // Pomer slozky B
   totalWeightA = preferences.getFloat("totalWeightA", 0.0f);
   totalWeightB = preferences.getFloat("totalWeightB", 0.0f);
-  calibrationFactor = preferences.getFloat("CALFACTOR", 3.55f); // Kalibrační faktor
+  calibrationFactor = preferences.getFloat("CALFACTOR", 3.55f); // Kalibracni faktor
 
 
-  //lastDesiredWeight = preferences.getFloat("lastWeight", 0.0f); // Poslední dávka
+  //lastDesiredWeight = preferences.getFloat("lastWeight", 0.0f); // Posledni davka
   
 
   if (preferences.isKey("lastWeight")) {
     lastDesiredWeight = preferences.getFloat("lastWeight");
   } else {
-    Serial.println("Klíč 'lastWeight' nebyl nalezen. Ukládám výchozí hodnotu.");
-    lastDesiredWeight = 0.0f; // výchozí hodnota
+    Serial.println("Klic 'lastWeight' nebyl nalezen. Ukladam vychozi hodnotu.");
+    lastDesiredWeight = 0.0f; // vychozi hodnota
     preferences.putFloat("lastWeight", lastDesiredWeight);
   }
 
   
 
-  // === Výstupy do Serial monitoru ===
-  Serial.print("Načtená hodnota CALFACTOR: ");
+  // === Vystupy do Serial monitoru ===
+  Serial.print("Nactena hodnota CALFACTOR: ");
   Serial.println(calibrationFactor);
-  Serial.print("Načtená poslední hmotnost: ");
+  Serial.print("Nactena posledni hmotnost: ");
   Serial.println(lastDesiredWeight);
 
-  // === Zobrazení na Nextion displeji ===
+  // === Zobrazeni na Nextion displeji ===
   updateNextionText("lastWeight", String(lastDesiredWeight, 1));
   updateNextionText("calibnfo", String(calibrationFactor));
   updateNextionText("totalWeightA", String(totalWeightA / 1000.0f, 1) + " kg");
@@ -220,7 +220,7 @@ offsetServoB = preferences.getInt("offsetB", 0);
   updateNextionText("slozkaA", String(slozkaA));
   updateNextionText("slozkaB", String(slozkaB));
 
-  // === Úvodní zvuk a stránka ===
+  // === uvodni zvuk a stranka ===
   sendNextionCommand("page 0");
   hrajZvuk(100); delay(250);
   hrajZvuk(100); delay(250);
@@ -243,44 +243,44 @@ void loop() {
 
 
 
-  if (timeCounting) {  // Výpočet uplynulého času pro zobrazeni na displeji pouze informativni charakter
+  if (timeCounting) {  // Vypocet uplynuleho casu pro zobrazeni na displeji pouze informativni charakter
     unsigned long elapsedTime = millis() - keyPressStartTime;
     unsigned long minutes = (elapsedTime / 60000) % 60; // Minuty
     unsigned long seconds = (elapsedTime / 1000) % 60;  // Sekundy
 
-    // Formátování času jako MM:SS
+    // Formatovani casu jako MM:SS
     char timeBuffer[6];
     sprintf(timeBuffer, "%02lu:%02lu", minutes, seconds);
 
-    // Aktualizace času na displeji v objektu "PRtime"
+    // Aktualizace casu na displeji v objektu "PRtime"
     updateNextionText("PRtime", String(timeBuffer));
 }
 
 
-  zpracujNextionData();  // NOVÁ funkce na čtení a parsování příkazů z Nextionu
+  zpracujNextionData();  // NOVa funkce na cteni a parsovani prikazů z Nextionu
   zpracujHX711();
   aktualizujDavkovani();
 
 
-//Celkové časy a nadávkované množství uložit do pameti
+//Celkove casy a nadavkovane mnozstvi ulozit do pameti
     if (millis() - lastSaveTime >= saveInterval) {
     lastSaveTime = millis();
     preferences.putFloat("totalWeightA", totalWeightA);
     preferences.putFloat("totalWeightB", totalWeightB);
-    Serial.println("Celkové časy a nadávkované množství uloženy do paměti.");
+    Serial.println("Celkove casy a nadavkovane mnozstvi ulozeny do pameti.");
 }
 
 
 
-  // Pravidelná aktualizace inputWeight na displeji
+  // Pravidelna aktualizace inputWeight na displeji
   if (millis() - lastInputWeightUpdate >= inputWeightUpdateInterval) {
     
     
     if (preferences.isKey("lastWeight")) {
       lastDesiredWeight = preferences.getFloat("lastWeight");
     } else {
-      Serial.println("Klíč 'lastWeight' nebyl nalezen. Ukládám výchozí hodnotu.");
-      lastDesiredWeight = 0.0f; // výchozí hodnota
+      Serial.println("Klic 'lastWeight' nebyl nalezen. Ukladam vychozi hodnotu.");
+      lastDesiredWeight = 0.0f; // vychozi hodnota
       preferences.putFloat("lastWeight", lastDesiredWeight);
     }
     
@@ -333,25 +333,25 @@ if (currentState == LEARNING_OFFSET_A && learningOffsetActive) {
     if (!learningIncreasing) {
       learningAngle++;
       servoA.write(learningAngle);
-      Serial.print("Zkouším úhel: "); Serial.print(learningAngle);
+      Serial.print("Zkoušim uhel: "); Serial.print(learningAngle);
       Serial.print(" - Hmotnost: "); Serial.println(newWeight);
       if (newWeight - learningLastWeight >= 0.2f) {
         learningIncreasing = true;
-        Serial.println("Nárůst zjištěn – přecházím na zavírání");
+        Serial.println("Narůst zjišten - prechazim na zavirani");
       }
       learningLastWeight = newWeight;
     } else {
       learningAngle--;
       servoA.write(learningAngle);
-      Serial.print("Zavírám – úhel: "); Serial.println(learningAngle);
+      Serial.print("Zaviram - uhel: "); Serial.println(learningAngle);
       if (abs(newWeight - learningLastWeight) < 0.1f) {
         offsetServoA = learningAngle;
 
        preferences.putInt("offsetA", offsetServoA);
 
         servoA.write(offsetServoA);
-        updateNextionText("status", "Offset A uložen");
-        Serial.print("Nový offset uložen: "); Serial.println(offsetServoA);
+        updateNextionText("status", "Offset A ulozen");
+        Serial.print("Novy offset ulozen: "); Serial.println(offsetServoA);
         hrajZvuk(400);
         learningOffsetActive = false;
         currentState = WAITING_FOR_INPUT;
@@ -374,17 +374,17 @@ if (currentState == LEARNING_OFFSET_B && learningOffsetB_Active) {
     if (!learningIncreasingB) {
       learningAngleB++;
       servoB.write(learningAngleB);
-      Serial.print("Zkouším úhel B: "); Serial.print(learningAngleB);
+      Serial.print("Zkoušim uhel B: "); Serial.print(learningAngleB);
       Serial.print(" - Hmotnost: "); Serial.println(newWeight);
       if (newWeight - learningLastWeightB >= 0.2f) {
         learningIncreasingB = true;
-        Serial.println("Nárůst zjištěn – přecházím na zavírání (servo B)");
+        Serial.println("Narůst zjišten - prechazim na zavirani (servo B)");
       }
       learningLastWeightB = newWeight;
     } else {
       learningAngleB--;
       servoB.write(learningAngleB);
-      Serial.print("Zavírám B – úhel: "); Serial.println(learningAngleB);
+      Serial.print("Zaviram B - uhel: "); Serial.println(learningAngleB);
       if (abs(newWeight - learningLastWeightB) < 0.1f) {
         offsetServoB = learningAngleB;
       
@@ -392,8 +392,8 @@ if (currentState == LEARNING_OFFSET_B && learningOffsetB_Active) {
         preferences.putInt("offsetB", offsetServoB);
 
         servoB.write(offsetServoB);
-        updateNextionText("status", "Offset B uložen");
-        Serial.print("Nový offset B uložen: "); Serial.println(offsetServoB);
+        updateNextionText("status", "Offset B ulozen");
+        Serial.print("Novy offset B ulozen: "); Serial.println(offsetServoB);
         hrajZvuk(400);
         learningOffsetB_Active = false;
         currentState = WAITING_FOR_INPUT;
@@ -418,26 +418,26 @@ if (currentState == LEARNING_OFFSET_B && learningOffsetB_Active) {
 
 
 void vypocitejCile() {
-    // Načtení poměru složek z paměti ESP32
-    int ulozenaSlozkaA = preferences.getInt("slozkaA", 100); // Výchozí hodnota 100
-    int ulozenaSlozkaB = preferences.getInt("slozkaB", 40);  // Výchozí hodnota 40
+    // Nacteni pomeru slozek z pameti ESP32
+    int ulozenaSlozkaA = preferences.getInt("slozkaA", 100); // Vychozi hodnota 100
+    int ulozenaSlozkaB = preferences.getInt("slozkaB", 40);  // Vychozi hodnota 40
 
-    // Výpočet celkového poměru
+    // Vypocet celkoveho pomeru
     int celkovyPomer = ulozenaSlozkaA + ulozenaSlozkaB;
 
-    // Výpočet cílové hmotnosti pro složku A a B
+    // Vypocet cilove hmotnosti pro slozku A a B
     targetWeightA = desiredWeight * (ulozenaSlozkaA / (float)celkovyPomer);
     targetWeightB = desiredWeight * (ulozenaSlozkaB / (float)celkovyPomer);
 
-    // Výpis do Serial monitoru
-    Serial.print("Cílová hmotnost A: ");
+    // Vypis do Serial monitoru
+    Serial.print("Cilova hmotnost A: ");
     Serial.print(targetWeightA, 1);
     Serial.println(" g");
-    Serial.print("Cílová hmotnost B: ");
+    Serial.print("Cilova hmotnost B: ");
     Serial.print(targetWeightB, 1);
     Serial.println(" g");
 
-    // Aktualizace cílových hmotností na displeji
+    // Aktualizace cilovych hmotnosti na displeji
     updateNextionText("targetA", String(targetWeightA, 1));
     updateNextionText("targetB", String(targetWeightB, 1));
 }
@@ -446,7 +446,7 @@ void vypocitejCile() {
 
 
 
-// === Úprava aktualizujDavkovani ===
+// === uprava aktualizujDavkovani ===
 void aktualizujDavkovani()   {
   if (dosingMode == COMPONENT_A && currentState == DOSING_A) {
     davkujSlozkuAUcenim(targetWeightA);
@@ -459,7 +459,7 @@ void aktualizujDavkovani()   {
   } else if (dosingMode == MIX) {
     if (currentState == DOSING_A) {
       davkujSlozkuAUcenim(targetWeightA);
-      Serial.println("Přechod na dávkování složky B.");
+      Serial.println("Prechod na davkovani slozky B.");
       delay(500);
       hrajZvuk(500);
       delay(500);
@@ -521,7 +521,7 @@ void aktivujServo(Servo &servo, int uhelAktivace, int uhelNavrat, unsigned long 
 
 
 //void endPreferences() {
-//  preferences.end(); // Ukončení práce s NVS (volitelné při neaktivitě)
+//  preferences.end(); // Ukonceni prace s NVS (volitelne pri neaktivite)
 //}
 
 
@@ -552,8 +552,8 @@ int vypocitejMaxUhelB(float cilovaHmotnost) {
 
 
 
-// === Učící režim dávkování pro servo B ===
-Preferences flowPrefs; // nový objekt pro ukládání průtoků
+// === Ucici rezim davkovani pro servo B ===
+Preferences flowPrefs; // novy objekt pro ukladani průtoků
 
 
 

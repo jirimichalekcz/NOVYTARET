@@ -1,6 +1,6 @@
 #pragma once
 
-// === Základní knihovny ===
+// === Zakladni knihovny ===
 #include <Arduino.h>
 #include <Preferences.h>
 #include <ESP32Servo.h>
@@ -38,7 +38,7 @@ void uciciRezimServoB();
 
 
 // === EEPROM / NVS ===
-extern Preferences preferences;  // Objekt pro trvalé uložení dat
+extern Preferences preferences;  // Objekt pro trvalé uloženi dat
 
 // === Servo motor A a B ===
 extern Servo servoA;
@@ -46,28 +46,28 @@ extern Servo servoB;
 
 extern int pinServoA;            // GPIO pin pro servo A
 extern int pinServoB;            // GPIO pin pro servo B
-extern int offsetServoA;         // Zavřená pozice pro servo A (učí se)
-extern int offsetServoB;         // Zavřená pozice pro servo B (učí se)
+extern int offsetServoA;         // Zavřena pozice pro servo A (uci se)
+extern int offsetServoB;         // Zavřena pozice pro servo B (uci se)
 
 extern bool servoAOpened;
 extern bool servoBOpened;
 
-// === Bzučák ===
-extern const int bzucak;         // Výstupní pin pro bzučák
+// === Bzucak ===
+extern const int bzucak;         // Výstupni pin pro bzucak
 
-// === Váhový senzor (HX711) ===
-extern Q2HX711 hx711;            // Objekt pro práci s váhou
+// === Vahový senzor (HX711) ===
+extern Q2HX711 hx711;            // Objekt pro praci s vahou
 extern long offset;              // Offset kalibrace
-extern float calibrationFactor;  // Kalibrační konstanta
-extern float currentWeight;      // Aktuálně změřená hmotnost
+extern float calibrationFactor;  // Kalibracni konstanta
+extern float currentWeight;      // Aktualně změřena hmotnost
 
-// === Dávkování a cílové hodnoty ===
-extern float desiredWeight;      // Uživatelem zadaná cílová hmotnost
-extern float targetWeightA;      // Vypočtený cíl pro složku A
-extern float targetWeightB;      // Vypočtený cíl pro složku B
-extern float lastDesiredWeight;  // Poslední použitá hodnota dávky
-extern float totalWeightA;       // Celkově nadávkováno složky A
-extern float totalWeightB;       // Celkově nadávkováno složky B
+// === Davkovani a cilové hodnoty ===
+extern float desiredWeight;      // Uživatelem zadana cilova hmotnost
+extern float targetWeightA;      // Vypoctený cil pro složku A
+extern float targetWeightB;      // Vypoctený cil pro složku B
+extern float lastDesiredWeight;  // Posledni použita hodnota davky
+extern float totalWeightA;       // Celkově nadavkovano složky A
+extern float totalWeightB;       // Celkově nadavkovano složky B
 
 // === Poměry složek ===
 extern int slozkaA;              // Poměr složky A (např. 100)
@@ -75,17 +75,17 @@ extern int slozkaB;              // Poměr složky B (např. 40)
 
 // === Stavový automat a režimy ===
 enum State {
-  WAITING_FOR_INPUT,   // Čeká na vstup
-  DOSING_A,            // Dávkuje složku A
-  DOSING_B,            // Dávkuje složku B
-  COMPLETED,           // Dávkování dokončeno
-  LEARNING_OFFSET_A,   // Učí se offset pro servo A
-  LEARNING_OFFSET_B    // Učí se offset pro servo B
+  WAITING_FOR_INPUT,   // ceka na vstup
+  DOSING_A,            // Davkuje složku A
+  DOSING_B,            // Davkuje složku B
+  COMPLETED,           // Davkovani dokonceno
+  LEARNING_OFFSET_A,   // Uci se offset pro servo A
+  LEARNING_OFFSET_B    // Uci se offset pro servo B
 };
 extern State currentState;
 
 enum DosingMode {
-  NONE,                // Žádný režim
+  NONE,                // Žadný režim
   COMPONENT_A,         // Pouze složka A
   COMPONENT_B,         // Pouze složka B
   MIX                  // Poměr A + B
@@ -93,6 +93,6 @@ enum DosingMode {
 extern DosingMode dosingMode;
 
 // === Uživatelský vstup & vizualizace ===
-extern String inputWeight;              // Text z Nextion klávesnice
-extern std::vector<float> grafData;     // Data pro graf průběhu dávkování
+extern String inputWeight;              // Text z Nextion klavesnice
+extern std::vector<float> grafData;     // Data pro graf průběhu davkovani
 

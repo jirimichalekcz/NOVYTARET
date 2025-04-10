@@ -8,39 +8,39 @@ void inicializujSerial();
 void inicializujHX711();
 
 
-// 🧠 Pomocné funkce (utils) pro formátování, výpisy apod.
+// 🧠 Pomocné funkce (utils) pro formatovani, výpisy apod.
 
 /**
- * @brief Převede čas v milisekundách na formátovaný řetězec "HHH:MM"
+ * @brief Převede cas v milisekundach na formatovaný řetězec "HHH:MM"
  * 
- * @param timeMs Čas v milisekundách
- * @return String ve formátu "HHH:MM"
+ * @param timeMs cas v milisekundach
+ * @return String ve formatu "HHH:MM"
  */
 String formatTime(unsigned long timeMs);
 
 /**
- * @brief Vypíše zvukový signál (pípnutí) na bzučáku
+ * @brief Vypiše zvukový signal (pipnuti) na bzucaku
  * 
- * @param delka Délka pípnutí v ms
+ * @param delka Délka pipnuti v ms
  */
 void hrajZvuk(int delka);
 
 /**
- * @brief Upozorňující sekvence pípnutí (např. pro watchdog)
+ * @brief Upozorňujici sekvence pipnuti (např. pro watchdog)
  */
 void hrajVarovnyZvuk();
 
 /**
- * @brief Zvuková sekvence při dokončení dávkování v režimu MIX
+ * @brief Zvukova sekvence při dokonceni davkovani v režimu MIX
  */
 void hrajkonecMIXU();
 
 /**
- * @brief Pomalu otevře servo z aktuálního úhlu do cílového
+ * @brief Pomalu otevře servo z aktualniho úhlu do cilového
  * 
  * @param servo Servo objekt
- * @param aktualniUhel Výchozí úhel
- * @param cilovyUhel Cílový úhel
+ * @param aktualniUhel Výchozi úhel
+ * @param cilovyUhel Cilový úhel
  * @param delayMs Pauza mezi kroky (pro pomalý pohyb)
  */
 void pomaluOtevriServo(Servo &servo, int aktualniUhel, int cilovyUhel, int delayMs);
