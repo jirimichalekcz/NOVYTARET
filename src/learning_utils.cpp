@@ -12,6 +12,8 @@
 void updateNextionText(String objectName, String text);
 void hrajZvuk(int delka);
 
+
+
 void uciciRezimServoA() {
   updateNextionText("status", "Učení servo A start");
   Serial.println("=== Učící režim servo A zahájen ===");
@@ -47,16 +49,19 @@ void uciciRezimServoA() {
       rozdil = po - pred;
       Serial.print("Rozdíl: "); Serial.println(rozdil, 3);
 
+      String key = "A" + String(absoluteAngle);
+
       if (rozdil <= 0.2f) {
           Serial.println("!!! Úhel " + String(absoluteAngle) + " přeskočen (malý rozdíl)");
           updateNextionText("status", "Úhel " + String(absoluteAngle) + " přeskočen");
+          flowPrefsA.putFloat((key + "g").c_str(), 0.0f); // Uložení 0 pro tento úhel
+          flowPrefsA.putUInt((key + "t").c_str(), 1000);  // Výchozí čas
           delay(500);
           continue;
       }
 
       predchoziHmotnost = rozdil;
 
-      String key = "A" + String(absoluteAngle);
       flowPrefsA.putFloat((key + "g").c_str(), rozdil);
       flowPrefsA.putUInt((key + "t").c_str(), 1000);
       grafData.push_back(rozdil);
@@ -78,7 +83,7 @@ void uciciRezimServoB() {
   Serial.println("=== Učící režim servo B zahájen ===");
 
   Preferences flowPrefsB;
-  flowPrefsB.begin("flowmapB", false); // Namespace pro B
+  flowPrefsB.begin("flowmapB", false); // Jiný namespace
   grafData.clear();
 
   int krok = 5; // Změna kroku na 5 stupňů
@@ -108,16 +113,19 @@ void uciciRezimServoB() {
       rozdil = po - pred;
       Serial.print("Rozdíl: "); Serial.println(rozdil, 3);
 
+      String key = "B" + String(absoluteAngle);
+
       if (rozdil <= 0.2f) {
           Serial.println("!!! Úhel " + String(absoluteAngle) + " přeskočen (malý rozdíl)");
           updateNextionText("status", "Úhel " + String(absoluteAngle) + " přeskočen");
+          flowPrefsB.putFloat((key + "g").c_str(), 0.0f); // Uložení 0 pro tento úhel
+          flowPrefsB.putUInt((key + "t").c_str(), 1000);  // Výchozí čas
           delay(500);
           continue;
       }
 
       predchoziHmotnost = rozdil;
 
-      String key = "B" + String(absoluteAngle);
       flowPrefsB.putFloat((key + "g").c_str(), rozdil);
       flowPrefsB.putUInt((key + "t").c_str(), 1000);
       grafData.push_back(rozdil);
@@ -133,4 +141,5 @@ void uciciRezimServoB() {
   Serial.println("=== Učící režim dokončen ===");
   flowPrefsB.end();
 }
+
 
