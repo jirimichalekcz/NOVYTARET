@@ -13,7 +13,6 @@ void updateNextionText(String objectName, String text);
 void hrajZvuk(int delka);
 
 
-
 void uciciRezimServoA() {
   updateNextionText("status", "Učení servo A start");
   Serial.println("=== Učící režim servo A zahájen ===");
@@ -51,7 +50,7 @@ void uciciRezimServoA() {
 
       String key = "A" + String(absoluteAngle);
 
-      if (rozdil <= 0.2f) {
+      if (rozdil < 0.4f) { // Pokud je rozdíl menší než 0.4 g
           Serial.println("!!! Úhel " + String(absoluteAngle) + " přeskočen (malý rozdíl)");
           updateNextionText("status", "Úhel " + String(absoluteAngle) + " přeskočen");
           flowPrefsA.putFloat((key + "g").c_str(), 0.0f); // Uložení 0 pro tento úhel
@@ -77,6 +76,7 @@ void uciciRezimServoA() {
   Serial.println("=== Učící režim dokončen ===");
   flowPrefsA.end();
 }
+
 
 void uciciRezimServoB() {
   updateNextionText("status", "Učení servo B start");
@@ -115,7 +115,7 @@ void uciciRezimServoB() {
 
       String key = "B" + String(absoluteAngle);
 
-      if (rozdil <= 0.2f) {
+      if (rozdil < 0.4f) { // Pokud je rozdíl menší než 0.4 g
           Serial.println("!!! Úhel " + String(absoluteAngle) + " přeskočen (malý rozdíl)");
           updateNextionText("status", "Úhel " + String(absoluteAngle) + " přeskočen");
           flowPrefsB.putFloat((key + "g").c_str(), 0.0f); // Uložení 0 pro tento úhel
@@ -141,5 +141,3 @@ void uciciRezimServoB() {
   Serial.println("=== Učící režim dokončen ===");
   flowPrefsB.end();
 }
-
-
