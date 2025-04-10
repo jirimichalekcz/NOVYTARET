@@ -387,37 +387,6 @@ if (currentState == LEARNING_OFFSET_B && learningOffsetB_Active) {
 
 } //end loop
 
-///stara davkuj slozku funkce
-
-
-void inicializujBzucak() {
-  pinMode(bzucak, OUTPUT);
-  digitalWrite(bzucak, LOW);
-}
-
-void inicializujSerial() {
-
-    #ifdef DEBUG_MODE
-    Serial.begin(9600); // Pro ladění přes Serial monitor
-    #endif
-
-
-  Serial2.begin(9600, SERIAL_8N1, NEXTION_RX, NEXTION_TX);
-
-}
-
-void inicializujHX711() {
-  // Nastavení zesílení (volitelné)
-  // hx711.setGain(128); // Možnosti jsou 128, 64, 32
-
-  // Čekání na stabilizaci HX711
-  delay(500);
-
-  // Nastavení offsetu (tare)
-  tareScale();
-}
-
-
 
 
 
