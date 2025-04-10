@@ -6,12 +6,14 @@
 #include "utils.h"
 #include "learning_utils.h"
 
+//dosavadni verze stareho uceni 
+
 // Dopředné deklarace, pokud nejsou v utils.h
 void updateNextionText(String objectName, String text);
 void hrajZvuk(int delka);
 
 
- 
+
 void uciciRezimServoA() {
 
   updateNextionText("status", "Učení servo A start");
