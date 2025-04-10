@@ -46,3 +46,19 @@ void pomaluOtevriServo(Servo &servo, int aktualniUhel, int cilovyUhel, int delay
         delay(delayMs);
     }
 }
+
+
+void inicializujBzucak() {
+    pinMode(bzucak, OUTPUT);
+    digitalWrite(bzucak, LOW);
+  }
+  
+  void inicializujSerial() {
+    Serial.begin(9600);
+    Serial2.begin(9600, SERIAL_8N1, RX2, TX2);  // RX2 a TX2 máš v globals.h
+  }
+  
+  void inicializujHX711() {
+    delay(500);       // Nech čas na stabilizaci
+    tareScale();      // Spusť tare hned na start
+  }

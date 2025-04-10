@@ -3,6 +3,9 @@
 #include <Arduino.h>
 #include <ESP32Servo.h> 
 #include "globals.h"
+void inicializujBzucak();
+void inicializujSerial();
+void inicializujHX711();
 
 
 // 🧠 Pomocné funkce (utils) pro formátování, výpisy apod.
