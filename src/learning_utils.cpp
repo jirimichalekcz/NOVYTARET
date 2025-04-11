@@ -82,3 +82,34 @@ void uciciRezimServo(Servo &servo, int offsetServo, const char *namespaceName) {
     Serial.println(String("=== Ucici režim ") + namespaceName + " dokoncen ===");
     prefs.end();
 }
+
+
+
+void vypisDosingData(const char *namespaceName) {
+    Preferences prefs;
+    prefs.begin(namespaceName, true); // Otevření namespace pro čtení
+
+    const int pocetUhlu = 19; // Počet úhlů (0, 5, 10, ..., 90)
+    DosingData data[pocetUhlu];
+
+    // Načtení dat z NVS
+    size_t velikost = prefs.getBytes("dosingData", data, sizeof(data));
+    if (velikost != sizeof(data)) {
+        Serial.println(String("Chyba: Data pro ") + namespaceName + " nebyla správně načtena.");
+        prefs.end();
+        return;
+    }
+
+    // Výpis dat na Serial monitor
+    Serial.println(String("=== Data pro ") + namespaceName + " ===");
+    for (int i = 0; i < pocetUhlu; i++) {
+        Serial.print("Úhel: ");
+        Serial.print(data[i].uhel);
+        Serial.print("°, Hmotnost: ");
+        Serial.print(data[i].hmotnost, 3);
+        Serial.println(" g");
+    }
+    Serial.println(String("=== Konec dat pro ") + namespaceName + " ===");
+
+    prefs.end(); // Ukončení práce s NVS
+}
