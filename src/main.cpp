@@ -153,8 +153,6 @@ void aktualizujDavkovani();
 void vypisDataServoB();
 
 
-
-
 void setup() {
 
   vypisDosingData("flowmapA"); // Výpis dat pro složku A
@@ -174,11 +172,6 @@ void setup() {
 
 offsetServoA = preferences.getInt("offsetA", 0); // Vychozi hodnota 0
 offsetServoB = preferences.getInt("offsetB", 0);
-
-
-
-
-
 
   // === Pripojeni serv ===
   servoA.attach(pinServoA);

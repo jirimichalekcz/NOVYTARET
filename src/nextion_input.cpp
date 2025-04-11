@@ -45,6 +45,14 @@ void zpracujNextionData() {
     if (c == 'o') { servoB.write(90); manualAngleB = 90; manualModeActive = true; updateNextionText("status", "Servo B → 90°"); return; }
     if (c == 'p') { servoB.write(0); manualAngleB = 0; manualModeActive = true; updateNextionText("status", "Servo B → 0°"); return; }
 
+
+    if (inputWeight == "787878") {
+      Serial.println("Kod 787878 detekovan. Vypisuji data z NVS pameti.");
+      vypisDosingData("flowmapA");
+      vypisDosingData("flowmapB");
+      inputWeight = ""; // Reset vstupu
+      return;
+  }
     // === Prikazy pro davkovani, kalibraci, strankovani, mazani... ===
     // === Zde bud zkopiruj vse ze stavajici funkce (vetsi cast Nextion vstupu) ===
     // Doporucuju to tam prenest ve stejne podobe, pripadne pozdeji rozdelit do dalsich funkci
