@@ -98,18 +98,25 @@ void davkujSlozku(float cilovaHmotnost, Servo &servo, int offsetServo, const cha
         }
 
         // Aktualizace celkove nadavkovane hmotnosti
-        hmotnostDosud += namereno;
-        if (hmotnostDosud >= cilovaHmotnost) {
-            Serial.println("Cilova hmotnost dosazena nebo prekrocena.");
-            break;
+        if (namereno > 0) {
+            hmotnostDosud += namereno;
+            Serial.print("Celkem nadavkovano: ");
+            Serial.println(hmotnostDosud);
+        } else {
+            Serial.println("Chyba: Namereno je nulove nebo zaporne, hmotnost nebude aktualizovana.");
         }
-
-        Serial.print("Celkem nadavkovano: ");
-        Serial.println(hmotnostDosud);
 
         // Vypocet zbyvajici hmotnosti
         zbyva = cilovaHmotnost - hmotnostDosud;
         Serial.print("Zbyva nadavkovat: ");
+        Serial.println(zbyva);
+
+        // Ladici vypisy
+        Serial.print("DEBUG: Namereno: ");
+        Serial.println(namereno);
+        Serial.print("DEBUG: Hmotnost dosud: ");
+        Serial.println(hmotnostDosud);
+        Serial.print("DEBUG: Zbyva: ");
         Serial.println(zbyva);
 
         // Uprava casu otevreni na zaklade odchylky
@@ -168,24 +175,27 @@ void davkujSlozku(float cilovaHmotnost, Servo &servo, int offsetServo, const cha
                     while (millis() - startTime < 7000) { // Maximalne 7 sekund
                         zpracujHX711();
                         if (abs(currentWeight - posledniHmotnost) < 0.2f) {
-                            namereno = currentWeight;
+                            namereno = currentWeight - hmotnostDosud; // Rozdil od dosud nadavkovane hmotnosti
                             break;
                         }
                         posledniHmotnost = currentWeight;
                         delay(500);
                     }
 
-                    Serial.print("Namerena hmotnost po jemnem dodavkovani: ");
-                    Serial.println(namereno);
+                    if (namereno > 0) {
+                        hmotnostDosud += namereno;
+                        zbyva = cilovaHmotnost - hmotnostDosud;
 
-                    // Aktualizace celkove nadavkovane hmotnosti
-                    hmotnostDosud += namereno;
-                    zbyva = cilovaHmotnost - hmotnostDosud;
-
-                    Serial.print("Celkem nadavkovano: ");
-                    Serial.println(hmotnostDosud);
-                    Serial.print("Zbyva nadavkovat: ");
-                    Serial.println(zbyva);
+                        Serial.print("Namerena hmotnost po jemnem dodavkovani: ");
+                        Serial.println(namereno);
+                        Serial.print("Celkem nadavkovano: ");
+                        Serial.println(hmotnostDosud);
+                        Serial.print("Zbyva nadavkovat: ");
+                        Serial.println(zbyva);
+                    } else {
+                        Serial.println("Chyba: Namereno je nulove nebo zaporne, hmotnost nebude aktualizovana.");
+                        break;
+                    }
 
                     // Pokud zbyvajici hmotnost je prilis mala, ukoncit
                     if (zbyva <= 0.01f) {
