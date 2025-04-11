@@ -17,8 +17,7 @@ Obsahuje funkce pro dávkování složek a jemné dodávkování.
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\label{dosing__utils_8cpp_a821fd6cb7d5d9fa764f630eeeed00357} 
-void {\bfseries update\+Nextion\+Text} (String object\+Name, String text)
+void \textbf{ update\+Nextion\+Text} (String object\+Name, String text)
 \item 
 void \textbf{ davkuj\+Slozku} (float cilova\+Hmotnost, Servo \&servo, int offset\+Servo, const char $\ast$namespace\+Name)
 \begin{DoxyCompactList}\small\item\em Hlavní funkce pro dávkování složky. \end{DoxyCompactList}\item 
@@ -34,10 +33,10 @@ Obsahuje funkce pro dávkování složek a jemné dodávkování.
 Tento soubor implementuje hlavní logiku dávkování složek pomocí serv a váhy HX711. Obsahuje funkce pro dávkování složek A a B, jemné dodávkování a práci s kalibračními daty.
 
 \begin{DoxyAuthor}{Author}
-[Vaše jméno] 
+[Jiri Michalek] 
 \end{DoxyAuthor}
 \begin{DoxyDate}{Date}
-[Datum] 
+[11042025] 
 \end{DoxyDate}
 
 
@@ -52,7 +51,7 @@ void davkuj\+Slozku (\begin{DoxyParamCaption}\item[{float}]{cilova\+Hmotnost}{, 
 
 Hlavní funkce pro dávkování složky. 
 
-Tato funkce dávkuje složku na základě cílové hmotnosti a kalibračních dat uložených v NVS. Používá servo pro dávkování a váhu HX711 pro měření aktuální hmotnosti.
+Tato funkce dávkuje složku na základě cílové hmotnosti a kalibračních dat uložených v NVS. Používá servo pro dávkování a váhu HX711 pro měření aktuální hmotnosti. Pokud je potřeba, provádí jemné dodávkování pro dosažení přesné cílové hmotnosti.
 
 
 \begin{DoxyParams}{Parameters}
@@ -73,6 +72,10 @@ Vyhledává nejbližší úhel serva pro dávkování.
 
 Prochází kalibrační data a hledá úhel, který odpovídá hmotnosti nejbližší k požadované zbývající hmotnosti.
 
+Jemné dodávkování pro dosažení přesné cílové hmotnosti.
+
+Používá nejmenší kalibrovaný úhel serva a krátký čas otevření pro dodání malého množství materiálu. Kontroluje stabilizaci váhy a aktualizuje zbývající hmotnost.
+
 Přehrává 3 krátké zvuky pomocí bzučáku.
 
 Signalizuje dokončení dávkování.
@@ -89,6 +92,8 @@ void davkuj\+Slozku\+AUcenim (\begin{DoxyParamCaption}\item[{float}]{cilova\+Hmo
 
 Dávkuje složku A pomocí předem naučených kalibračních dat. 
 
+Tato funkce volá hlavní dávkovací funkci {\ttfamily davkuj\+Slozku} s parametry specifickými pro složku A. Používá servo A a kalibrační data uložená v prostoru NVS {\ttfamily flowmapA}.
+
 
 \begin{DoxyParams}{Parameters}
 {\em cilova\+Hmotnost} & Cílová hmotnost složky A (v gramech). \\
@@ -104,8 +109,16 @@ void davkuj\+Slozku\+BUcenim (\begin{DoxyParamCaption}\item[{float}]{cilova\+Hmo
 
 Dávkuje složku B pomocí předem naučených kalibračních dat. 
 
+Tato funkce volá hlavní dávkovací funkci {\ttfamily davkuj\+Slozku} s parametry specifickými pro složku B. Používá servo B a kalibrační data uložená v prostoru NVS {\ttfamily flowmapB}.
+
 
 \begin{DoxyParams}{Parameters}
 {\em cilova\+Hmotnost} & Cílová hmotnost složky B (v gramech). \\
 \hline
 \end{DoxyParams}
+\index{dosing\_utils.cpp@{dosing\_utils.cpp}!updateNextionText@{updateNextionText}}
+\index{updateNextionText@{updateNextionText}!dosing\_utils.cpp@{dosing\_utils.cpp}}
+\doxysubsubsection{updateNextionText()}
+{\footnotesize\ttfamily \label{dosing__utils_8cpp_a821fd6cb7d5d9fa764f630eeeed00357} 
+void update\+Nextion\+Text (\begin{DoxyParamCaption}\item[{String}]{object\+Name}{, }\item[{String}]{text}{}\end{DoxyParamCaption})}
+

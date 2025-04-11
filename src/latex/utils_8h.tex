@@ -1,35 +1,35 @@
 \doxysection{utils.\+h File Reference}
-\hypertarget{utils_8h}{}\label{utils_8h}\index{utils.h@{utils.h}}
+\label{utils_8h}\index{utils.h@{utils.h}}
 {\ttfamily \#include $<$Arduino.\+h$>$}\newline
 {\ttfamily \#include $<$ESP32\+Servo.\+h$>$}\newline
 {\ttfamily \#include "{}globals.\+h"{}}\newline
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{utils_8h_a682b60eb5b71e702ffcb23dde03d7a44}{inicializuj\+Bzucak}} ()
+void \textbf{ inicializuj\+Bzucak} ()
 \item 
-void \mbox{\hyperlink{utils_8h_a0b1b511efc966afc901843272b66e522}{inicializuj\+Serial}} ()
+void \textbf{ inicializuj\+Serial} ()
 \item 
-void \mbox{\hyperlink{utils_8h_ae315ff2c8c42d8c66acd6df1300eeb2c}{inicializuj\+HX711}} ()
+void \textbf{ inicializuj\+HX711} ()
 \item 
-String \mbox{\hyperlink{utils_8h_af0bd287f5f39881034675a8333cc4979}{format\+Time}} (unsigned long time\+Ms)
+String \textbf{ format\+Time} (unsigned long time\+Ms)
 \begin{DoxyCompactList}\small\item\em Prevede cas v milisekundach na formatovany retězec "{}\+HHH\+:\+MM"{}. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{utils_8h_a92172aa1eff83ec8f52ce0d8623d06d6}{hraj\+Zvuk}} (int delka)
+void \textbf{ hraj\+Zvuk} (int delka)
 \begin{DoxyCompactList}\small\item\em Vypiše zvukovy signal (pipnuti) na bzucaku. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{utils_8h_ae0e9cf623b76202a427045aacc427fa2}{hraj\+Varovny\+Zvuk}} ()
+void \textbf{ hraj\+Varovny\+Zvuk} ()
 \begin{DoxyCompactList}\small\item\em Upozorňujici sekvence pipnuti (napr. pro watchdog) \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{utils_8h_a584924d92397761c2e2060a1cbda1435}{hrajkonec\+MIXU}} ()
+void \textbf{ hrajkonec\+MIXU} ()
 \begin{DoxyCompactList}\small\item\em Zvukova sekvence pri dokonceni davkovani v režimu MIX. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{utils_8h_acf1fabb837bfd614814dcf841a1c4b8a}{pomalu\+Otevri\+Servo}} (Servo \&servo, int aktualni\+Uhel, int cilovy\+Uhel, int delay\+Ms)
+void \textbf{ pomalu\+Otevri\+Servo} (Servo \&servo, int aktualni\+Uhel, int cilovy\+Uhel, int delay\+Ms)
 \begin{DoxyCompactList}\small\item\em Pomalu otevre servo z aktualniho Uhlu do cilového. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{utils_8h_ac8b5b41784064f53291396d5455d353c}{tare\+Scale}} ()
+void \textbf{ tare\+Scale} ()
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{utils_8h_af0bd287f5f39881034675a8333cc4979}\index{utils.h@{utils.h}!formatTime@{formatTime}}
+\index{utils.h@{utils.h}!formatTime@{formatTime}}
 \index{formatTime@{formatTime}!utils.h@{utils.h}}
-\doxysubsubsection{\texorpdfstring{formatTime()}{formatTime()}}
+\doxysubsubsection{formatTime()}
 {\footnotesize\ttfamily \label{utils_8h_af0bd287f5f39881034675a8333cc4979} 
 String format\+Time (\begin{DoxyParamCaption}\item[{unsigned long}]{time\+Ms}{}\end{DoxyParamCaption})}
 
@@ -45,9 +45,9 @@ Prevede cas v milisekundach na formatovany retězec "{}\+HHH\+:\+MM"{}.
 \begin{DoxyReturn}{Returns}
 String ve formatu "{}\+HHH\+:\+MM"{} 
 \end{DoxyReturn}
-\Hypertarget{utils_8h_a584924d92397761c2e2060a1cbda1435}\index{utils.h@{utils.h}!hrajkonecMIXU@{hrajkonecMIXU}}
+\index{utils.h@{utils.h}!hrajkonecMIXU@{hrajkonecMIXU}}
 \index{hrajkonecMIXU@{hrajkonecMIXU}!utils.h@{utils.h}}
-\doxysubsubsection{\texorpdfstring{hrajkonecMIXU()}{hrajkonecMIXU()}}
+\doxysubsubsection{hrajkonecMIXU()}
 {\footnotesize\ttfamily \label{utils_8h_a584924d92397761c2e2060a1cbda1435} 
 void hrajkonec\+MIXU (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
@@ -55,9 +55,9 @@ void hrajkonec\+MIXU (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 Zvukova sekvence pri dokonceni davkovani v režimu MIX. 
 
-\Hypertarget{utils_8h_ae0e9cf623b76202a427045aacc427fa2}\index{utils.h@{utils.h}!hrajVarovnyZvuk@{hrajVarovnyZvuk}}
+\index{utils.h@{utils.h}!hrajVarovnyZvuk@{hrajVarovnyZvuk}}
 \index{hrajVarovnyZvuk@{hrajVarovnyZvuk}!utils.h@{utils.h}}
-\doxysubsubsection{\texorpdfstring{hrajVarovnyZvuk()}{hrajVarovnyZvuk()}}
+\doxysubsubsection{hrajVarovnyZvuk()}
 {\footnotesize\ttfamily \label{utils_8h_ae0e9cf623b76202a427045aacc427fa2} 
 void hraj\+Varovny\+Zvuk (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
@@ -65,9 +65,9 @@ void hraj\+Varovny\+Zvuk (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 Upozorňujici sekvence pipnuti (napr. pro watchdog) 
 
-\Hypertarget{utils_8h_a92172aa1eff83ec8f52ce0d8623d06d6}\index{utils.h@{utils.h}!hrajZvuk@{hrajZvuk}}
+\index{utils.h@{utils.h}!hrajZvuk@{hrajZvuk}}
 \index{hrajZvuk@{hrajZvuk}!utils.h@{utils.h}}
-\doxysubsubsection{\texorpdfstring{hrajZvuk()}{hrajZvuk()}}
+\doxysubsubsection{hrajZvuk()}
 {\footnotesize\ttfamily \label{utils_8h_a92172aa1eff83ec8f52ce0d8623d06d6} 
 void hraj\+Zvuk (\begin{DoxyParamCaption}\item[{int}]{delka}{}\end{DoxyParamCaption})}
 
@@ -80,27 +80,27 @@ Vypiše zvukovy signal (pipnuti) na bzucaku.
 {\em delka} & Délka pipnuti v ms \\
 \hline
 \end{DoxyParams}
-\Hypertarget{utils_8h_a682b60eb5b71e702ffcb23dde03d7a44}\index{utils.h@{utils.h}!inicializujBzucak@{inicializujBzucak}}
+\index{utils.h@{utils.h}!inicializujBzucak@{inicializujBzucak}}
 \index{inicializujBzucak@{inicializujBzucak}!utils.h@{utils.h}}
-\doxysubsubsection{\texorpdfstring{inicializujBzucak()}{inicializujBzucak()}}
+\doxysubsubsection{inicializujBzucak()}
 {\footnotesize\ttfamily \label{utils_8h_a682b60eb5b71e702ffcb23dde03d7a44} 
 void inicializuj\+Bzucak (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-\Hypertarget{utils_8h_ae315ff2c8c42d8c66acd6df1300eeb2c}\index{utils.h@{utils.h}!inicializujHX711@{inicializujHX711}}
+\index{utils.h@{utils.h}!inicializujHX711@{inicializujHX711}}
 \index{inicializujHX711@{inicializujHX711}!utils.h@{utils.h}}
-\doxysubsubsection{\texorpdfstring{inicializujHX711()}{inicializujHX711()}}
+\doxysubsubsection{inicializujHX711()}
 {\footnotesize\ttfamily \label{utils_8h_ae315ff2c8c42d8c66acd6df1300eeb2c} 
 void inicializuj\+HX711 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-\Hypertarget{utils_8h_a0b1b511efc966afc901843272b66e522}\index{utils.h@{utils.h}!inicializujSerial@{inicializujSerial}}
+\index{utils.h@{utils.h}!inicializujSerial@{inicializujSerial}}
 \index{inicializujSerial@{inicializujSerial}!utils.h@{utils.h}}
-\doxysubsubsection{\texorpdfstring{inicializujSerial()}{inicializujSerial()}}
+\doxysubsubsection{inicializujSerial()}
 {\footnotesize\ttfamily \label{utils_8h_a0b1b511efc966afc901843272b66e522} 
 void inicializuj\+Serial (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-\Hypertarget{utils_8h_acf1fabb837bfd614814dcf841a1c4b8a}\index{utils.h@{utils.h}!pomaluOtevriServo@{pomaluOtevriServo}}
+\index{utils.h@{utils.h}!pomaluOtevriServo@{pomaluOtevriServo}}
 \index{pomaluOtevriServo@{pomaluOtevriServo}!utils.h@{utils.h}}
-\doxysubsubsection{\texorpdfstring{pomaluOtevriServo()}{pomaluOtevriServo()}}
+\doxysubsubsection{pomaluOtevriServo()}
 {\footnotesize\ttfamily \label{utils_8h_acf1fabb837bfd614814dcf841a1c4b8a} 
 void pomalu\+Otevri\+Servo (\begin{DoxyParamCaption}\item[{Servo \&}]{servo}{, }\item[{int}]{aktualni\+Uhel}{, }\item[{int}]{cilovy\+Uhel}{, }\item[{int}]{delay\+Ms}{}\end{DoxyParamCaption})}
 
@@ -119,9 +119,9 @@ Pomalu otevre servo z aktualniho Uhlu do cilového.
 {\em delay\+Ms} & Pauza mezi kroky (pro pomaly pohyb) \\
 \hline
 \end{DoxyParams}
-\Hypertarget{utils_8h_ac8b5b41784064f53291396d5455d353c}\index{utils.h@{utils.h}!tareScale@{tareScale}}
+\index{utils.h@{utils.h}!tareScale@{tareScale}}
 \index{tareScale@{tareScale}!utils.h@{utils.h}}
-\doxysubsubsection{\texorpdfstring{tareScale()}{tareScale()}}
+\doxysubsubsection{tareScale()}
 {\footnotesize\ttfamily \label{utils_8h_ac8b5b41784064f53291396d5455d353c} 
 void tare\+Scale (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 

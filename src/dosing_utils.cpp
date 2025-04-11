@@ -5,8 +5,8 @@
  * Tento soubor implementuje hlavní logiku dávkování složek pomocí serv a váhy HX711.
  * Obsahuje funkce pro dávkování složek A a B, jemné dodávkování a práci s kalibračními daty.
  * 
- * @author [Vaše jméno]
- * @date [Datum]
+ * @author [Jiri Michalek]
+ * @date [11042025]
  */
 
 #include <Arduino.h>
@@ -25,7 +25,8 @@ void updateNextionText(String objectName, String text);
  * @brief Hlavní funkce pro dávkování složky.
  * 
  * Tato funkce dávkuje složku na základě cílové hmotnosti a kalibračních dat uložených v NVS.
- * Používá servo pro dávkování a váhu HX711 pro měření aktuální hmotnosti.
+ * Používá servo pro dávkování a váhu HX711 pro měření aktuální hmotnosti. Pokud je potřeba,
+ * provádí jemné dodávkování pro dosažení přesné cílové hmotnosti.
  * 
  * @param cilovaHmotnost Cílová hmotnost složky (v gramech).
  * @param servo Odkaz na servo objekt, které ovládá dávkování.
@@ -37,6 +38,9 @@ void davkujSlozku(float cilovaHmotnost, Servo &servo, int offsetServo, const cha
 /**
  * @brief Dávkuje složku A pomocí předem naučených kalibračních dat.
  * 
+ * Tato funkce volá hlavní dávkovací funkci `davkujSlozku` s parametry specifickými
+ * pro složku A. Používá servo A a kalibrační data uložená v prostoru NVS `flowmapA`.
+ * 
  * @param cilovaHmotnost Cílová hmotnost složky A (v gramech).
  */
 void davkujSlozkuAUcenim(float cilovaHmotnost) {
@@ -45,6 +49,9 @@ void davkujSlozkuAUcenim(float cilovaHmotnost) {
 
 /**
  * @brief Dávkuje složku B pomocí předem naučených kalibračních dat.
+ * 
+ * Tato funkce volá hlavní dávkovací funkci `davkujSlozku` s parametry specifickými
+ * pro složku B. Používá servo B a kalibrační data uložená v prostoru NVS `flowmapB`.
  * 
  * @param cilovaHmotnost Cílová hmotnost složky B (v gramech).
  */
@@ -82,6 +89,12 @@ void davkujSlozku(float cilovaHmotnost, Servo &servo, int offsetServo, const cha
         int nejblizsiUhel = -1;
 
         // Vyhledani nejblizsiho vhodneho uhlu
+        /**
+         * @brief Vyhledává nejbližší úhel serva pro dávkování.
+         * 
+         * Prochází kalibrační data a hledá úhel, který odpovídá hmotnosti
+         * nejbližší k požadované zbývající hmotnosti.
+         */
         for (int i = 0; i < pocetUhlu; i++) {
             if (data[i].hmotnost > 0.01f && data[i].hmotnost <= zbyva) {
                 if (data[i].hmotnost > nejblizsiHmotnost) {
@@ -90,12 +103,6 @@ void davkujSlozku(float cilovaHmotnost, Servo &servo, int offsetServo, const cha
                 }
             }
         }
-        /**
-         * @brief Vyhledává nejbližší úhel serva pro dávkování.
-         * 
-         * Prochází kalibrační data a hledá úhel, který odpovídá hmotnosti
-         * nejbližší k požadované zbývající hmotnosti.
-         */
 
         if (nejblizsiUhel == -1) {
             Serial.println("Nelze davkovat presneji. Zbyva: " + String(zbyva, 3) + " g");
@@ -199,7 +206,13 @@ void davkujSlozku(float cilovaHmotnost, Servo &servo, int offsetServo, const cha
                 Serial.print(", ocekavana hmotnost: ");
                 Serial.println(nejmensiHmotnost);
 
-                // Jemne dodavkovani
+                /**
+                 * @brief Jemné dodávkování pro dosažení přesné cílové hmotnosti.
+                 * 
+                 * Používá nejmenší kalibrovaný úhel serva a krátký čas otevření
+                 * pro dodání malého množství materiálu. Kontroluje stabilizaci váhy
+                 * a aktualizuje zbývající hmotnost.
+                 */
                 while (zbyva > 0.01f) {
                     float casJemnehoOtevreni = constrain(casOtevreni * (zbyva / nejmensiHmotnost), 300, 500); // Zvysena minimalni hodnota na 300 ms
                     Serial.print("Jemne dodavkovani s casem otevreni: ");
