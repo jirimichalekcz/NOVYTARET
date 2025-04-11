@@ -1,5 +1,5 @@
 \doxysection{globals.\+h}
-\hypertarget{globals_8h_source}{}\label{globals_8h_source}\mbox{\hyperlink{globals_8h}{Go to the documentation of this file.}}
+\label{globals_8h_source}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
@@ -11,93 +11,93 @@
 \DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
 \DoxyCodeLine{00009\ }
 \DoxyCodeLine{00010\ \textcolor{comment}{//\ ===\ Serial\ komunikace\ (Nextion\ displej)\ ===}}
-\DoxyCodeLine{00011\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_aaebb2a6c2fceb3ede075150bc37e4170}{NEXTION\_RX}}\ =\ 15;}
-\DoxyCodeLine{00012\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a5bf2f1936fca18d1cf46409a1360a609}{NEXTION\_TX}}\ =\ 4;}
+\DoxyCodeLine{00011\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ NEXTION\_RX\ =\ 15;}
+\DoxyCodeLine{00012\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ NEXTION\_TX\ =\ 4;}
 \DoxyCodeLine{00013\ }
 \DoxyCodeLine{00014\ }
 \DoxyCodeLine{00015\ }
 \DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a097045835882a56eb7583e005b268e9d}{manualAngleA}};}
-\DoxyCodeLine{00018\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_ab4a549aeefdf3f3d73ae1602aef573d4}{manualAngleB}};}
-\DoxyCodeLine{00019\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{globals_8h_a524ad866b92a070b941e7343978936a7}{manualModeActive}};}
-\DoxyCodeLine{00020\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{globals_8h_ae7206282c5465987fdfb041ae38a1fc6}{keyPressStartTime}};}
-\DoxyCodeLine{00021\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{globals_8h_a1fb2ff956cf5a409fb68f1fd292d0c51}{timeCounting}};}
+\DoxyCodeLine{00017\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ manualAngleA;}
+\DoxyCodeLine{00018\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ manualAngleB;}
+\DoxyCodeLine{00019\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ manualModeActive;}
+\DoxyCodeLine{00020\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ keyPressStartTime;}
+\DoxyCodeLine{00021\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ timeCounting;}
 \DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a51394d415d9cb275e8bf921354c642ad}{learningAngle}};}
-\DoxyCodeLine{00024\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{globals_8h_aba3bee0832988b4dd004836c8a3755cf}{learningLastWeight}};}
-\DoxyCodeLine{00025\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{globals_8h_a2dd70942e3424929624709eb4b4d33ac}{learningIncreasing}};}
-\DoxyCodeLine{00026\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{globals_8h_a5fd6db9ed2fb53eda6ce23c3f44748cf}{learningOffsetActive}};}
+\DoxyCodeLine{00023\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ learningAngle;}
+\DoxyCodeLine{00024\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ learningLastWeight;}
+\DoxyCodeLine{00025\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ learningIncreasing;}
+\DoxyCodeLine{00026\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ learningOffsetActive;}
 \DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a478d4120631271a6b3e03c88e916f3f8}{learningAngleB}};}
-\DoxyCodeLine{00029\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{globals_8h_adf7c419b6113606508df1cab65086884}{learningLastWeightB}};}
-\DoxyCodeLine{00030\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{globals_8h_af7ffb06037d7d4ea223471a727c8e102}{learningIncreasingB}};}
-\DoxyCodeLine{00031\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{globals_8h_ae3d795c0c6f293570979f4c4ea19eeb1}{learningOffsetB\_Active}};}
+\DoxyCodeLine{00028\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ learningAngleB;}
+\DoxyCodeLine{00029\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ learningLastWeightB;}
+\DoxyCodeLine{00030\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ learningIncreasingB;}
+\DoxyCodeLine{00031\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ learningOffsetB\_Active;}
 \DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a0297477961006dd1c7ec0e5d9462f5e8}{currentPage}};}
-\DoxyCodeLine{00034\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{globals_8h_acbd2790f6912eb5fb4ae8c3e44f1f997}{prumerRaw}};}
+\DoxyCodeLine{00033\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ currentPage;}
+\DoxyCodeLine{00034\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{long}\ prumerRaw;}
 \DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{globals_8h_a4a12d20e96b248129f8dd69ce0b06d2c}{uciciRezimServoA}}();}
-\DoxyCodeLine{00037\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{globals_8h_a3d0b26c9f589a4714571f4b3ce0dd661}{uciciRezimServoB}}();}
+\DoxyCodeLine{00036\ \textcolor{keywordtype}{void}\ uciciRezimServoA();}
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{void}\ uciciRezimServoB();}
 \DoxyCodeLine{00038\ }
 \DoxyCodeLine{00039\ }
 \DoxyCodeLine{00040\ \textcolor{comment}{//\ ===\ EEPROM\ /\ NVS\ ===}}
-\DoxyCodeLine{00041\ \textcolor{keyword}{extern}\ Preferences\ \mbox{\hyperlink{globals_8cpp_a6ea06cf7b8092a0adaf07614d7ece59d}{preferences}};\ \ \textcolor{comment}{//\ Objekt\ pro\ trvalé\ uloženi\ dat}}
+\DoxyCodeLine{00041\ \textcolor{keyword}{extern}\ Preferences\ preferences;\ \ \textcolor{comment}{//\ Objekt\ pro\ trvalé\ uloženi\ dat}}
 \DoxyCodeLine{00042\ }
 \DoxyCodeLine{00043\ \textcolor{comment}{//\ ===\ Servo\ motor\ A\ a\ B\ ===}}
-\DoxyCodeLine{00044\ \textcolor{keyword}{extern}\ Servo\ \mbox{\hyperlink{globals_8cpp_a2e2722f68ec1a8835e1a27ea4092725f}{servoA}};}
-\DoxyCodeLine{00045\ \textcolor{keyword}{extern}\ Servo\ \mbox{\hyperlink{globals_8cpp_a33a73c90970fab409fd6faf59d738e58}{servoB}};}
+\DoxyCodeLine{00044\ \textcolor{keyword}{extern}\ Servo\ servoA;}
+\DoxyCodeLine{00045\ \textcolor{keyword}{extern}\ Servo\ servoB;}
 \DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8cpp_a7da24347c3e611a973826a4a5d496218}{pinServoA}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ GPIO\ pin\ pro\ servo\ A}}
-\DoxyCodeLine{00048\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8cpp_a9d3aff86d858c4006b27fd52044f49bd}{pinServoB}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ GPIO\ pin\ pro\ servo\ B}}
-\DoxyCodeLine{00049\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8cpp_a2535c42a7d50e299b898731b4a611b21}{offsetServoA}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Zavrena\ pozice\ pro\ servo\ A\ (uci\ se)}}
-\DoxyCodeLine{00050\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8cpp_a6365bacce8751248b8f8549fb63141e0}{offsetServoB}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Zavrena\ pozice\ pro\ servo\ B\ (uci\ se)}}
+\DoxyCodeLine{00047\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ pinServoA;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ GPIO\ pin\ pro\ servo\ A}}
+\DoxyCodeLine{00048\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ pinServoB;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ GPIO\ pin\ pro\ servo\ B}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ offsetServoA;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Zavrena\ pozice\ pro\ servo\ A\ (uci\ se)}}
+\DoxyCodeLine{00050\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ offsetServoB;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Zavrena\ pozice\ pro\ servo\ B\ (uci\ se)}}
 \DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{globals_8cpp_aadd8d0b69549820e723fb943af35b0fb}{servoAOpened}};}
-\DoxyCodeLine{00053\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{globals_8cpp_abddee9975e36d4f9d2b98fb7d1ac0754}{servoBOpened}};}
+\DoxyCodeLine{00052\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ servoAOpened;}
+\DoxyCodeLine{00053\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ servoBOpened;}
 \DoxyCodeLine{00054\ }
 \DoxyCodeLine{00055\ \textcolor{comment}{//\ ===\ Bzucak\ ===}}
-\DoxyCodeLine{00056\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8cpp_a30d335d8832af5a12ac0928e599de317}{bzucak}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vystupni\ pin\ pro\ bzucak}}
+\DoxyCodeLine{00056\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ bzucak;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vystupni\ pin\ pro\ bzucak}}
 \DoxyCodeLine{00057\ }
 \DoxyCodeLine{00058\ \textcolor{comment}{//\ ===\ Vahovy\ senzor\ (HX711)\ ===}}
-\DoxyCodeLine{00059\ \textcolor{keyword}{extern}\ Q2HX711\ \mbox{\hyperlink{globals_8h_aff2187f7836ff68a227089bfe1eda688}{hx711}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Objekt\ pro\ praci\ s\ vahou}}
-\DoxyCodeLine{00060\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{globals_8cpp_adcce6ee751c1469525aec834a4d37ea8}{offset}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Offset\ kalibrace}}
-\DoxyCodeLine{00061\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{globals_8cpp_a950b27305ffb25187ed1daa2542377b1}{calibrationFactor}};\ \ \textcolor{comment}{//\ Kalibracni\ konstanta}}
-\DoxyCodeLine{00062\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{globals_8cpp_a3939f83508d16c53d3e1a24888e0c8f5}{currentWeight}};\ \ \ \ \ \ \textcolor{comment}{//\ Aktualně\ změrena\ hmotnost}}
+\DoxyCodeLine{00059\ \textcolor{keyword}{extern}\ Q2HX711\ hx711;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Objekt\ pro\ praci\ s\ vahou}}
+\DoxyCodeLine{00060\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{long}\ offset;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Offset\ kalibrace}}
+\DoxyCodeLine{00061\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ calibrationFactor;\ \ \textcolor{comment}{//\ Kalibracni\ konstanta}}
+\DoxyCodeLine{00062\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ currentWeight;\ \ \ \ \ \ \textcolor{comment}{//\ Aktualně\ změrena\ hmotnost}}
 \DoxyCodeLine{00063\ }
 \DoxyCodeLine{00064\ \textcolor{comment}{//\ ===\ Davkovani\ a\ cilové\ hodnoty\ ===}}
-\DoxyCodeLine{00065\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{globals_8cpp_a7c4bd5c73effc6b71029d86d1a932ccb}{desiredWeight}};\ \ \ \ \ \ \textcolor{comment}{//\ Uživatelem\ zadana\ cilova\ hmotnost}}
-\DoxyCodeLine{00066\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{globals_8cpp_aab4b8c1ad818b1ff864939afb26c4fde}{targetWeightA}};\ \ \ \ \ \ \textcolor{comment}{//\ Vypocteny\ cil\ pro\ složku\ A}}
-\DoxyCodeLine{00067\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{globals_8cpp_ae77a221ae280c342aff3eaaee904f110}{targetWeightB}};\ \ \ \ \ \ \textcolor{comment}{//\ Vypocteny\ cil\ pro\ složku\ B}}
-\DoxyCodeLine{00068\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{globals_8cpp_a6f9eef639d5605027b165576d3650ffe}{lastDesiredWeight}};\ \ \textcolor{comment}{//\ Posledni\ použita\ hodnota\ davky}}
-\DoxyCodeLine{00069\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{globals_8cpp_a52fb80491480ee4990a77b61ebcc0937}{totalWeightA}};\ \ \ \ \ \ \ \textcolor{comment}{//\ Celkově\ nadavkovano\ složky\ A}}
-\DoxyCodeLine{00070\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{globals_8cpp_ac2781d3aac08d4eed5fb8e24da8692db}{totalWeightB}};\ \ \ \ \ \ \ \textcolor{comment}{//\ Celkově\ nadavkovano\ složky\ B}}
+\DoxyCodeLine{00065\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ desiredWeight;\ \ \ \ \ \ \textcolor{comment}{//\ Uživatelem\ zadana\ cilova\ hmotnost}}
+\DoxyCodeLine{00066\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ targetWeightA;\ \ \ \ \ \ \textcolor{comment}{//\ Vypocteny\ cil\ pro\ složku\ A}}
+\DoxyCodeLine{00067\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ targetWeightB;\ \ \ \ \ \ \textcolor{comment}{//\ Vypocteny\ cil\ pro\ složku\ B}}
+\DoxyCodeLine{00068\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ lastDesiredWeight;\ \ \textcolor{comment}{//\ Posledni\ použita\ hodnota\ davky}}
+\DoxyCodeLine{00069\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ totalWeightA;\ \ \ \ \ \ \ \textcolor{comment}{//\ Celkově\ nadavkovano\ složky\ A}}
+\DoxyCodeLine{00070\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ totalWeightB;\ \ \ \ \ \ \ \textcolor{comment}{//\ Celkově\ nadavkovano\ složky\ B}}
 \DoxyCodeLine{00071\ }
 \DoxyCodeLine{00072\ \textcolor{comment}{//\ ===\ Poměry\ složek\ ===}}
-\DoxyCodeLine{00073\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8cpp_afcdb9675b3cf7a54c6b87c75720f2d23}{slozkaA}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Poměr\ složky\ A\ (napr.\ 100)}}
-\DoxyCodeLine{00074\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8cpp_ae41788ad8ffbd8399d7f1a14250d4cd6}{slozkaB}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Poměr\ složky\ B\ (napr.\ 40)}}
+\DoxyCodeLine{00073\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ slozkaA;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Poměr\ složky\ A\ (napr.\ 100)}}
+\DoxyCodeLine{00074\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ slozkaB;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Poměr\ složky\ B\ (napr.\ 40)}}
 \DoxyCodeLine{00075\ }
 \DoxyCodeLine{00076\ \textcolor{comment}{//\ ===\ Stavovy\ automat\ a\ režimy\ ===}}
-\DoxyCodeLine{00077\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{globals_8h_a5d74787dedbc4e11c1ab15bf487e61f8}{State}}\ \{}
-\DoxyCodeLine{00078\ \ \ \mbox{\hyperlink{globals_8h_a5d74787dedbc4e11c1ab15bf487e61f8afda0dff1ce83745a9ad37e8ec3f03e94}{WAITING\_FOR\_INPUT}},\ \ \ \textcolor{comment}{//\ ceka\ na\ vstup}}
-\DoxyCodeLine{00079\ \ \ \mbox{\hyperlink{globals_8h_a5d74787dedbc4e11c1ab15bf487e61f8ab3a884a16d0130035663e112a287b191}{DOSING\_A}},\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Davkuje\ složku\ A}}
-\DoxyCodeLine{00080\ \ \ \mbox{\hyperlink{globals_8h_a5d74787dedbc4e11c1ab15bf487e61f8abc20d67968523ad2d9b7db3d77548208}{DOSING\_B}},\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Davkuje\ složku\ B}}
-\DoxyCodeLine{00081\ \ \ \mbox{\hyperlink{globals_8h_a5d74787dedbc4e11c1ab15bf487e61f8a3549811efddf16048f4b8f6a3b960b41}{COMPLETED}},\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Davkovani\ dokonceno}}
-\DoxyCodeLine{00082\ \ \ \mbox{\hyperlink{globals_8h_a5d74787dedbc4e11c1ab15bf487e61f8a9a12a379b67db6f451aeafcfa1a7eb99}{LEARNING\_OFFSET\_A}},\ \ \ \textcolor{comment}{//\ Uci\ se\ offset\ pro\ servo\ A}}
-\DoxyCodeLine{00083\ \ \ \mbox{\hyperlink{globals_8h_a5d74787dedbc4e11c1ab15bf487e61f8aa95e57c6a761831e4e1647ebad4ce485}{LEARNING\_OFFSET\_B}}\ \ \ \ \textcolor{comment}{//\ Uci\ se\ offset\ pro\ servo\ B}}
+\DoxyCodeLine{00077\ \textcolor{keyword}{enum}\ State\ \{}
+\DoxyCodeLine{00078\ \ \ WAITING\_FOR\_INPUT,\ \ \ \textcolor{comment}{//\ ceka\ na\ vstup}}
+\DoxyCodeLine{00079\ \ \ DOSING\_A,\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Davkuje\ složku\ A}}
+\DoxyCodeLine{00080\ \ \ DOSING\_B,\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Davkuje\ složku\ B}}
+\DoxyCodeLine{00081\ \ \ COMPLETED,\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Davkovani\ dokonceno}}
+\DoxyCodeLine{00082\ \ \ LEARNING\_OFFSET\_A,\ \ \ \textcolor{comment}{//\ Uci\ se\ offset\ pro\ servo\ A}}
+\DoxyCodeLine{00083\ \ \ LEARNING\_OFFSET\_B\ \ \ \ \textcolor{comment}{//\ Uci\ se\ offset\ pro\ servo\ B}}
 \DoxyCodeLine{00084\ \};}
-\DoxyCodeLine{00085\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{globals_8h_a5d74787dedbc4e11c1ab15bf487e61f8}{State}}\ \mbox{\hyperlink{globals_8cpp_a62d920a9a06d7ac5b8c98e175defd014}{currentState}};}
+\DoxyCodeLine{00085\ \textcolor{keyword}{extern}\ State\ currentState;}
 \DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{globals_8h_afc588419c6c02a0bcff6c3dc527ac115}{DosingMode}}\ \{}
-\DoxyCodeLine{00088\ \ \ \mbox{\hyperlink{globals_8h_afc588419c6c02a0bcff6c3dc527ac115ac157bdf0b85a40d2619cbc8bc1ae5fe2}{NONE}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Žadny\ režim}}
-\DoxyCodeLine{00089\ \ \ \mbox{\hyperlink{globals_8h_afc588419c6c02a0bcff6c3dc527ac115a14f6265cfd55fc93a2762fb3b227012b}{COMPONENT\_A}},\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pouze\ složka\ A}}
-\DoxyCodeLine{00090\ \ \ \mbox{\hyperlink{globals_8h_afc588419c6c02a0bcff6c3dc527ac115a6531a7e91854e7a96bc7d70f949a202e}{COMPONENT\_B}},\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pouze\ složka\ B}}
-\DoxyCodeLine{00091\ \ \ \mbox{\hyperlink{globals_8h_afc588419c6c02a0bcff6c3dc527ac115a7cd694aa370e2d8cf72b5c796618837b}{MIX}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Poměr\ A\ +\ B}}
+\DoxyCodeLine{00087\ \textcolor{keyword}{enum}\ DosingMode\ \{}
+\DoxyCodeLine{00088\ \ \ NONE,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Žadny\ režim}}
+\DoxyCodeLine{00089\ \ \ COMPONENT\_A,\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pouze\ složka\ A}}
+\DoxyCodeLine{00090\ \ \ COMPONENT\_B,\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pouze\ složka\ B}}
+\DoxyCodeLine{00091\ \ \ MIX\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Poměr\ A\ +\ B}}
 \DoxyCodeLine{00092\ \};}
-\DoxyCodeLine{00093\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{globals_8h_afc588419c6c02a0bcff6c3dc527ac115}{DosingMode}}\ \mbox{\hyperlink{globals_8cpp_a30a466c4a4e61f8adc74826d919035e4}{dosingMode}};}
+\DoxyCodeLine{00093\ \textcolor{keyword}{extern}\ DosingMode\ dosingMode;}
 \DoxyCodeLine{00094\ }
 \DoxyCodeLine{00095\ \textcolor{comment}{//\ ===\ Uživatelsky\ vstup\ \&\ vizualizace\ ===}}
-\DoxyCodeLine{00096\ \textcolor{keyword}{extern}\ String\ \mbox{\hyperlink{globals_8cpp_ac211e264eab999f0079c2934f3e43004}{inputWeight}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Text\ z\ Nextion\ klavesnice}}
-\DoxyCodeLine{00097\ \textcolor{keyword}{extern}\ std::vector<float>\ \mbox{\hyperlink{globals_8cpp_a6df13c0ceef9d9081acc0bec9326fa2e}{grafData}};\ \ \ \ \ \textcolor{comment}{//\ Data\ pro\ graf\ průběhu\ davkovani}}
+\DoxyCodeLine{00096\ \textcolor{keyword}{extern}\ String\ inputWeight;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Text\ z\ Nextion\ klavesnice}}
+\DoxyCodeLine{00097\ \textcolor{keyword}{extern}\ std::vector<float>\ grafData;\ \ \ \ \ \textcolor{comment}{//\ Data\ pro\ graf\ průběhu\ davkovani}}
 \DoxyCodeLine{00098\ }
 
 \end{DoxyCode}

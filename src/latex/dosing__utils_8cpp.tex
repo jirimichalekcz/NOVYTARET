@@ -1,5 +1,5 @@
 \doxysection{dosing\+\_\+utils.\+cpp File Reference}
-\hypertarget{dosing__utils_8cpp}{}\label{dosing__utils_8cpp}\index{dosing\_utils.cpp@{dosing\_utils.cpp}}
+\label{dosing__utils_8cpp}\index{dosing\_utils.cpp@{dosing\_utils.cpp}}
 
 
 Obsahuje funkce pro dávkování složek a jemné dodávkování.  
@@ -17,13 +17,14 @@ Obsahuje funkce pro dávkování složek a jemné dodávkování.
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{dosing__utils_8cpp_a821fd6cb7d5d9fa764f630eeeed00357}{update\+Nextion\+Text}} (String object\+Name, String text)
+\label{dosing__utils_8cpp_a821fd6cb7d5d9fa764f630eeeed00357} 
+void {\bfseries update\+Nextion\+Text} (String object\+Name, String text)
 \item 
-void \mbox{\hyperlink{dosing__utils_8cpp_a3cd519a67ff179facba1414e8f12a46b}{davkuj\+Slozku}} (float cilova\+Hmotnost, Servo \&servo, int offset\+Servo, const char \texorpdfstring{$\ast$}{*}namespace\+Name)
+void \textbf{ davkuj\+Slozku} (float cilova\+Hmotnost, Servo \&servo, int offset\+Servo, const char $\ast$namespace\+Name)
 \begin{DoxyCompactList}\small\item\em Hlavní funkce pro dávkování složky. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{dosing__utils_8cpp_a6447e9a8c6e5941e593dc60bed9b26ae}{davkuj\+Slozku\+AUcenim}} (float cilova\+Hmotnost)
+void \textbf{ davkuj\+Slozku\+AUcenim} (float cilova\+Hmotnost)
 \begin{DoxyCompactList}\small\item\em Dávkuje složku A pomocí předem naučených kalibračních dat. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{dosing__utils_8cpp_aec9af3d72ff3a349b2dd62e08b8bab5d}{davkuj\+Slozku\+BUcenim}} (float cilova\+Hmotnost)
+void \textbf{ davkuj\+Slozku\+BUcenim} (float cilova\+Hmotnost)
 \begin{DoxyCompactList}\small\item\em Dávkuje složku B pomocí předem naučených kalibračních dat. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -33,19 +34,19 @@ Obsahuje funkce pro dávkování složek a jemné dodávkování.
 Tento soubor implementuje hlavní logiku dávkování složek pomocí serv a váhy HX711. Obsahuje funkce pro dávkování složek A a B, jemné dodávkování a práci s kalibračními daty.
 
 \begin{DoxyAuthor}{Author}
-\mbox{[}Vaše jméno\mbox{]} 
+[Vaše jméno] 
 \end{DoxyAuthor}
 \begin{DoxyDate}{Date}
-\mbox{[}Datum\mbox{]} 
+[Datum] 
 \end{DoxyDate}
 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{dosing__utils_8cpp_a3cd519a67ff179facba1414e8f12a46b}\index{dosing\_utils.cpp@{dosing\_utils.cpp}!davkujSlozku@{davkujSlozku}}
+\index{dosing\_utils.cpp@{dosing\_utils.cpp}!davkujSlozku@{davkujSlozku}}
 \index{davkujSlozku@{davkujSlozku}!dosing\_utils.cpp@{dosing\_utils.cpp}}
-\doxysubsubsection{\texorpdfstring{davkujSlozku()}{davkujSlozku()}}
+\doxysubsubsection{davkujSlozku()}
 {\footnotesize\ttfamily \label{dosing__utils_8cpp_a3cd519a67ff179facba1414e8f12a46b} 
-void davkuj\+Slozku (\begin{DoxyParamCaption}\item[{float}]{cilova\+Hmotnost}{, }\item[{Servo \&}]{servo}{, }\item[{int}]{offset\+Servo}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{namespace\+Name}{}\end{DoxyParamCaption})}
+void davkuj\+Slozku (\begin{DoxyParamCaption}\item[{float}]{cilova\+Hmotnost}{, }\item[{Servo \&}]{servo}{, }\item[{int}]{offset\+Servo}{, }\item[{const char $\ast$}]{namespace\+Name}{}\end{DoxyParamCaption})}
 
 
 
@@ -78,9 +79,9 @@ Signalizuje dokončení dávkování.
 
 Přehrává 3 krátké zvuky pomocí bzučáku.
 
-Signalizuje dokončení dávkování.\Hypertarget{dosing__utils_8cpp_a6447e9a8c6e5941e593dc60bed9b26ae}\index{dosing\_utils.cpp@{dosing\_utils.cpp}!davkujSlozkuAUcenim@{davkujSlozkuAUcenim}}
+Signalizuje dokončení dávkování.\index{dosing\_utils.cpp@{dosing\_utils.cpp}!davkujSlozkuAUcenim@{davkujSlozkuAUcenim}}
 \index{davkujSlozkuAUcenim@{davkujSlozkuAUcenim}!dosing\_utils.cpp@{dosing\_utils.cpp}}
-\doxysubsubsection{\texorpdfstring{davkujSlozkuAUcenim()}{davkujSlozkuAUcenim()}}
+\doxysubsubsection{davkujSlozkuAUcenim()}
 {\footnotesize\ttfamily \label{dosing__utils_8cpp_a6447e9a8c6e5941e593dc60bed9b26ae} 
 void davkuj\+Slozku\+AUcenim (\begin{DoxyParamCaption}\item[{float}]{cilova\+Hmotnost}{}\end{DoxyParamCaption})}
 
@@ -93,9 +94,9 @@ Dávkuje složku A pomocí předem naučených kalibračních dat.
 {\em cilova\+Hmotnost} & Cílová hmotnost složky A (v gramech). \\
 \hline
 \end{DoxyParams}
-\Hypertarget{dosing__utils_8cpp_aec9af3d72ff3a349b2dd62e08b8bab5d}\index{dosing\_utils.cpp@{dosing\_utils.cpp}!davkujSlozkuBUcenim@{davkujSlozkuBUcenim}}
+\index{dosing\_utils.cpp@{dosing\_utils.cpp}!davkujSlozkuBUcenim@{davkujSlozkuBUcenim}}
 \index{davkujSlozkuBUcenim@{davkujSlozkuBUcenim}!dosing\_utils.cpp@{dosing\_utils.cpp}}
-\doxysubsubsection{\texorpdfstring{davkujSlozkuBUcenim()}{davkujSlozkuBUcenim()}}
+\doxysubsubsection{davkujSlozkuBUcenim()}
 {\footnotesize\ttfamily \label{dosing__utils_8cpp_aec9af3d72ff3a349b2dd62e08b8bab5d} 
 void davkuj\+Slozku\+BUcenim (\begin{DoxyParamCaption}\item[{float}]{cilova\+Hmotnost}{}\end{DoxyParamCaption})}
 
@@ -108,9 +109,3 @@ Dávkuje složku B pomocí předem naučených kalibračních dat.
 {\em cilova\+Hmotnost} & Cílová hmotnost složky B (v gramech). \\
 \hline
 \end{DoxyParams}
-\Hypertarget{dosing__utils_8cpp_a821fd6cb7d5d9fa764f630eeeed00357}\index{dosing\_utils.cpp@{dosing\_utils.cpp}!updateNextionText@{updateNextionText}}
-\index{updateNextionText@{updateNextionText}!dosing\_utils.cpp@{dosing\_utils.cpp}}
-\doxysubsubsection{\texorpdfstring{updateNextionText()}{updateNextionText()}}
-{\footnotesize\ttfamily \label{dosing__utils_8cpp_a821fd6cb7d5d9fa764f630eeeed00357} 
-void update\+Nextion\+Text (\begin{DoxyParamCaption}\item[{String}]{object\+Name}{, }\item[{String}]{text}{}\end{DoxyParamCaption})}
-
