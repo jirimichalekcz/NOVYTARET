@@ -36,40 +36,79 @@ void davkujSlozku(float cilovaHmotnost, Servo &servo, int offsetServo, const cha
     }
 
     float hmotnostDosud = 0.0f;
+    float casOtevreni = 1000; // Výchozí čas otevření serva (v ms)
+
     while (hmotnostDosud < cilovaHmotnost) {
         float zbyva = cilovaHmotnost - hmotnostDosud;
-        int vhodnyUhel = -1;
+        float nejblizsiHmotnost = 0.0f;
+        int nejblizsiUhel = -1;
 
-        // Vyhledani vhodneho uhlu
+        // Vyhledani nejblizsiho vhodneho uhlu
         for (int i = 0; i < pocetUhlu; i++) {
             if (data[i].hmotnost > 0.01f && data[i].hmotnost <= zbyva) {
-                vhodnyUhel = data[i].uhel;
-                break;
+                if (data[i].hmotnost > nejblizsiHmotnost) {
+                    nejblizsiHmotnost = data[i].hmotnost;
+                    nejblizsiUhel = data[i].uhel;
+                }
             }
         }
 
-        if (vhodnyUhel == -1) {
-            Serial.println("Nelze davkovat presneji, zustava: " + String(zbyva, 3) + " g");
+        if (nejblizsiUhel == -1) {
+            Serial.println("Nelze davkovat presneji. Zbyva: " + String(zbyva, 3) + " g");
             break;
         }
 
-        Serial.print("Davkuji uhel: "); Serial.print(vhodnyUhel);
-        Serial.print(", hmotnost: "); Serial.println(data[vhodnyUhel / 5].hmotnost);
+        // Pouziti nejblizsiho uhlu
+        Serial.print("Davkuji uhel: "); Serial.print(nejblizsiUhel);
+        Serial.print(", ocekavana hmotnost: "); Serial.println(nejblizsiHmotnost);
 
         // Nastaveni serva a davkovani
-        servo.write(offsetServo + vhodnyUhel);
-        delay(1000); // Konstantni cas davkovani
+        servo.write(offsetServo + nejblizsiUhel);
+        delay(casOtevreni); // Dynamicky cas otevreni
         servo.write(offsetServo);
 
-        delay(2000); // Cekani na stabilizaci vahy
-        zpracujHX711();
-        float novaHmotnost = currentWeight;
-        hmotnostDosud += novaHmotnost;
+        // Cekani na stabilizaci vahy
+        unsigned long startTime = millis();
+        float namereno = 0.0f;
+        while (millis() - startTime < 5000) { // Maximálně 5 sekund
+            zpracujHX711();
+            if (abs(currentWeight - namereno) < 0.1f) { // Stabilizace na ±0.1 g
+                namereno = currentWeight;
+                break;
+            }
+            delay(100);
+        }
 
+        Serial.print("Namerena hmotnost: ");
+        Serial.println(namereno);
+
+        // Kontrola odchylky
+        if (abs(namereno - nejblizsiHmotnost) > 2.0f) { // Tolerance 2 g
+            Serial.println("Varovani: Naměřená hmotnost se výrazně liší od očekávané!");
+            Serial.print("Očekávaná: "); Serial.print(nejblizsiHmotnost);
+            Serial.print(", Naměřená: "); Serial.println(namereno);
+        }
+
+        // Úprava času otevření na základě odchylky
+        if (namereno > 0) {
+            float pomer = nejblizsiHmotnost / namereno;
+            casOtevreni = constrain(casOtevreni * pomer, 500, 1500); // Omezit čas mezi 500 ms a 1500 ms
+            Serial.print("Upraveny cas otevreni: ");
+            Serial.println(casOtevreni);
+        }
+
+        hmotnostDosud += namereno;
         updateNextionText("currentW", String(hmotnostDosud, 2));
     }
 
     prefs.end();
-    updateNextionText("status", String("Davkovani ") + namespaceName + " dokonceno");
-    Serial.println("=== Davkovani dokonceno ===");
+
+    if (hmotnostDosud < cilovaHmotnost) {
+        float zbyva = cilovaHmotnost - hmotnostDosud;
+        Serial.println("Davkovani nedokonceno. Zbyva: " + String(zbyva, 3) + " g");
+        updateNextionText("status", "Zbyva: " + String(zbyva, 3) + " g");
+    } else {
+        updateNextionText("status", String("Davkovani ") + namespaceName + " dokonceno");
+        Serial.println("=== Davkovani dokonceno ===");
+    }
 }

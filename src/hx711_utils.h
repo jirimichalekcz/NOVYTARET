@@ -7,6 +7,6 @@ void vypisHmotnost(float hmotnost);
 void kontrolujWatchdog();
 
 struct DosingData {
-    int uhel;          // Úhel serva
-    float hmotnost;    // Hmotnost odpovidajici úhlu
+    int uhel;          // Uhel serva
+    float hmotnost;    // Hmotnost odpovidajici Uhlu
 };

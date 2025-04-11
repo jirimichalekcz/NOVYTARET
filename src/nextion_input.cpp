@@ -7,7 +7,7 @@
 #include "dosing_utils.h"
 #include "learning_utils.h"
 
-// Tady můžeš případně doplnit další #include, pokud chybí
+// Tady můžeš prípadně doplnit další #include, pokud chybí
 
 void zpracujNextionData() {
     static unsigned long lastPressTime = 0;
@@ -42,7 +42,7 @@ void zpracujNextionData() {
         if (c == 'o') { servoB.write(90); manualAngleB = 90; manualModeActive = true; updateNextionText("status", "Servo B → 90°"); return; }
         if (c == 'p') { servoB.write(0); manualAngleB = 0; manualModeActive = true; updateNextionText("status", "Servo B → 0°"); return; }
 
-        // === Příkazy pro dávkování, kalibraci, stránkování, mazání... ===
+        // === Príkazy pro davkovani, kalibraci, stránkování, mazání... ===
         if (inputWeight == "787878") {
             Serial.println("Kod 787878 detekovan. Vypisuji data z NVS pameti.");
             vypisDosingData("flowmapA");
@@ -51,12 +51,12 @@ void zpracujNextionData() {
             return;
         }
 
-        // === Dávkování složky A ===
+        // === davkovani slozky A ===
         if (c == 'A' && currentState == WAITING_FOR_INPUT) {
             keyPressStartTime = millis();
             timeCounting = true;
 
-            tareScale(); // Vynulování váhy před zahájením dávkování
+            tareScale(); // Vynulování váhy pred zahájením davkovani
             updateNextionText("status", "Taring scale...");
 
             if (!inputWeight.isEmpty()) {
@@ -69,22 +69,22 @@ void zpracujNextionData() {
             inputWeight = "";
 
             preferences.putFloat("lastWeight", desiredWeight);
-            Serial.print("Hmotnost pro složku A uložena: ");
+            Serial.print("Hmotnost pro slozku A ulozena: ");
             Serial.println(desiredWeight);
 
             dosingMode = COMPONENT_A;
             currentState = DOSING_A;
-            Serial.println("Zahajuji dávkování pouze složky A.");
+            Serial.println("Zahajuji davkovani pouze slozky A.");
             updateNextionText("status", "Dosing component A");
             return;
         }
 
-        // === Dávkování složky B ===
+        // === davkovani slozky B ===
         if (c == 'B' && currentState == WAITING_FOR_INPUT) {
             keyPressStartTime = millis();
             timeCounting = true;
 
-            tareScale(); // Vynulování váhy před zahájením dávkování
+            tareScale(); // Vynulování váhy pred zahájením davkovani
             updateNextionText("status", "Taring scale...");
 
             if (!inputWeight.isEmpty()) {
@@ -97,22 +97,22 @@ void zpracujNextionData() {
             inputWeight = "";
 
             preferences.putFloat("lastWeight", desiredWeight);
-            Serial.print("Hmotnost pro složku B uložena: ");
+            Serial.print("Hmotnost pro slozku B ulozena: ");
             Serial.println(desiredWeight);
 
             dosingMode = COMPONENT_B;
             currentState = DOSING_B;
-            Serial.println("Zahajuji dávkování pouze složky B.");
+            Serial.println("Zahajuji davkovani pouze slozky B.");
             updateNextionText("status", "Dosing component B");
             return;
         }
 
-        // === Dávkování v režimu MIX ===
+        // === davkovani v režimu MIX ===
         if (c == 'D' && currentState == WAITING_FOR_INPUT) {
             keyPressStartTime = millis();
             timeCounting = true;
 
-            tareScale(); // Vynulování váhy před zahájením dávkování
+            tareScale(); // Vynulování váhy pred zahájením davkovani
             updateNextionText("status", "Taring scale...");
 
             updateNextionText("currentWA", ""); // Vymazat hodnotu
@@ -124,25 +124,25 @@ void zpracujNextionData() {
                 desiredWeight = preferences.getFloat("lastWeight", 0.0f);
             }
             preferences.putFloat("lastWeight", desiredWeight);
-            Serial.print("Hmotnost pro dávkování v režimu MIX uložena: ");
+            Serial.print("Hmotnost pro davkovani v režimu MIX ulozena: ");
             Serial.println(desiredWeight);
 
             vypocitejCile(); // Spočítá targetWeightA a targetWeightB
             inputWeight = "";
             dosingMode = MIX;
             currentState = DOSING_A;
-            Serial.println("Zahajuji dávkování v poměru složek A a B.");
+            Serial.println("Zahajuji davkovani v poměru slozek A a B.");
             updateNextionText("status", "Dosing components A and B");
             return;
         }
 
-        // === Přepínání stránek na Nextionu ===
+        // === Prepínání stránek na Nextionu ===
         if (c == '#') {
             currentPage++;
             if (currentPage > 3) currentPage = 1;
 
             sendNextionCommand("page " + String(currentPage));
-            Serial.println("Přepnuto na stránku " + String(currentPage));
+            Serial.println("Prepnuto na stránku " + String(currentPage));
             updateNextionText("status", "Page " + String(currentPage));
             return;
         }
@@ -153,34 +153,34 @@ void zpracujNextionData() {
         
          currentState = WAITING_FOR_INPUT;
         
-          // === Zavření ventilů ===
+          // === Zavrení ventilů ===
           servoA.write(offsetServoA);
           servoAOpened = false;
          servoB.write(offsetServoB);
           servoBOpened = false;
-          Serial.println("Ventily A a B byly okamžitě uzavřeny.");
+          Serial.println("Ventily A a B byly okamzite uzavreny.");
         
           inputWeight = "";
-          Serial.println("Zadávání hmotnosti bylo zrušeno.");
+          Serial.println("Zadavani hmotnosti bylo zruseno.");
           updateNextionText("status", "Input cancelled");
           updateNextionText("inputWeight", inputWeight);
         
         
           currentState = WAITING_FOR_INPUT;
-          Serial.println("Program byl resetován do výchozího stavu.");
+          Serial.println("Program byl resetovan do vychoziho stavu.");
           updateNextionText("status", "Program reset");
         
           tareScale();
-          Serial.println("Váha byla vytárována na nulu.");
+          Serial.println("tarovano na nulu.");
           updateNextionText("status", "Scale tared");
           return;
         }
         
 
-        // === Číselný vstup (0–9) ===
+        // === Číselny vstup (0–9) ===
         if (c >= '0' && c <= '9') {
             inputWeight += c;
-            Serial.print("Zadávaná hmotnost: ");
+            Serial.print("Zadavana hmotnost: ");
             Serial.println(inputWeight);
             updateNextionText("inputWeight", inputWeight);
         }

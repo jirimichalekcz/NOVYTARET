@@ -46,34 +46,34 @@ extern Servo servoB;
 
 extern int pinServoA;            // GPIO pin pro servo A
 extern int pinServoB;            // GPIO pin pro servo B
-extern int offsetServoA;         // Zavřena pozice pro servo A (uci se)
-extern int offsetServoB;         // Zavřena pozice pro servo B (uci se)
+extern int offsetServoA;         // Zavrena pozice pro servo A (uci se)
+extern int offsetServoB;         // Zavrena pozice pro servo B (uci se)
 
 extern bool servoAOpened;
 extern bool servoBOpened;
 
 // === Bzucak ===
-extern const int bzucak;         // Výstupni pin pro bzucak
+extern const int bzucak;         // Vystupni pin pro bzucak
 
-// === Vahový senzor (HX711) ===
+// === Vahovy senzor (HX711) ===
 extern Q2HX711 hx711;            // Objekt pro praci s vahou
 extern long offset;              // Offset kalibrace
 extern float calibrationFactor;  // Kalibracni konstanta
-extern float currentWeight;      // Aktualně změřena hmotnost
+extern float currentWeight;      // Aktualně změrena hmotnost
 
 // === Davkovani a cilové hodnoty ===
 extern float desiredWeight;      // Uživatelem zadana cilova hmotnost
-extern float targetWeightA;      // Vypoctený cil pro složku A
-extern float targetWeightB;      // Vypoctený cil pro složku B
+extern float targetWeightA;      // Vypocteny cil pro složku A
+extern float targetWeightB;      // Vypocteny cil pro složku B
 extern float lastDesiredWeight;  // Posledni použita hodnota davky
 extern float totalWeightA;       // Celkově nadavkovano složky A
 extern float totalWeightB;       // Celkově nadavkovano složky B
 
 // === Poměry složek ===
-extern int slozkaA;              // Poměr složky A (např. 100)
-extern int slozkaB;              // Poměr složky B (např. 40)
+extern int slozkaA;              // Poměr složky A (napr. 100)
+extern int slozkaB;              // Poměr složky B (napr. 40)
 
-// === Stavový automat a režimy ===
+// === Stavovy automat a režimy ===
 enum State {
   WAITING_FOR_INPUT,   // ceka na vstup
   DOSING_A,            // Davkuje složku A
@@ -85,14 +85,14 @@ enum State {
 extern State currentState;
 
 enum DosingMode {
-  NONE,                // Žadný režim
+  NONE,                // Žadny režim
   COMPONENT_A,         // Pouze složka A
   COMPONENT_B,         // Pouze složka B
   MIX                  // Poměr A + B
 };
 extern DosingMode dosingMode;
 
-// === Uživatelský vstup & vizualizace ===
+// === Uživatelsky vstup & vizualizace ===
 extern String inputWeight;              // Text z Nextion klavesnice
 extern std::vector<float> grafData;     // Data pro graf průběhu davkovani
 

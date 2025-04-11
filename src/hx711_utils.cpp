@@ -58,7 +58,7 @@ void zpracujHX711() {
       }
 
     } else {
-      Serial.println("Rozdil mezi měřenimi je přiliš velký.");
+      Serial.println("Rozdil mezi měrenimi je priliš velky.");
       updateNextionText("status", "Measurement ...");
     }
   }
@@ -74,7 +74,7 @@ void vypisHmotnost(float hmotnost) {
 void kontrolujWatchdog() {
   if (dosingMode != NONE && currentState != WAITING_FOR_INPUT) {
     if (millis() - lastWeightChangeTime > WATCHDOG_TIMEOUT) {
-      Serial.println("WATCHDOG: Hmotnost se nezměnila 10 sekund! Přerušeni davkovani.");
+      Serial.println("WATCHDOG: Hmotnost se nezměnila 10 sekund! Prerušeni davkovani.");
 
       if (servoAOpened) {
         servoA.write(offsetServoA);

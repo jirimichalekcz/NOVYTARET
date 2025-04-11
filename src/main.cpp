@@ -155,8 +155,8 @@ void vypisDataServoB();
 
 void setup() {
 
-  vypisDosingData("flowmapA"); // Výpis dat pro složku A
-  vypisDosingData("flowmapB"); // Výpis dat pro složku B
+  vypisDosingData("flowmapA"); // Vypis dat pro složku A
+  vypisDosingData("flowmapB"); // Vypis dat pro složku B
 
 
   Serial2.begin(9600, SERIAL_8N1, NEXTION_RX, NEXTION_TX);

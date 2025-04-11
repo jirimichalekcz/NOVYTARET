@@ -1,5 +1,5 @@
 #include "utils.h"
-#include "globals.h"  // pro přistup k bzucak, Servo apod.
+#include "globals.h"  // pro pristup k bzucak, Servo apod.
 
 String formatTime(unsigned long timeMs) {
     unsigned long totalMinutes = timeMs / 60000;

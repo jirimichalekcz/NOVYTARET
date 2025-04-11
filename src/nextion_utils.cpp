@@ -1,7 +1,7 @@
 #include "nextion_utils.h"
 #include "globals.h"
 
-// Odeslani přikazu na Nextion displej
+// Odeslani prikazu na Nextion displej
 void sendNextionCommand(String command) {
   Serial2.print(command);
   Serial2.write(0xff);

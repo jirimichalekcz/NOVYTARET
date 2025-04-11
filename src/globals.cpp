@@ -6,7 +6,7 @@ Preferences preferences;
 // === Servo motor A a B ===
 Servo servoA;
 Servo servoB;
-int offsetServoA = 0;     // Výchozi offset – uci se v režimu uceni
+int offsetServoA = 0;     // Vychozi offset – uci se v režimu uceni
 int offsetServoB = 0;
 int pinServoA = 18;       // GPIO pin pro servo A
 int pinServoB = 19;       // GPIO pin pro servo B
@@ -14,7 +14,7 @@ int pinServoB = 19;       // GPIO pin pro servo B
 // === Bzucak ===
 const int bzucak = 13;
 
-// === Vahový senzor (HX711) ===
+// === Vahovy senzor (HX711) ===
 Q2HX711 hx711(33, 32);     // DATA pin, CLOCK pin
 long offset = 0;
 float calibrationFactor = 3.55f;
@@ -32,11 +32,11 @@ float lastDesiredWeight = 0.0f;
 int slozkaA = 100;
 int slozkaB = 40;
 
-// === Stavový automat a režimy ===
+// === Stavovy automat a režimy ===
 State currentState = WAITING_FOR_INPUT;
 DosingMode dosingMode = NONE;
 
-// === Uživatelský vstup a grafy ===
+// === Uživatelsky vstup a grafy ===
 String inputWeight = "";
 std::vector<float> grafData;
 
