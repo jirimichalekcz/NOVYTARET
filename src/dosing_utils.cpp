@@ -21,13 +21,33 @@
 
 void updateNextionText(String objectName, String text);
 
-// Dopredna deklarace funkce davkujSlozku
+/**
+ * @brief Hlavní funkce pro dávkování složky.
+ * 
+ * Tato funkce dávkuje složku na základě cílové hmotnosti a kalibračních dat uložených v NVS.
+ * Používá servo pro dávkování a váhu HX711 pro měření aktuální hmotnosti.
+ * 
+ * @param cilovaHmotnost Cílová hmotnost složky (v gramech).
+ * @param servo Odkaz na servo objekt, které ovládá dávkování.
+ * @param offsetServo Offset pro výchozí pozici serva.
+ * @param namespaceName Název prostoru v NVS, kde jsou uložena kalibrační data.
+ */
 void davkujSlozku(float cilovaHmotnost, Servo &servo, int offsetServo, const char *namespaceName);
 
+/**
+ * @brief Dávkuje složku A pomocí předem naučených kalibračních dat.
+ * 
+ * @param cilovaHmotnost Cílová hmotnost složky A (v gramech).
+ */
 void davkujSlozkuAUcenim(float cilovaHmotnost) {
     davkujSlozku(cilovaHmotnost, servoA, offsetServoA, "flowmapA");
 }
 
+/**
+ * @brief Dávkuje složku B pomocí předem naučených kalibračních dat.
+ * 
+ * @param cilovaHmotnost Cílová hmotnost složky B (v gramech).
+ */
 void davkujSlozkuBUcenim(float cilovaHmotnost) {
     davkujSlozku(cilovaHmotnost, servoB, offsetServoB, "flowmapB");
 }
@@ -46,6 +66,12 @@ void davkujSlozku(float cilovaHmotnost, Servo &servo, int offsetServo, const cha
         prefs.end();
         return;
     }
+    /**
+     * @brief Načítá kalibrační data z NVS.
+     * 
+     * Data obsahují úhly serva a odpovídající hmotnosti, které byly naučeny během kalibrace.
+     * Pokud se data nepodaří načíst, funkce ukončí dávkování.
+     */
 
     float hmotnostDosud = 0.0f;
     float casOtevreni = 1000; // Vychodsi cas otevreni serva (v ms)
@@ -64,6 +90,12 @@ void davkujSlozku(float cilovaHmotnost, Servo &servo, int offsetServo, const cha
                 }
             }
         }
+        /**
+         * @brief Vyhledává nejbližší úhel serva pro dávkování.
+         * 
+         * Prochází kalibrační data a hledá úhel, který odpovídá hmotnosti
+         * nejbližší k požadované zbývající hmotnosti.
+         */
 
         if (nejblizsiUhel == -1) {
             Serial.println("Nelze davkovat presneji. Zbyva: " + String(zbyva, 3) + " g");
@@ -234,6 +266,11 @@ void davkujSlozku(float cilovaHmotnost, Servo &servo, int offsetServo, const cha
                 digitalWrite(bzucak, LOW); // Vypnout bzučák
                 delay(200);                // Pauza mezi zvuky (200 ms)
             }
+            /**
+             * @brief Přehrává 3 krátké zvuky pomocí bzučáku.
+             * 
+             * Signalizuje dokončení dávkování.
+             */
         }
     } else {
         updateNextionText("status", String("Davkovani ") + namespaceName + " dokonceno");
@@ -246,5 +283,10 @@ void davkujSlozku(float cilovaHmotnost, Servo &servo, int offsetServo, const cha
             digitalWrite(bzucak, LOW); // Vypnout bzučák
             delay(200);                // Pauza mezi zvuky (200 ms)
         }
+        /**
+         * @brief Přehrává 3 krátké zvuky pomocí bzučáku.
+         * 
+         * Signalizuje dokončení dávkování.
+         */
     }
 }

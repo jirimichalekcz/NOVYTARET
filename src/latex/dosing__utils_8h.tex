@@ -4,13 +4,13 @@
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{dosing__utils_8h_a6447e9a8c6e5941e593dc60bed9b26ae}{davkuj\+Slozku\+AUcenim}} (float cilova\+Hmotnost)
-\item 
+\begin{DoxyCompactList}\small\item\em Dávkuje složku A pomocí předem naučených kalibračních dat. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{dosing__utils_8h_aec9af3d72ff3a349b2dd62e08b8bab5d}{davkuj\+Slozku\+BUcenim}} (float cilova\+Hmotnost)
-\item 
+\begin{DoxyCompactList}\small\item\em Dávkuje složku B pomocí předem naučených kalibračních dat. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{dosing__utils_8h_a1fc83590eab3b392061fae9c31ae5b2c}{vypocitej\+Cile}} ()
 \item 
 void \mbox{\hyperlink{dosing__utils_8h_a3cd519a67ff179facba1414e8f12a46b}{davkuj\+Slozku}} (float cilova\+Hmotnost, Servo \&servo, int offset\+Servo, const char \texorpdfstring{$\ast$}{*}namespace\+Name)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Hlavní funkce pro dávkování složky. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -20,18 +20,67 @@ void \mbox{\hyperlink{dosing__utils_8h_a3cd519a67ff179facba1414e8f12a46b}{davkuj
 {\footnotesize\ttfamily \label{dosing__utils_8h_a3cd519a67ff179facba1414e8f12a46b} 
 void davkuj\+Slozku (\begin{DoxyParamCaption}\item[{float}]{cilova\+Hmotnost}{, }\item[{Servo \&}]{servo}{, }\item[{int}]{offset\+Servo}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{namespace\+Name}{}\end{DoxyParamCaption})}
 
-\Hypertarget{dosing__utils_8h_a6447e9a8c6e5941e593dc60bed9b26ae}\index{dosing\_utils.h@{dosing\_utils.h}!davkujSlozkuAUcenim@{davkujSlozkuAUcenim}}
+
+
+Hlavní funkce pro dávkování složky. 
+
+Tato funkce dávkuje složku na základě cílové hmotnosti a kalibračních dat uložených v NVS. Používá servo pro dávkování a váhu HX711 pro měření aktuální hmotnosti.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cilova\+Hmotnost} & Cílová hmotnost složky (v gramech). \\
+\hline
+{\em servo} & Odkaz na servo objekt, které ovládá dávkování. \\
+\hline
+{\em offset\+Servo} & Offset pro výchozí pozici serva. \\
+\hline
+{\em namespace\+Name} & Název prostoru v NVS, kde jsou uložena kalibrační data. \\
+\hline
+\end{DoxyParams}
+Načítá kalibrační data z NVS.
+
+Data obsahují úhly serva a odpovídající hmotnosti, které byly naučeny během kalibrace. Pokud se data nepodaří načíst, funkce ukončí dávkování.
+
+Vyhledává nejbližší úhel serva pro dávkování.
+
+Prochází kalibrační data a hledá úhel, který odpovídá hmotnosti nejbližší k požadované zbývající hmotnosti.
+
+Přehrává 3 krátké zvuky pomocí bzučáku.
+
+Signalizuje dokončení dávkování.
+
+Přehrává 3 krátké zvuky pomocí bzučáku.
+
+Signalizuje dokončení dávkování.\Hypertarget{dosing__utils_8h_a6447e9a8c6e5941e593dc60bed9b26ae}\index{dosing\_utils.h@{dosing\_utils.h}!davkujSlozkuAUcenim@{davkujSlozkuAUcenim}}
 \index{davkujSlozkuAUcenim@{davkujSlozkuAUcenim}!dosing\_utils.h@{dosing\_utils.h}}
 \doxysubsubsection{\texorpdfstring{davkujSlozkuAUcenim()}{davkujSlozkuAUcenim()}}
 {\footnotesize\ttfamily \label{dosing__utils_8h_a6447e9a8c6e5941e593dc60bed9b26ae} 
 void davkuj\+Slozku\+AUcenim (\begin{DoxyParamCaption}\item[{float}]{cilova\+Hmotnost}{}\end{DoxyParamCaption})}
 
+
+
+Dávkuje složku A pomocí předem naučených kalibračních dat. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cilova\+Hmotnost} & Cílová hmotnost složky A (v gramech). \\
+\hline
+\end{DoxyParams}
 \Hypertarget{dosing__utils_8h_aec9af3d72ff3a349b2dd62e08b8bab5d}\index{dosing\_utils.h@{dosing\_utils.h}!davkujSlozkuBUcenim@{davkujSlozkuBUcenim}}
 \index{davkujSlozkuBUcenim@{davkujSlozkuBUcenim}!dosing\_utils.h@{dosing\_utils.h}}
 \doxysubsubsection{\texorpdfstring{davkujSlozkuBUcenim()}{davkujSlozkuBUcenim()}}
 {\footnotesize\ttfamily \label{dosing__utils_8h_aec9af3d72ff3a349b2dd62e08b8bab5d} 
 void davkuj\+Slozku\+BUcenim (\begin{DoxyParamCaption}\item[{float}]{cilova\+Hmotnost}{}\end{DoxyParamCaption})}
 
+
+
+Dávkuje složku B pomocí předem naučených kalibračních dat. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cilova\+Hmotnost} & Cílová hmotnost složky B (v gramech). \\
+\hline
+\end{DoxyParams}
 \Hypertarget{dosing__utils_8h_a1fc83590eab3b392061fae9c31ae5b2c}\index{dosing\_utils.h@{dosing\_utils.h}!vypocitejCile@{vypocitejCile}}
 \index{vypocitejCile@{vypocitejCile}!dosing\_utils.h@{dosing\_utils.h}}
 \doxysubsubsection{\texorpdfstring{vypocitejCile()}{vypocitejCile()}}

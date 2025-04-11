@@ -113,12 +113,15 @@ $(function(){initNavTree('dosing__utils_8h.html',''); initResizable(true); });
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a6447e9a8c6e5941e593dc60bed9b26ae" id="r_a6447e9a8c6e5941e593dc60bed9b26ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6447e9a8c6e5941e593dc60bed9b26ae">davkujSlozkuAUcenim</a> (float cilovaHmotnost)</td></tr>
+<tr class="memdesc:a6447e9a8c6e5941e593dc60bed9b26ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dávkuje složku A pomocí předem naučených kalibračních dat.  <br /></td></tr>
 <tr class="separator:a6447e9a8c6e5941e593dc60bed9b26ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec9af3d72ff3a349b2dd62e08b8bab5d" id="r_aec9af3d72ff3a349b2dd62e08b8bab5d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec9af3d72ff3a349b2dd62e08b8bab5d">davkujSlozkuBUcenim</a> (float cilovaHmotnost)</td></tr>
+<tr class="memdesc:aec9af3d72ff3a349b2dd62e08b8bab5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dávkuje složku B pomocí předem naučených kalibračních dat.  <br /></td></tr>
 <tr class="separator:aec9af3d72ff3a349b2dd62e08b8bab5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1fc83590eab3b392061fae9c31ae5b2c" id="r_a1fc83590eab3b392061fae9c31ae5b2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1fc83590eab3b392061fae9c31ae5b2c">vypocitejCile</a> ()</td></tr>
 <tr class="separator:a1fc83590eab3b392061fae9c31ae5b2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3cd519a67ff179facba1414e8f12a46b" id="r_a3cd519a67ff179facba1414e8f12a46b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3cd519a67ff179facba1414e8f12a46b">davkujSlozku</a> (float cilovaHmotnost, Servo &amp;servo, int offsetServo, const char *namespaceName)</td></tr>
+<tr class="memdesc:a3cd519a67ff179facba1414e8f12a46b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hlavní funkce pro dávkování složky.  <br /></td></tr>
 <tr class="separator:a3cd519a67ff179facba1414e8f12a46b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -151,6 +154,26 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Hlavní funkce pro dávkování složky. </p>
+<p>Tato funkce dávkuje složku na základě cílové hmotnosti a kalibračních dat uložených v NVS. Používá servo pro dávkování a váhu HX711 pro měření aktuální hmotnosti.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cilovaHmotnost</td><td>Cílová hmotnost složky (v gramech). </td></tr>
+    <tr><td class="paramname">servo</td><td>Odkaz na servo objekt, které ovládá dávkování. </td></tr>
+    <tr><td class="paramname">offsetServo</td><td>Offset pro výchozí pozici serva. </td></tr>
+    <tr><td class="paramname">namespaceName</td><td>Název prostoru v NVS, kde jsou uložena kalibrační data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Načítá kalibrační data z NVS.</p>
+<p>Data obsahují úhly serva a odpovídající hmotnosti, které byly naučeny během kalibrace. Pokud se data nepodaří načíst, funkce ukončí dávkování.</p>
+<p>Vyhledává nejbližší úhel serva pro dávkování.</p>
+<p>Prochází kalibrační data a hledá úhel, který odpovídá hmotnosti nejbližší k požadované zbývající hmotnosti.</p>
+<p>Přehrává 3 krátké zvuky pomocí bzučáku.</p>
+<p>Signalizuje dokončení dávkování.</p>
+<p>Přehrává 3 krátké zvuky pomocí bzučáku.</p>
+<p>Signalizuje dokončení dávkování.</p>
+
 </div>
 </div>
 <a id="a6447e9a8c6e5941e593dc60bed9b26ae" name="a6447e9a8c6e5941e593dc60bed9b26ae"></a>
@@ -168,6 +191,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Dávkuje složku A pomocí předem naučených kalibračních dat. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cilovaHmotnost</td><td>Cílová hmotnost složky A (v gramech). </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="aec9af3d72ff3a349b2dd62e08b8bab5d" name="aec9af3d72ff3a349b2dd62e08b8bab5d"></a>
@@ -184,6 +215,14 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Dávkuje složku B pomocí předem naučených kalibračních dat. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cilovaHmotnost</td><td>Cílová hmotnost složky B (v gramech). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
