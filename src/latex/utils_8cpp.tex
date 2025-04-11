@@ -1,0 +1,118 @@
+\doxysection{utils.\+cpp File Reference}
+\hypertarget{utils_8cpp}{}\label{utils_8cpp}\index{utils.cpp@{utils.cpp}}
+{\ttfamily \#include "{}utils.\+h"{}}\newline
+{\ttfamily \#include "{}globals.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+String \mbox{\hyperlink{utils_8cpp_af0bd287f5f39881034675a8333cc4979}{format\+Time}} (unsigned long time\+Ms)
+\begin{DoxyCompactList}\small\item\em Prevede cas v milisekundach na formatovany retězec "{}\+HHH\+:\+MM"{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8cpp_a92172aa1eff83ec8f52ce0d8623d06d6}{hraj\+Zvuk}} (int delka)
+\begin{DoxyCompactList}\small\item\em Vypiše zvukovy signal (pipnuti) na bzucaku. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8cpp_ae0e9cf623b76202a427045aacc427fa2}{hraj\+Varovny\+Zvuk}} ()
+\begin{DoxyCompactList}\small\item\em Upozorňujici sekvence pipnuti (napr. pro watchdog) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8cpp_a584924d92397761c2e2060a1cbda1435}{hrajkonec\+MIXU}} ()
+\begin{DoxyCompactList}\small\item\em Zvukova sekvence pri dokonceni davkovani v režimu MIX. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8cpp_acf1fabb837bfd614814dcf841a1c4b8a}{pomalu\+Otevri\+Servo}} (Servo \&servo, int aktualni\+Uhel, int cilovy\+Uhel, int delay\+Ms)
+\begin{DoxyCompactList}\small\item\em Pomalu otevre servo z aktualniho Uhlu do cilového. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utils_8cpp_a682b60eb5b71e702ffcb23dde03d7a44}{inicializuj\+Bzucak}} ()
+\item 
+void \mbox{\hyperlink{utils_8cpp_a0b1b511efc966afc901843272b66e522}{inicializuj\+Serial}} ()
+\item 
+void \mbox{\hyperlink{utils_8cpp_ae315ff2c8c42d8c66acd6df1300eeb2c}{inicializuj\+HX711}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{utils_8cpp_af0bd287f5f39881034675a8333cc4979}\index{utils.cpp@{utils.cpp}!formatTime@{formatTime}}
+\index{formatTime@{formatTime}!utils.cpp@{utils.cpp}}
+\doxysubsubsection{\texorpdfstring{formatTime()}{formatTime()}}
+{\footnotesize\ttfamily \label{utils_8cpp_af0bd287f5f39881034675a8333cc4979} 
+String format\+Time (\begin{DoxyParamCaption}\item[{unsigned long}]{time\+Ms}{}\end{DoxyParamCaption})}
+
+
+
+Prevede cas v milisekundach na formatovany retězec "{}\+HHH\+:\+MM"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time\+Ms} & cas v milisekundach \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+String ve formatu "{}\+HHH\+:\+MM"{} 
+\end{DoxyReturn}
+\Hypertarget{utils_8cpp_a584924d92397761c2e2060a1cbda1435}\index{utils.cpp@{utils.cpp}!hrajkonecMIXU@{hrajkonecMIXU}}
+\index{hrajkonecMIXU@{hrajkonecMIXU}!utils.cpp@{utils.cpp}}
+\doxysubsubsection{\texorpdfstring{hrajkonecMIXU()}{hrajkonecMIXU()}}
+{\footnotesize\ttfamily \label{utils_8cpp_a584924d92397761c2e2060a1cbda1435} 
+void hrajkonec\+MIXU (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Zvukova sekvence pri dokonceni davkovani v režimu MIX. 
+
+\Hypertarget{utils_8cpp_ae0e9cf623b76202a427045aacc427fa2}\index{utils.cpp@{utils.cpp}!hrajVarovnyZvuk@{hrajVarovnyZvuk}}
+\index{hrajVarovnyZvuk@{hrajVarovnyZvuk}!utils.cpp@{utils.cpp}}
+\doxysubsubsection{\texorpdfstring{hrajVarovnyZvuk()}{hrajVarovnyZvuk()}}
+{\footnotesize\ttfamily \label{utils_8cpp_ae0e9cf623b76202a427045aacc427fa2} 
+void hraj\+Varovny\+Zvuk (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Upozorňujici sekvence pipnuti (napr. pro watchdog) 
+
+\Hypertarget{utils_8cpp_a92172aa1eff83ec8f52ce0d8623d06d6}\index{utils.cpp@{utils.cpp}!hrajZvuk@{hrajZvuk}}
+\index{hrajZvuk@{hrajZvuk}!utils.cpp@{utils.cpp}}
+\doxysubsubsection{\texorpdfstring{hrajZvuk()}{hrajZvuk()}}
+{\footnotesize\ttfamily \label{utils_8cpp_a92172aa1eff83ec8f52ce0d8623d06d6} 
+void hraj\+Zvuk (\begin{DoxyParamCaption}\item[{int}]{delka}{}\end{DoxyParamCaption})}
+
+
+
+Vypiše zvukovy signal (pipnuti) na bzucaku. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delka} & Délka pipnuti v ms \\
+\hline
+\end{DoxyParams}
+\Hypertarget{utils_8cpp_a682b60eb5b71e702ffcb23dde03d7a44}\index{utils.cpp@{utils.cpp}!inicializujBzucak@{inicializujBzucak}}
+\index{inicializujBzucak@{inicializujBzucak}!utils.cpp@{utils.cpp}}
+\doxysubsubsection{\texorpdfstring{inicializujBzucak()}{inicializujBzucak()}}
+{\footnotesize\ttfamily \label{utils_8cpp_a682b60eb5b71e702ffcb23dde03d7a44} 
+void inicializuj\+Bzucak (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{utils_8cpp_ae315ff2c8c42d8c66acd6df1300eeb2c}\index{utils.cpp@{utils.cpp}!inicializujHX711@{inicializujHX711}}
+\index{inicializujHX711@{inicializujHX711}!utils.cpp@{utils.cpp}}
+\doxysubsubsection{\texorpdfstring{inicializujHX711()}{inicializujHX711()}}
+{\footnotesize\ttfamily \label{utils_8cpp_ae315ff2c8c42d8c66acd6df1300eeb2c} 
+void inicializuj\+HX711 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{utils_8cpp_a0b1b511efc966afc901843272b66e522}\index{utils.cpp@{utils.cpp}!inicializujSerial@{inicializujSerial}}
+\index{inicializujSerial@{inicializujSerial}!utils.cpp@{utils.cpp}}
+\doxysubsubsection{\texorpdfstring{inicializujSerial()}{inicializujSerial()}}
+{\footnotesize\ttfamily \label{utils_8cpp_a0b1b511efc966afc901843272b66e522} 
+void inicializuj\+Serial (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{utils_8cpp_acf1fabb837bfd614814dcf841a1c4b8a}\index{utils.cpp@{utils.cpp}!pomaluOtevriServo@{pomaluOtevriServo}}
+\index{pomaluOtevriServo@{pomaluOtevriServo}!utils.cpp@{utils.cpp}}
+\doxysubsubsection{\texorpdfstring{pomaluOtevriServo()}{pomaluOtevriServo()}}
+{\footnotesize\ttfamily \label{utils_8cpp_acf1fabb837bfd614814dcf841a1c4b8a} 
+void pomalu\+Otevri\+Servo (\begin{DoxyParamCaption}\item[{Servo \&}]{servo}{, }\item[{int}]{aktualni\+Uhel}{, }\item[{int}]{cilovy\+Uhel}{, }\item[{int}]{delay\+Ms}{}\end{DoxyParamCaption})}
+
+
+
+Pomalu otevre servo z aktualniho Uhlu do cilového. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em servo} & Servo objekt \\
+\hline
+{\em aktualni\+Uhel} & Vychozi Uhel \\
+\hline
+{\em cilovy\+Uhel} & Cilovy Uhel \\
+\hline
+{\em delay\+Ms} & Pauza mezi kroky (pro pomaly pohyb) \\
+\hline
+\end{DoxyParams}

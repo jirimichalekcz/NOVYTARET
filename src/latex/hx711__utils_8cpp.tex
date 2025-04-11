@@ -1,0 +1,82 @@
+\doxysection{hx711\+\_\+utils.\+cpp File Reference}
+\hypertarget{hx711__utils_8cpp}{}\label{hx711__utils_8cpp}\index{hx711\_utils.cpp@{hx711\_utils.cpp}}
+{\ttfamily \#include "{}hx711\+\_\+utils.\+h"{}}\newline
+{\ttfamily \#include "{}globals.\+h"{}}\newline
+{\ttfamily \#include "{}utils.\+h"{}}\newline
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{hx711__utils_8cpp_a821fd6cb7d5d9fa764f630eeeed00357}{update\+Nextion\+Text}} (String object\+Name, String text)
+\item 
+void \mbox{\hyperlink{hx711__utils_8cpp_ac8b5b41784064f53291396d5455d353c}{tare\+Scale}} ()
+\item 
+void \mbox{\hyperlink{hx711__utils_8cpp_a186238bb87f816c3ce76e8a9970f2eee}{zpracuj\+HX711}} ()
+\item 
+void \mbox{\hyperlink{hx711__utils_8cpp_a507a5e636a1f1a189b3551e38241235b}{vypis\+Hmotnost}} (float hmotnost)
+\item 
+void \mbox{\hyperlink{hx711__utils_8cpp_a15c847ddaa9a55286bb4b8dce2b72134}{kontroluj\+Watchdog}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const unsigned long \mbox{\hyperlink{hx711__utils_8cpp_a18f961645958fc2680e4ef6ac2680c78}{read\+Interval}} = 200
+\item 
+long \mbox{\hyperlink{hx711__utils_8cpp_acbd2790f6912eb5fb4ae8c3e44f1f997}{prumer\+Raw}} = 0
+\item 
+const unsigned long \mbox{\hyperlink{hx711__utils_8cpp_a28a1a904aa3b3f045566207445cd659f}{WATCHDOG\+\_\+\+TIMEOUT}} = 10000
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{hx711__utils_8cpp_a15c847ddaa9a55286bb4b8dce2b72134}\index{hx711\_utils.cpp@{hx711\_utils.cpp}!kontrolujWatchdog@{kontrolujWatchdog}}
+\index{kontrolujWatchdog@{kontrolujWatchdog}!hx711\_utils.cpp@{hx711\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{kontrolujWatchdog()}{kontrolujWatchdog()}}
+{\footnotesize\ttfamily \label{hx711__utils_8cpp_a15c847ddaa9a55286bb4b8dce2b72134} 
+void kontroluj\+Watchdog (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{hx711__utils_8cpp_ac8b5b41784064f53291396d5455d353c}\index{hx711\_utils.cpp@{hx711\_utils.cpp}!tareScale@{tareScale}}
+\index{tareScale@{tareScale}!hx711\_utils.cpp@{hx711\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{tareScale()}{tareScale()}}
+{\footnotesize\ttfamily \label{hx711__utils_8cpp_ac8b5b41784064f53291396d5455d353c} 
+void tare\+Scale (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{hx711__utils_8cpp_a821fd6cb7d5d9fa764f630eeeed00357}\index{hx711\_utils.cpp@{hx711\_utils.cpp}!updateNextionText@{updateNextionText}}
+\index{updateNextionText@{updateNextionText}!hx711\_utils.cpp@{hx711\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{updateNextionText()}{updateNextionText()}}
+{\footnotesize\ttfamily \label{hx711__utils_8cpp_a821fd6cb7d5d9fa764f630eeeed00357} 
+void update\+Nextion\+Text (\begin{DoxyParamCaption}\item[{String}]{object\+Name}{, }\item[{String}]{text}{}\end{DoxyParamCaption})}
+
+\Hypertarget{hx711__utils_8cpp_a507a5e636a1f1a189b3551e38241235b}\index{hx711\_utils.cpp@{hx711\_utils.cpp}!vypisHmotnost@{vypisHmotnost}}
+\index{vypisHmotnost@{vypisHmotnost}!hx711\_utils.cpp@{hx711\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{vypisHmotnost()}{vypisHmotnost()}}
+{\footnotesize\ttfamily \label{hx711__utils_8cpp_a507a5e636a1f1a189b3551e38241235b} 
+void vypis\+Hmotnost (\begin{DoxyParamCaption}\item[{float}]{hmotnost}{}\end{DoxyParamCaption})}
+
+\Hypertarget{hx711__utils_8cpp_a186238bb87f816c3ce76e8a9970f2eee}\index{hx711\_utils.cpp@{hx711\_utils.cpp}!zpracujHX711@{zpracujHX711}}
+\index{zpracujHX711@{zpracujHX711}!hx711\_utils.cpp@{hx711\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{zpracujHX711()}{zpracujHX711()}}
+{\footnotesize\ttfamily \label{hx711__utils_8cpp_a186238bb87f816c3ce76e8a9970f2eee} 
+void zpracuj\+HX711 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{hx711__utils_8cpp_acbd2790f6912eb5fb4ae8c3e44f1f997}\index{hx711\_utils.cpp@{hx711\_utils.cpp}!prumerRaw@{prumerRaw}}
+\index{prumerRaw@{prumerRaw}!hx711\_utils.cpp@{hx711\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{prumerRaw}{prumerRaw}}
+{\footnotesize\ttfamily \label{hx711__utils_8cpp_acbd2790f6912eb5fb4ae8c3e44f1f997} 
+long prumer\+Raw = 0}
+
+\Hypertarget{hx711__utils_8cpp_a18f961645958fc2680e4ef6ac2680c78}\index{hx711\_utils.cpp@{hx711\_utils.cpp}!readInterval@{readInterval}}
+\index{readInterval@{readInterval}!hx711\_utils.cpp@{hx711\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{readInterval}{readInterval}}
+{\footnotesize\ttfamily \label{hx711__utils_8cpp_a18f961645958fc2680e4ef6ac2680c78} 
+const unsigned long read\+Interval = 200}
+
+\Hypertarget{hx711__utils_8cpp_a28a1a904aa3b3f045566207445cd659f}\index{hx711\_utils.cpp@{hx711\_utils.cpp}!WATCHDOG\_TIMEOUT@{WATCHDOG\_TIMEOUT}}
+\index{WATCHDOG\_TIMEOUT@{WATCHDOG\_TIMEOUT}!hx711\_utils.cpp@{hx711\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{WATCHDOG\_TIMEOUT}{WATCHDOG\_TIMEOUT}}
+{\footnotesize\ttfamily \label{hx711__utils_8cpp_a28a1a904aa3b3f045566207445cd659f} 
+const unsigned long WATCHDOG\+\_\+\+TIMEOUT = 10000}
+

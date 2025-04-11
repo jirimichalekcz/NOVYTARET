@@ -1,3 +1,14 @@
+/**
+ * @file dosing_utils.cpp
+ * @brief Obsahuje funkce pro dávkování složek a jemné dodávkování.
+ * 
+ * Tento soubor implementuje hlavní logiku dávkování složek pomocí serv a váhy HX711.
+ * Obsahuje funkce pro dávkování složek A a B, jemné dodávkování a práci s kalibračními daty.
+ * 
+ * @author [Vaše jméno]
+ * @date [Datum]
+ */
+
 #include <Arduino.h>
 #include <Preferences.h>
 #include <vector>
@@ -158,7 +169,7 @@ void davkujSlozku(float cilovaHmotnost, Servo &servo, int offsetServo, const cha
 
                 // Jemne dodavkovani
                 while (zbyva > 0.01f) {
-                    float casJemnehoOtevreni = constrain(casOtevreni * (zbyva / nejmensiHmotnost), 100, 500); // Dynamicky cas otevreni
+                    float casJemnehoOtevreni = constrain(casOtevreni * (zbyva / nejmensiHmotnost), 300, 500); // Zvysena minimalni hodnota na 300 ms
                     Serial.print("Jemne dodavkovani s casem otevreni: ");
                     Serial.println(casJemnehoOtevreni);
 
@@ -174,9 +185,11 @@ void davkujSlozku(float cilovaHmotnost, Servo &servo, int offsetServo, const cha
 
                     while (millis() - startTime < 7000) { // Maximalne 7 sekund
                         zpracujHX711();
-                        if (abs(currentWeight - posledniHmotnost) < 0.2f) {
+                        if (abs(currentWeight - posledniHmotnost) < 0.2f) { // Stabilizace na ±0.2 g
                             namereno = currentWeight - hmotnostDosud; // Rozdil od dosud nadavkovane hmotnosti
-                            break;
+                            if (namereno > 0) { // Kontrola, zda je namereno kladne
+                                break;
+                            }
                         }
                         posledniHmotnost = currentWeight;
                         delay(500);
@@ -213,9 +226,25 @@ void davkujSlozku(float cilovaHmotnost, Servo &servo, int offsetServo, const cha
         } else {
             updateNextionText("status", String("Davkovani ") + namespaceName + " dokonceno");
             Serial.println("=== Davkovani dokonceno ===");
+
+            // 3x kratky zvuk
+            for (int i = 0; i < 2; i++) {
+                digitalWrite(bzucak, HIGH); // Zapnout bzučák
+                delay(200);                // Krátký zvuk (200 ms)
+                digitalWrite(bzucak, LOW); // Vypnout bzučák
+                delay(200);                // Pauza mezi zvuky (200 ms)
+            }
         }
     } else {
         updateNextionText("status", String("Davkovani ") + namespaceName + " dokonceno");
         Serial.println("=== Davkovani dokonceno ===");
+
+        // 3x kratky zvuk
+        for (int i = 0; i < 2; i++) {
+            digitalWrite(bzucak, HIGH); // Zapnout bzučák
+            delay(200);                // Krátký zvuk (200 ms)
+            digitalWrite(bzucak, LOW); // Vypnout bzučák
+            delay(200);                // Pauza mezi zvuky (200 ms)
+        }
     }
 }

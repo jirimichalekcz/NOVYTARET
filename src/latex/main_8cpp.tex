@@ -1,0 +1,513 @@
+\doxysection{main.\+cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{main.cpp@{main.cpp}}
+{\ttfamily \#include "{}globals.\+h"{}}\newline
+{\ttfamily \#include "{}utils.\+h"{}}\newline
+{\ttfamily \#include "{}hx711\+\_\+utils.\+h"{}}\newline
+{\ttfamily \#include "{}dosing\+\_\+utils.\+h"{}}\newline
+{\ttfamily \#include "{}learning\+\_\+utils.\+h"{}}\newline
+{\ttfamily \#include "{}nextion\+\_\+utils.\+h"{}}\newline
+{\ttfamily \#include "{}nextion\+\_\+input.\+h"{}}\newline
+{\ttfamily \#include $<$Q2\+HX711.\+h$>$}\newline
+{\ttfamily \#include $<$esp\+\_\+system.\+h$>$}\newline
+{\ttfamily \#include $<$Preferences.\+h$>$}\newline
+{\ttfamily \#include $<$ESP32\+Servo.\+h$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{main_8cpp_ac80a3592e72fd96b772ee47a7d8e0d0a}{DEBUG\+\_\+\+MODE}}
+\item 
+\#define \mbox{\hyperlink{main_8cpp_af6551f0b4c3964c3128f808e7bf987c7}{DEBUG\+\_\+\+PRINT}}(x)
+\item 
+\#define \mbox{\hyperlink{main_8cpp_a8e30ff0704664fcb13dabf0c4dc5c8f5}{DEBUG\+\_\+\+PRINTLN}}(x)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8cpp_a821fd6cb7d5d9fa764f630eeeed00357}{update\+Nextion\+Text}} (String object\+Name, String text)
+\item 
+void \mbox{\hyperlink{main_8cpp_a70b386889924a9d65c8730c28187421f}{send\+Nextion\+Command}} (String command)
+\item 
+void \mbox{\hyperlink{main_8cpp_ac8b5b41784064f53291396d5455d353c}{tare\+Scale}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a1fc83590eab3b392061fae9c31ae5b2c}{vypocitej\+Cile}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a186238bb87f816c3ce76e8a9970f2eee}{zpracuj\+HX711}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a507a5e636a1f1a189b3551e38241235b}{vypis\+Hmotnost}} (float hmotnost)
+\item 
+void \mbox{\hyperlink{main_8cpp_ac78d24e62cc52c832e879d54553c2dbf}{aktualizuj\+Davkovani}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a0d304246b302bc6f8304d00a852a5bc3}{vypis\+Data\+ServoB}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a7262a5e38df9ae2082881bcba5116a05}{aktivuj\+Servo}} (Servo \&servo, int uhel\+Aktivace, int uhel\+Navrat, unsigned long setrvani\+Ms)
+\item 
+int \mbox{\hyperlink{main_8cpp_adf91df12a4a1585f0c957a08eaa21781}{vypocitej\+Max\+UhelA}} (float cilova\+Hmotnost)
+\item 
+int \mbox{\hyperlink{main_8cpp_a4fa3a3ddd5df6fbe9a3f69722273883a}{vypocitej\+Max\+UhelB}} (float cilova\+Hmotnost)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const float \mbox{\hyperlink{main_8cpp_a7b49315353fdd9dd1099c1de022d7e13}{ZAVRIT\+\_\+\+PRED\+\_\+\+KONCEM\+\_\+A}} = 0.\+0f
+\item 
+const float \mbox{\hyperlink{main_8cpp_aaa7b243db987fd3b0659578b887c9da2}{ZAVRIT\+\_\+\+PRED\+\_\+\+KONCEM\+\_\+B}} = 3.\+5f
+\item 
+float \mbox{\hyperlink{main_8cpp_a01beebe8959cf33071de82fbcb5f155e}{korekce\+ZavreniB}} = 0.\+0f
+\item 
+long \mbox{\hyperlink{main_8cpp_a4bc89402c12cabb8dbef01ed6f765af6}{staryrozdil}} = 0
+\item 
+int \mbox{\hyperlink{main_8cpp_a097045835882a56eb7583e005b268e9d}{manual\+AngleA}} = 0
+\item 
+int \mbox{\hyperlink{main_8cpp_ab4a549aeefdf3f3d73ae1602aef573d4}{manual\+AngleB}} = 0
+\item 
+bool \mbox{\hyperlink{main_8cpp_a524ad866b92a070b941e7343978936a7}{manual\+Mode\+Active}} = false
+\item 
+bool \mbox{\hyperlink{main_8cpp_a5fd6db9ed2fb53eda6ce23c3f44748cf}{learning\+Offset\+Active}} = false
+\item 
+int \mbox{\hyperlink{main_8cpp_a51394d415d9cb275e8bf921354c642ad}{learning\+Angle}} = 0
+\item 
+float \mbox{\hyperlink{main_8cpp_aba3bee0832988b4dd004836c8a3755cf}{learning\+Last\+Weight}} = 0.\+0f
+\item 
+bool \mbox{\hyperlink{main_8cpp_a2dd70942e3424929624709eb4b4d33ac}{learning\+Increasing}} = false
+\item 
+unsigned long \mbox{\hyperlink{main_8cpp_a03ddd10eccd7900e7a5b6a63bfbf6447}{last\+Learning\+Time}} = 0
+\item 
+bool \mbox{\hyperlink{main_8cpp_ae3d795c0c6f293570979f4c4ea19eeb1}{learning\+Offset\+B\+\_\+\+Active}} = false
+\item 
+int \mbox{\hyperlink{main_8cpp_a478d4120631271a6b3e03c88e916f3f8}{learning\+AngleB}} = 0
+\item 
+float \mbox{\hyperlink{main_8cpp_adf7c419b6113606508df1cab65086884}{learning\+Last\+WeightB}} = 0.\+0f
+\item 
+bool \mbox{\hyperlink{main_8cpp_af7ffb06037d7d4ea223471a727c8e102}{learning\+IncreasingB}} = false
+\item 
+unsigned long \mbox{\hyperlink{main_8cpp_ac08b582d456c8851922a56c2b55a7000}{last\+Learning\+TimeB}} = 0
+\item 
+const int \mbox{\hyperlink{main_8cpp_aef3d8e22fee8c0e8e445f0bf24035652}{MAX\+\_\+\+UHEL\+\_\+A}} = 115
+\item 
+const int \mbox{\hyperlink{main_8cpp_adc430d1bef7525832745197a83db51e3}{MAX\+\_\+\+UHEL\+\_\+B}} = 90
+\item 
+unsigned long \mbox{\hyperlink{main_8cpp_a35d78fe16d5878223e019651460ceeba}{last\+Read\+Time}} = 0
+\item 
+const unsigned long \mbox{\hyperlink{main_8cpp_a18f961645958fc2680e4ef6ac2680c78}{read\+Interval}} = 200
+\item 
+long \mbox{\hyperlink{main_8cpp_a6714b9d98fbd50fd629bac5bbf62cff4}{ja\+Raw}} = 0
+\item 
+long \mbox{\hyperlink{main_8cpp_a8ae38bd84a6195447a86d01e96db4211}{na\+Raw}} = 0
+\item 
+long \mbox{\hyperlink{main_8cpp_a6251e11c01f52a777f00872cad153a80}{rozdil}} = 0
+\item 
+float \mbox{\hyperlink{main_8cpp_a11d30c85238d73f1b0527f905e708102}{last\+Weight\+For\+Watchdog}} = 0.\+0f
+\item 
+unsigned long \mbox{\hyperlink{main_8cpp_adf173124512b880abf121485d42a7864}{last\+Weight\+Change\+Time}} = 0
+\item 
+const unsigned long \mbox{\hyperlink{main_8cpp_a28a1a904aa3b3f045566207445cd659f}{WATCHDOG\+\_\+\+TIMEOUT}} = 10000
+\item 
+unsigned long \mbox{\hyperlink{main_8cpp_a6a9a04f97971eac2051702b1d156af0d}{last\+Micro\+Step\+Time}} = 0
+\item 
+float \mbox{\hyperlink{main_8cpp_a7556983b3f46941ccb9ef8188244d487}{last\+Micro\+Weight}} = 0.\+0f
+\item 
+unsigned long \mbox{\hyperlink{main_8cpp_a0955247e21c587d00c7dd935551e7e95}{last\+Weight\+Increase\+Time}} = 0
+\item 
+int \mbox{\hyperlink{main_8cpp_ab286af220ec05bc6117641f76f8dff9a}{micro\+Angle}} = 0
+\item 
+bool \mbox{\hyperlink{main_8cpp_a7aea3e4bc2ec47a6cea63dd3340f70c6}{mikrofaze\+Aktivni}} = false
+\item 
+unsigned long \mbox{\hyperlink{main_8cpp_a67ed2efb22fdddfa89fcb8afe6b37091}{last\+Save\+Time}} = 0
+\item 
+const unsigned long \mbox{\hyperlink{main_8cpp_a2ddb5629d23287e61179dda4db70a809}{save\+Interval}} = 60000
+\item 
+unsigned long \mbox{\hyperlink{main_8cpp_ae7206282c5465987fdfb041ae38a1fc6}{key\+Press\+Start\+Time}} = 0
+\item 
+bool \mbox{\hyperlink{main_8cpp_a1fb2ff956cf5a409fb68f1fd292d0c51}{time\+Counting}} = false
+\item 
+bool \mbox{\hyperlink{main_8cpp_a14f9ba0b38fc79a1ea824ae77e8fc6f6}{key\+A\+\_\+\+Pressed}} = false
+\item 
+bool \mbox{\hyperlink{main_8cpp_a726b0f0c2a15081623f6675b01ad18b7}{key\+B\+\_\+\+Pressed}} = false
+\item 
+unsigned long \mbox{\hyperlink{main_8cpp_a56ae79374d65f100d0c0d5466ca71429}{last\+Dose\+Time}} = 0
+\item 
+unsigned long \mbox{\hyperlink{main_8cpp_a53198c288ac68f4d1c95b819e7679224}{last\+Input\+Weight\+Update}} = 0
+\item 
+const unsigned long \mbox{\hyperlink{main_8cpp_a82293b47af77f7c5b7c99d087578f197}{input\+Weight\+Update\+Interval}} = 500
+\item 
+int \mbox{\hyperlink{main_8cpp_a0297477961006dd1c7ec0e5d9462f5e8}{current\+Page}} = 0
+\item 
+Preferences \mbox{\hyperlink{main_8cpp_a618cfe5e4f4b5ba764db351c2ab9a962}{flow\+Prefs}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{main_8cpp_ac80a3592e72fd96b772ee47a7d8e0d0a}\index{main.cpp@{main.cpp}!DEBUG\_MODE@{DEBUG\_MODE}}
+\index{DEBUG\_MODE@{DEBUG\_MODE}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{DEBUG\_MODE}{DEBUG\_MODE}}
+{\footnotesize\ttfamily \label{main_8cpp_ac80a3592e72fd96b772ee47a7d8e0d0a} 
+\#define DEBUG\+\_\+\+MODE}
+
+\Hypertarget{main_8cpp_af6551f0b4c3964c3128f808e7bf987c7}\index{main.cpp@{main.cpp}!DEBUG\_PRINT@{DEBUG\_PRINT}}
+\index{DEBUG\_PRINT@{DEBUG\_PRINT}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{DEBUG\_PRINT}{DEBUG\_PRINT}}
+{\footnotesize\ttfamily \label{main_8cpp_af6551f0b4c3964c3128f808e7bf987c7} 
+\#define DEBUG\+\_\+\+PRINT(\begin{DoxyParamCaption}\item[{}]{x}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Serial.print(x)}
+
+\end{DoxyCode}
+\Hypertarget{main_8cpp_a8e30ff0704664fcb13dabf0c4dc5c8f5}\index{main.cpp@{main.cpp}!DEBUG\_PRINTLN@{DEBUG\_PRINTLN}}
+\index{DEBUG\_PRINTLN@{DEBUG\_PRINTLN}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{DEBUG\_PRINTLN}{DEBUG\_PRINTLN}}
+{\footnotesize\ttfamily \label{main_8cpp_a8e30ff0704664fcb13dabf0c4dc5c8f5} 
+\#define DEBUG\+\_\+\+PRINTLN(\begin{DoxyParamCaption}\item[{}]{x}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Serial.println(x)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_a7262a5e38df9ae2082881bcba5116a05}\index{main.cpp@{main.cpp}!aktivujServo@{aktivujServo}}
+\index{aktivujServo@{aktivujServo}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{aktivujServo()}{aktivujServo()}}
+{\footnotesize\ttfamily \label{main_8cpp_a7262a5e38df9ae2082881bcba5116a05} 
+void aktivuj\+Servo (\begin{DoxyParamCaption}\item[{Servo \&}]{servo}{, }\item[{int}]{uhel\+Aktivace}{, }\item[{int}]{uhel\+Navrat}{, }\item[{unsigned long}]{setrvani\+Ms}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_ac78d24e62cc52c832e879d54553c2dbf}\index{main.cpp@{main.cpp}!aktualizujDavkovani@{aktualizujDavkovani}}
+\index{aktualizujDavkovani@{aktualizujDavkovani}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{aktualizujDavkovani()}{aktualizujDavkovani()}}
+{\footnotesize\ttfamily \label{main_8cpp_ac78d24e62cc52c832e879d54553c2dbf} 
+void aktualizuj\+Davkovani (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_afe461d27b9c48d5921c00d521181f12f}\index{main.cpp@{main.cpp}!loop@{loop}}
+\index{loop@{loop}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily \label{main_8cpp_afe461d27b9c48d5921c00d521181f12f} 
+void loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a70b386889924a9d65c8730c28187421f}\index{main.cpp@{main.cpp}!sendNextionCommand@{sendNextionCommand}}
+\index{sendNextionCommand@{sendNextionCommand}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{sendNextionCommand()}{sendNextionCommand()}}
+{\footnotesize\ttfamily \label{main_8cpp_a70b386889924a9d65c8730c28187421f} 
+void send\+Nextion\+Command (\begin{DoxyParamCaption}\item[{String}]{command}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\index{main.cpp@{main.cpp}!setup@{setup}}
+\index{setup@{setup}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily \label{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d} 
+void setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_ac8b5b41784064f53291396d5455d353c}\index{main.cpp@{main.cpp}!tareScale@{tareScale}}
+\index{tareScale@{tareScale}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{tareScale()}{tareScale()}}
+{\footnotesize\ttfamily \label{main_8cpp_ac8b5b41784064f53291396d5455d353c} 
+void tare\+Scale (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a821fd6cb7d5d9fa764f630eeeed00357}\index{main.cpp@{main.cpp}!updateNextionText@{updateNextionText}}
+\index{updateNextionText@{updateNextionText}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{updateNextionText()}{updateNextionText()}}
+{\footnotesize\ttfamily \label{main_8cpp_a821fd6cb7d5d9fa764f630eeeed00357} 
+void update\+Nextion\+Text (\begin{DoxyParamCaption}\item[{String}]{object\+Name}{, }\item[{String}]{text}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a0d304246b302bc6f8304d00a852a5bc3}\index{main.cpp@{main.cpp}!vypisDataServoB@{vypisDataServoB}}
+\index{vypisDataServoB@{vypisDataServoB}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{vypisDataServoB()}{vypisDataServoB()}}
+{\footnotesize\ttfamily \label{main_8cpp_a0d304246b302bc6f8304d00a852a5bc3} 
+void vypis\+Data\+ServoB (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a507a5e636a1f1a189b3551e38241235b}\index{main.cpp@{main.cpp}!vypisHmotnost@{vypisHmotnost}}
+\index{vypisHmotnost@{vypisHmotnost}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{vypisHmotnost()}{vypisHmotnost()}}
+{\footnotesize\ttfamily \label{main_8cpp_a507a5e636a1f1a189b3551e38241235b} 
+void vypis\+Hmotnost (\begin{DoxyParamCaption}\item[{float}]{hmotnost}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a1fc83590eab3b392061fae9c31ae5b2c}\index{main.cpp@{main.cpp}!vypocitejCile@{vypocitejCile}}
+\index{vypocitejCile@{vypocitejCile}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{vypocitejCile()}{vypocitejCile()}}
+{\footnotesize\ttfamily \label{main_8cpp_a1fc83590eab3b392061fae9c31ae5b2c} 
+void vypocitej\+Cile (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_adf91df12a4a1585f0c957a08eaa21781}\index{main.cpp@{main.cpp}!vypocitejMaxUhelA@{vypocitejMaxUhelA}}
+\index{vypocitejMaxUhelA@{vypocitejMaxUhelA}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{vypocitejMaxUhelA()}{vypocitejMaxUhelA()}}
+{\footnotesize\ttfamily \label{main_8cpp_adf91df12a4a1585f0c957a08eaa21781} 
+int vypocitej\+Max\+UhelA (\begin{DoxyParamCaption}\item[{float}]{cilova\+Hmotnost}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a4fa3a3ddd5df6fbe9a3f69722273883a}\index{main.cpp@{main.cpp}!vypocitejMaxUhelB@{vypocitejMaxUhelB}}
+\index{vypocitejMaxUhelB@{vypocitejMaxUhelB}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{vypocitejMaxUhelB()}{vypocitejMaxUhelB()}}
+{\footnotesize\ttfamily \label{main_8cpp_a4fa3a3ddd5df6fbe9a3f69722273883a} 
+int vypocitej\+Max\+UhelB (\begin{DoxyParamCaption}\item[{float}]{cilova\+Hmotnost}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a186238bb87f816c3ce76e8a9970f2eee}\index{main.cpp@{main.cpp}!zpracujHX711@{zpracujHX711}}
+\index{zpracujHX711@{zpracujHX711}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{zpracujHX711()}{zpracujHX711()}}
+{\footnotesize\ttfamily \label{main_8cpp_a186238bb87f816c3ce76e8a9970f2eee} 
+void zpracuj\+HX711 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{main_8cpp_a0297477961006dd1c7ec0e5d9462f5e8}\index{main.cpp@{main.cpp}!currentPage@{currentPage}}
+\index{currentPage@{currentPage}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{currentPage}{currentPage}}
+{\footnotesize\ttfamily \label{main_8cpp_a0297477961006dd1c7ec0e5d9462f5e8} 
+int current\+Page = 0}
+
+\Hypertarget{main_8cpp_a618cfe5e4f4b5ba764db351c2ab9a962}\index{main.cpp@{main.cpp}!flowPrefs@{flowPrefs}}
+\index{flowPrefs@{flowPrefs}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{flowPrefs}{flowPrefs}}
+{\footnotesize\ttfamily \label{main_8cpp_a618cfe5e4f4b5ba764db351c2ab9a962} 
+Preferences flow\+Prefs}
+
+\Hypertarget{main_8cpp_a82293b47af77f7c5b7c99d087578f197}\index{main.cpp@{main.cpp}!inputWeightUpdateInterval@{inputWeightUpdateInterval}}
+\index{inputWeightUpdateInterval@{inputWeightUpdateInterval}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{inputWeightUpdateInterval}{inputWeightUpdateInterval}}
+{\footnotesize\ttfamily \label{main_8cpp_a82293b47af77f7c5b7c99d087578f197} 
+const unsigned long input\+Weight\+Update\+Interval = 500}
+
+\Hypertarget{main_8cpp_a6714b9d98fbd50fd629bac5bbf62cff4}\index{main.cpp@{main.cpp}!jaRaw@{jaRaw}}
+\index{jaRaw@{jaRaw}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{jaRaw}{jaRaw}}
+{\footnotesize\ttfamily \label{main_8cpp_a6714b9d98fbd50fd629bac5bbf62cff4} 
+long ja\+Raw = 0}
+
+\Hypertarget{main_8cpp_a14f9ba0b38fc79a1ea824ae77e8fc6f6}\index{main.cpp@{main.cpp}!keyA\_Pressed@{keyA\_Pressed}}
+\index{keyA\_Pressed@{keyA\_Pressed}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{keyA\_Pressed}{keyA\_Pressed}}
+{\footnotesize\ttfamily \label{main_8cpp_a14f9ba0b38fc79a1ea824ae77e8fc6f6} 
+bool key\+A\+\_\+\+Pressed = false}
+
+\Hypertarget{main_8cpp_a726b0f0c2a15081623f6675b01ad18b7}\index{main.cpp@{main.cpp}!keyB\_Pressed@{keyB\_Pressed}}
+\index{keyB\_Pressed@{keyB\_Pressed}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{keyB\_Pressed}{keyB\_Pressed}}
+{\footnotesize\ttfamily \label{main_8cpp_a726b0f0c2a15081623f6675b01ad18b7} 
+bool key\+B\+\_\+\+Pressed = false}
+
+\Hypertarget{main_8cpp_ae7206282c5465987fdfb041ae38a1fc6}\index{main.cpp@{main.cpp}!keyPressStartTime@{keyPressStartTime}}
+\index{keyPressStartTime@{keyPressStartTime}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{keyPressStartTime}{keyPressStartTime}}
+{\footnotesize\ttfamily \label{main_8cpp_ae7206282c5465987fdfb041ae38a1fc6} 
+unsigned long key\+Press\+Start\+Time = 0}
+
+\Hypertarget{main_8cpp_a01beebe8959cf33071de82fbcb5f155e}\index{main.cpp@{main.cpp}!korekceZavreniB@{korekceZavreniB}}
+\index{korekceZavreniB@{korekceZavreniB}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{korekceZavreniB}{korekceZavreniB}}
+{\footnotesize\ttfamily \label{main_8cpp_a01beebe8959cf33071de82fbcb5f155e} 
+float korekce\+ZavreniB = 0.\+0f}
+
+\Hypertarget{main_8cpp_a56ae79374d65f100d0c0d5466ca71429}\index{main.cpp@{main.cpp}!lastDoseTime@{lastDoseTime}}
+\index{lastDoseTime@{lastDoseTime}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{lastDoseTime}{lastDoseTime}}
+{\footnotesize\ttfamily \label{main_8cpp_a56ae79374d65f100d0c0d5466ca71429} 
+unsigned long last\+Dose\+Time = 0}
+
+\Hypertarget{main_8cpp_a53198c288ac68f4d1c95b819e7679224}\index{main.cpp@{main.cpp}!lastInputWeightUpdate@{lastInputWeightUpdate}}
+\index{lastInputWeightUpdate@{lastInputWeightUpdate}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{lastInputWeightUpdate}{lastInputWeightUpdate}}
+{\footnotesize\ttfamily \label{main_8cpp_a53198c288ac68f4d1c95b819e7679224} 
+unsigned long last\+Input\+Weight\+Update = 0}
+
+\Hypertarget{main_8cpp_a03ddd10eccd7900e7a5b6a63bfbf6447}\index{main.cpp@{main.cpp}!lastLearningTime@{lastLearningTime}}
+\index{lastLearningTime@{lastLearningTime}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{lastLearningTime}{lastLearningTime}}
+{\footnotesize\ttfamily \label{main_8cpp_a03ddd10eccd7900e7a5b6a63bfbf6447} 
+unsigned long last\+Learning\+Time = 0}
+
+\Hypertarget{main_8cpp_ac08b582d456c8851922a56c2b55a7000}\index{main.cpp@{main.cpp}!lastLearningTimeB@{lastLearningTimeB}}
+\index{lastLearningTimeB@{lastLearningTimeB}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{lastLearningTimeB}{lastLearningTimeB}}
+{\footnotesize\ttfamily \label{main_8cpp_ac08b582d456c8851922a56c2b55a7000} 
+unsigned long last\+Learning\+TimeB = 0}
+
+\Hypertarget{main_8cpp_a6a9a04f97971eac2051702b1d156af0d}\index{main.cpp@{main.cpp}!lastMicroStepTime@{lastMicroStepTime}}
+\index{lastMicroStepTime@{lastMicroStepTime}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{lastMicroStepTime}{lastMicroStepTime}}
+{\footnotesize\ttfamily \label{main_8cpp_a6a9a04f97971eac2051702b1d156af0d} 
+unsigned long last\+Micro\+Step\+Time = 0}
+
+\Hypertarget{main_8cpp_a7556983b3f46941ccb9ef8188244d487}\index{main.cpp@{main.cpp}!lastMicroWeight@{lastMicroWeight}}
+\index{lastMicroWeight@{lastMicroWeight}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{lastMicroWeight}{lastMicroWeight}}
+{\footnotesize\ttfamily \label{main_8cpp_a7556983b3f46941ccb9ef8188244d487} 
+float last\+Micro\+Weight = 0.\+0f}
+
+\Hypertarget{main_8cpp_a35d78fe16d5878223e019651460ceeba}\index{main.cpp@{main.cpp}!lastReadTime@{lastReadTime}}
+\index{lastReadTime@{lastReadTime}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{lastReadTime}{lastReadTime}}
+{\footnotesize\ttfamily \label{main_8cpp_a35d78fe16d5878223e019651460ceeba} 
+unsigned long last\+Read\+Time = 0}
+
+\Hypertarget{main_8cpp_a67ed2efb22fdddfa89fcb8afe6b37091}\index{main.cpp@{main.cpp}!lastSaveTime@{lastSaveTime}}
+\index{lastSaveTime@{lastSaveTime}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{lastSaveTime}{lastSaveTime}}
+{\footnotesize\ttfamily \label{main_8cpp_a67ed2efb22fdddfa89fcb8afe6b37091} 
+unsigned long last\+Save\+Time = 0}
+
+\Hypertarget{main_8cpp_adf173124512b880abf121485d42a7864}\index{main.cpp@{main.cpp}!lastWeightChangeTime@{lastWeightChangeTime}}
+\index{lastWeightChangeTime@{lastWeightChangeTime}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{lastWeightChangeTime}{lastWeightChangeTime}}
+{\footnotesize\ttfamily \label{main_8cpp_adf173124512b880abf121485d42a7864} 
+unsigned long last\+Weight\+Change\+Time = 0}
+
+\Hypertarget{main_8cpp_a11d30c85238d73f1b0527f905e708102}\index{main.cpp@{main.cpp}!lastWeightForWatchdog@{lastWeightForWatchdog}}
+\index{lastWeightForWatchdog@{lastWeightForWatchdog}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{lastWeightForWatchdog}{lastWeightForWatchdog}}
+{\footnotesize\ttfamily \label{main_8cpp_a11d30c85238d73f1b0527f905e708102} 
+float last\+Weight\+For\+Watchdog = 0.\+0f}
+
+\Hypertarget{main_8cpp_a0955247e21c587d00c7dd935551e7e95}\index{main.cpp@{main.cpp}!lastWeightIncreaseTime@{lastWeightIncreaseTime}}
+\index{lastWeightIncreaseTime@{lastWeightIncreaseTime}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{lastWeightIncreaseTime}{lastWeightIncreaseTime}}
+{\footnotesize\ttfamily \label{main_8cpp_a0955247e21c587d00c7dd935551e7e95} 
+unsigned long last\+Weight\+Increase\+Time = 0}
+
+\Hypertarget{main_8cpp_a51394d415d9cb275e8bf921354c642ad}\index{main.cpp@{main.cpp}!learningAngle@{learningAngle}}
+\index{learningAngle@{learningAngle}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{learningAngle}{learningAngle}}
+{\footnotesize\ttfamily \label{main_8cpp_a51394d415d9cb275e8bf921354c642ad} 
+int learning\+Angle = 0}
+
+\Hypertarget{main_8cpp_a478d4120631271a6b3e03c88e916f3f8}\index{main.cpp@{main.cpp}!learningAngleB@{learningAngleB}}
+\index{learningAngleB@{learningAngleB}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{learningAngleB}{learningAngleB}}
+{\footnotesize\ttfamily \label{main_8cpp_a478d4120631271a6b3e03c88e916f3f8} 
+int learning\+AngleB = 0}
+
+\Hypertarget{main_8cpp_a2dd70942e3424929624709eb4b4d33ac}\index{main.cpp@{main.cpp}!learningIncreasing@{learningIncreasing}}
+\index{learningIncreasing@{learningIncreasing}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{learningIncreasing}{learningIncreasing}}
+{\footnotesize\ttfamily \label{main_8cpp_a2dd70942e3424929624709eb4b4d33ac} 
+bool learning\+Increasing = false}
+
+\Hypertarget{main_8cpp_af7ffb06037d7d4ea223471a727c8e102}\index{main.cpp@{main.cpp}!learningIncreasingB@{learningIncreasingB}}
+\index{learningIncreasingB@{learningIncreasingB}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{learningIncreasingB}{learningIncreasingB}}
+{\footnotesize\ttfamily \label{main_8cpp_af7ffb06037d7d4ea223471a727c8e102} 
+bool learning\+IncreasingB = false}
+
+\Hypertarget{main_8cpp_aba3bee0832988b4dd004836c8a3755cf}\index{main.cpp@{main.cpp}!learningLastWeight@{learningLastWeight}}
+\index{learningLastWeight@{learningLastWeight}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{learningLastWeight}{learningLastWeight}}
+{\footnotesize\ttfamily \label{main_8cpp_aba3bee0832988b4dd004836c8a3755cf} 
+float learning\+Last\+Weight = 0.\+0f}
+
+\Hypertarget{main_8cpp_adf7c419b6113606508df1cab65086884}\index{main.cpp@{main.cpp}!learningLastWeightB@{learningLastWeightB}}
+\index{learningLastWeightB@{learningLastWeightB}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{learningLastWeightB}{learningLastWeightB}}
+{\footnotesize\ttfamily \label{main_8cpp_adf7c419b6113606508df1cab65086884} 
+float learning\+Last\+WeightB = 0.\+0f}
+
+\Hypertarget{main_8cpp_a5fd6db9ed2fb53eda6ce23c3f44748cf}\index{main.cpp@{main.cpp}!learningOffsetActive@{learningOffsetActive}}
+\index{learningOffsetActive@{learningOffsetActive}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{learningOffsetActive}{learningOffsetActive}}
+{\footnotesize\ttfamily \label{main_8cpp_a5fd6db9ed2fb53eda6ce23c3f44748cf} 
+bool learning\+Offset\+Active = false}
+
+\Hypertarget{main_8cpp_ae3d795c0c6f293570979f4c4ea19eeb1}\index{main.cpp@{main.cpp}!learningOffsetB\_Active@{learningOffsetB\_Active}}
+\index{learningOffsetB\_Active@{learningOffsetB\_Active}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{learningOffsetB\_Active}{learningOffsetB\_Active}}
+{\footnotesize\ttfamily \label{main_8cpp_ae3d795c0c6f293570979f4c4ea19eeb1} 
+bool learning\+Offset\+B\+\_\+\+Active = false}
+
+\Hypertarget{main_8cpp_a097045835882a56eb7583e005b268e9d}\index{main.cpp@{main.cpp}!manualAngleA@{manualAngleA}}
+\index{manualAngleA@{manualAngleA}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{manualAngleA}{manualAngleA}}
+{\footnotesize\ttfamily \label{main_8cpp_a097045835882a56eb7583e005b268e9d} 
+int manual\+AngleA = 0}
+
+\Hypertarget{main_8cpp_ab4a549aeefdf3f3d73ae1602aef573d4}\index{main.cpp@{main.cpp}!manualAngleB@{manualAngleB}}
+\index{manualAngleB@{manualAngleB}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{manualAngleB}{manualAngleB}}
+{\footnotesize\ttfamily \label{main_8cpp_ab4a549aeefdf3f3d73ae1602aef573d4} 
+int manual\+AngleB = 0}
+
+\Hypertarget{main_8cpp_a524ad866b92a070b941e7343978936a7}\index{main.cpp@{main.cpp}!manualModeActive@{manualModeActive}}
+\index{manualModeActive@{manualModeActive}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{manualModeActive}{manualModeActive}}
+{\footnotesize\ttfamily \label{main_8cpp_a524ad866b92a070b941e7343978936a7} 
+bool manual\+Mode\+Active = false}
+
+\Hypertarget{main_8cpp_aef3d8e22fee8c0e8e445f0bf24035652}\index{main.cpp@{main.cpp}!MAX\_UHEL\_A@{MAX\_UHEL\_A}}
+\index{MAX\_UHEL\_A@{MAX\_UHEL\_A}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_UHEL\_A}{MAX\_UHEL\_A}}
+{\footnotesize\ttfamily \label{main_8cpp_aef3d8e22fee8c0e8e445f0bf24035652} 
+const int MAX\+\_\+\+UHEL\+\_\+A = 115}
+
+\Hypertarget{main_8cpp_adc430d1bef7525832745197a83db51e3}\index{main.cpp@{main.cpp}!MAX\_UHEL\_B@{MAX\_UHEL\_B}}
+\index{MAX\_UHEL\_B@{MAX\_UHEL\_B}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_UHEL\_B}{MAX\_UHEL\_B}}
+{\footnotesize\ttfamily \label{main_8cpp_adc430d1bef7525832745197a83db51e3} 
+const int MAX\+\_\+\+UHEL\+\_\+B = 90}
+
+\Hypertarget{main_8cpp_ab286af220ec05bc6117641f76f8dff9a}\index{main.cpp@{main.cpp}!microAngle@{microAngle}}
+\index{microAngle@{microAngle}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{microAngle}{microAngle}}
+{\footnotesize\ttfamily \label{main_8cpp_ab286af220ec05bc6117641f76f8dff9a} 
+int micro\+Angle = 0}
+
+\Hypertarget{main_8cpp_a7aea3e4bc2ec47a6cea63dd3340f70c6}\index{main.cpp@{main.cpp}!mikrofazeAktivni@{mikrofazeAktivni}}
+\index{mikrofazeAktivni@{mikrofazeAktivni}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{mikrofazeAktivni}{mikrofazeAktivni}}
+{\footnotesize\ttfamily \label{main_8cpp_a7aea3e4bc2ec47a6cea63dd3340f70c6} 
+bool mikrofaze\+Aktivni = false}
+
+\Hypertarget{main_8cpp_a8ae38bd84a6195447a86d01e96db4211}\index{main.cpp@{main.cpp}!naRaw@{naRaw}}
+\index{naRaw@{naRaw}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{naRaw}{naRaw}}
+{\footnotesize\ttfamily \label{main_8cpp_a8ae38bd84a6195447a86d01e96db4211} 
+long na\+Raw = 0}
+
+\Hypertarget{main_8cpp_a18f961645958fc2680e4ef6ac2680c78}\index{main.cpp@{main.cpp}!readInterval@{readInterval}}
+\index{readInterval@{readInterval}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{readInterval}{readInterval}}
+{\footnotesize\ttfamily \label{main_8cpp_a18f961645958fc2680e4ef6ac2680c78} 
+const unsigned long read\+Interval = 200}
+
+\Hypertarget{main_8cpp_a6251e11c01f52a777f00872cad153a80}\index{main.cpp@{main.cpp}!rozdil@{rozdil}}
+\index{rozdil@{rozdil}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{rozdil}{rozdil}}
+{\footnotesize\ttfamily \label{main_8cpp_a6251e11c01f52a777f00872cad153a80} 
+long rozdil = 0}
+
+\Hypertarget{main_8cpp_a2ddb5629d23287e61179dda4db70a809}\index{main.cpp@{main.cpp}!saveInterval@{saveInterval}}
+\index{saveInterval@{saveInterval}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{saveInterval}{saveInterval}}
+{\footnotesize\ttfamily \label{main_8cpp_a2ddb5629d23287e61179dda4db70a809} 
+const unsigned long save\+Interval = 60000}
+
+\Hypertarget{main_8cpp_a4bc89402c12cabb8dbef01ed6f765af6}\index{main.cpp@{main.cpp}!staryrozdil@{staryrozdil}}
+\index{staryrozdil@{staryrozdil}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{staryrozdil}{staryrozdil}}
+{\footnotesize\ttfamily \label{main_8cpp_a4bc89402c12cabb8dbef01ed6f765af6} 
+long staryrozdil = 0}
+
+\Hypertarget{main_8cpp_a1fb2ff956cf5a409fb68f1fd292d0c51}\index{main.cpp@{main.cpp}!timeCounting@{timeCounting}}
+\index{timeCounting@{timeCounting}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{timeCounting}{timeCounting}}
+{\footnotesize\ttfamily \label{main_8cpp_a1fb2ff956cf5a409fb68f1fd292d0c51} 
+bool time\+Counting = false}
+
+\Hypertarget{main_8cpp_a28a1a904aa3b3f045566207445cd659f}\index{main.cpp@{main.cpp}!WATCHDOG\_TIMEOUT@{WATCHDOG\_TIMEOUT}}
+\index{WATCHDOG\_TIMEOUT@{WATCHDOG\_TIMEOUT}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{WATCHDOG\_TIMEOUT}{WATCHDOG\_TIMEOUT}}
+{\footnotesize\ttfamily \label{main_8cpp_a28a1a904aa3b3f045566207445cd659f} 
+const unsigned long WATCHDOG\+\_\+\+TIMEOUT = 10000}
+
+\Hypertarget{main_8cpp_a7b49315353fdd9dd1099c1de022d7e13}\index{main.cpp@{main.cpp}!ZAVRIT\_PRED\_KONCEM\_A@{ZAVRIT\_PRED\_KONCEM\_A}}
+\index{ZAVRIT\_PRED\_KONCEM\_A@{ZAVRIT\_PRED\_KONCEM\_A}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{ZAVRIT\_PRED\_KONCEM\_A}{ZAVRIT\_PRED\_KONCEM\_A}}
+{\footnotesize\ttfamily \label{main_8cpp_a7b49315353fdd9dd1099c1de022d7e13} 
+const float ZAVRIT\+\_\+\+PRED\+\_\+\+KONCEM\+\_\+A = 0.\+0f}
+
+\Hypertarget{main_8cpp_aaa7b243db987fd3b0659578b887c9da2}\index{main.cpp@{main.cpp}!ZAVRIT\_PRED\_KONCEM\_B@{ZAVRIT\_PRED\_KONCEM\_B}}
+\index{ZAVRIT\_PRED\_KONCEM\_B@{ZAVRIT\_PRED\_KONCEM\_B}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{ZAVRIT\_PRED\_KONCEM\_B}{ZAVRIT\_PRED\_KONCEM\_B}}
+{\footnotesize\ttfamily \label{main_8cpp_aaa7b243db987fd3b0659578b887c9da2} 
+const float ZAVRIT\+\_\+\+PRED\+\_\+\+KONCEM\+\_\+B = 3.\+5f}
+
