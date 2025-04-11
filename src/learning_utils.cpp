@@ -103,9 +103,9 @@ void vypisDosingData(const char *namespaceName) {
     // Výpis dat na Serial monitor
     Serial.println(String("=== Data pro ") + namespaceName + " ===");
     for (int i = 0; i < pocetUhlu; i++) {
-        Serial.print("Úhel: ");
+        Serial.print("Uhel: ");
         Serial.print(data[i].uhel);
-        Serial.print("°, Hmotnost: ");
+        Serial.print(", Hmotnost: ");
         Serial.print(data[i].hmotnost, 3);
         Serial.println(" g");
     }

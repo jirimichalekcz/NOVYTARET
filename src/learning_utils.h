@@ -1,5 +1,6 @@
 #pragma once
 
+#include "learning_utils.h"
 void uciciRezimServoA();
 void uciciRezimServoB();
 // Deklarace funkce uciciRezimServo
