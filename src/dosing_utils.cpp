@@ -69,14 +69,22 @@ void davkujSlozku(float cilovaHmotnost, Servo &servo, int offsetServo, const cha
 
         // Cekani na stabilizaci vahy
         unsigned long startTime = millis();
+        float posledniHmotnost = currentWeight; // Uloží aktuální hmotnost jako výchozí
         float namereno = 0.0f;
+
         while (millis() - startTime < 5000) { // Maximálně 5 sekund
-            zpracujHX711();
-            if (abs(currentWeight - namereno) < 0.1f) { // Stabilizace na ±0.1 g
-                namereno = currentWeight;
+            zpracujHX711(); // Aktualizace currentWeight
+            Serial.print("Aktualni hmotnost: ");
+            Serial.println(currentWeight);
+
+            // Kontrola stabilizace
+            if (abs(currentWeight - posledniHmotnost) < 0.1f) { // Stabilizace na ±0.1 g
+                namereno = currentWeight; // Stabilizovaná hodnota
                 break;
             }
-            delay(100);
+
+            posledniHmotnost = currentWeight; // Aktualizace poslední hodnoty
+            delay(100); // Krátká pauza pro další měření
         }
 
         Serial.print("Namerena hmotnost: ");
