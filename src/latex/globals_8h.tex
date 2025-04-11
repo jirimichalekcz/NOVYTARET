@@ -69,57 +69,57 @@ int \textbf{ current\+Page}
 long \textbf{ prumer\+Raw}
 \item 
 Preferences \textbf{ preferences}
-\item 
+\begin{DoxyCompactList}\small\item\em Instance pro práci s NVS (Non-\/\+Volatile Storage). \end{DoxyCompactList}\item 
 Servo \textbf{ servoA}
-\item 
+\begin{DoxyCompactList}\small\item\em Servo motor A. \end{DoxyCompactList}\item 
 Servo \textbf{ servoB}
-\item 
+\begin{DoxyCompactList}\small\item\em Servo motor B. \end{DoxyCompactList}\item 
 int \textbf{ pin\+ServoA}
-\item 
+\begin{DoxyCompactList}\small\item\em GPIO pin pro servo A. \end{DoxyCompactList}\item 
 int \textbf{ pin\+ServoB}
-\item 
+\begin{DoxyCompactList}\small\item\em GPIO pin pro servo B. \end{DoxyCompactList}\item 
 int \textbf{ offset\+ServoA}
-\item 
+\begin{DoxyCompactList}\small\item\em Offset pro výchozí pozici serva A (nastavuje se v režimu učení). \end{DoxyCompactList}\item 
 int \textbf{ offset\+ServoB}
-\item 
+\begin{DoxyCompactList}\small\item\em Offset pro výchozí pozici serva B (nastavuje se v režimu učení). \end{DoxyCompactList}\item 
 bool \textbf{ servo\+AOpened}
-\item 
+\begin{DoxyCompactList}\small\item\em Indikátor, zda je servo A otevřené. \end{DoxyCompactList}\item 
 bool \textbf{ servo\+BOpened}
-\item 
+\begin{DoxyCompactList}\small\item\em Indikátor, zda je servo B otevřené. \end{DoxyCompactList}\item 
 const int \textbf{ bzucak}
-\item 
+\begin{DoxyCompactList}\small\item\em GPIO pin, na kterém je připojen bzučák. \end{DoxyCompactList}\item 
 Q2\+HX711 \textbf{ hx711}
 \item 
 long \textbf{ offset}
-\item 
+\begin{DoxyCompactList}\small\item\em Offset pro váhový senzor (nastavuje se během kalibrace). \end{DoxyCompactList}\item 
 float \textbf{ calibration\+Factor}
-\item 
+\begin{DoxyCompactList}\small\item\em Kalibrační faktor pro váhový senzor. \end{DoxyCompactList}\item 
 float \textbf{ current\+Weight}
-\item 
+\begin{DoxyCompactList}\small\item\em Aktuální hmotnost naměřená váhovým senzorem. \end{DoxyCompactList}\item 
 float \textbf{ desired\+Weight}
-\item 
+\begin{DoxyCompactList}\small\item\em Požadovaná celková hmotnost dávkování. \end{DoxyCompactList}\item 
 float \textbf{ target\+WeightA}
-\item 
+\begin{DoxyCompactList}\small\item\em Cílová hmotnost složky A. \end{DoxyCompactList}\item 
 float \textbf{ target\+WeightB}
-\item 
+\begin{DoxyCompactList}\small\item\em Cílová hmotnost složky B. \end{DoxyCompactList}\item 
 float \textbf{ last\+Desired\+Weight}
-\item 
+\begin{DoxyCompactList}\small\item\em Poslední požadovaná hmotnost (pro porovnání změn). \end{DoxyCompactList}\item 
 float \textbf{ total\+WeightA}
-\item 
+\begin{DoxyCompactList}\small\item\em Celková nadávkovaná hmotnost složky A. \end{DoxyCompactList}\item 
 float \textbf{ total\+WeightB}
-\item 
+\begin{DoxyCompactList}\small\item\em Celková nadávkovaná hmotnost složky B. \end{DoxyCompactList}\item 
 int \textbf{ slozkaA}
-\item 
+\begin{DoxyCompactList}\small\item\em Poměr složky A (v procentech). \end{DoxyCompactList}\item 
 int \textbf{ slozkaB}
-\item 
+\begin{DoxyCompactList}\small\item\em Poměr složky B (v procentech). \end{DoxyCompactList}\item 
 \textbf{ State} \textbf{ current\+State}
-\item 
+\begin{DoxyCompactList}\small\item\em Aktuální stav stavového automatu. \end{DoxyCompactList}\item 
 \textbf{ Dosing\+Mode} \textbf{ dosing\+Mode}
-\item 
+\begin{DoxyCompactList}\small\item\em Aktuální režim dávkování. \end{DoxyCompactList}\item 
 String \textbf{ input\+Weight}
-\item 
+\begin{DoxyCompactList}\small\item\em Uživatelský vstup pro požadovanou hmotnost. \end{DoxyCompactList}\item 
 std\+::vector$<$ float $>$ \textbf{ graf\+Data}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Data pro grafické zobrazení průběhu dávkování. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Enumeration Type Documentation}
@@ -203,11 +203,19 @@ void ucici\+Rezim\+ServoB (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 {\footnotesize\ttfamily \label{globals_8h_a30d335d8832af5a12ac0928e599de317} 
 const int bzucak\hspace{0.3cm}{\ttfamily [extern]}}
 
+
+
+GPIO pin, na kterém je připojen bzučák. 
+
 \index{globals.h@{globals.h}!calibrationFactor@{calibrationFactor}}
 \index{calibrationFactor@{calibrationFactor}!globals.h@{globals.h}}
 \doxysubsubsection{calibrationFactor}
 {\footnotesize\ttfamily \label{globals_8h_a950b27305ffb25187ed1daa2542377b1} 
 float calibration\+Factor\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Kalibrační faktor pro váhový senzor. 
 
 \index{globals.h@{globals.h}!currentPage@{currentPage}}
 \index{currentPage@{currentPage}!globals.h@{globals.h}}
@@ -221,11 +229,19 @@ int current\+Page\hspace{0.3cm}{\ttfamily [extern]}}
 {\footnotesize\ttfamily \label{globals_8h_a62d920a9a06d7ac5b8c98e175defd014} 
 \textbf{ State} current\+State\hspace{0.3cm}{\ttfamily [extern]}}
 
+
+
+Aktuální stav stavového automatu. 
+
 \index{globals.h@{globals.h}!currentWeight@{currentWeight}}
 \index{currentWeight@{currentWeight}!globals.h@{globals.h}}
 \doxysubsubsection{currentWeight}
 {\footnotesize\ttfamily \label{globals_8h_a3939f83508d16c53d3e1a24888e0c8f5} 
 float current\+Weight\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Aktuální hmotnost naměřená váhovým senzorem. 
 
 \index{globals.h@{globals.h}!desiredWeight@{desiredWeight}}
 \index{desiredWeight@{desiredWeight}!globals.h@{globals.h}}
@@ -233,17 +249,29 @@ float current\+Weight\hspace{0.3cm}{\ttfamily [extern]}}
 {\footnotesize\ttfamily \label{globals_8h_a7c4bd5c73effc6b71029d86d1a932ccb} 
 float desired\+Weight\hspace{0.3cm}{\ttfamily [extern]}}
 
+
+
+Požadovaná celková hmotnost dávkování. 
+
 \index{globals.h@{globals.h}!dosingMode@{dosingMode}}
 \index{dosingMode@{dosingMode}!globals.h@{globals.h}}
 \doxysubsubsection{dosingMode}
 {\footnotesize\ttfamily \label{globals_8h_a30a466c4a4e61f8adc74826d919035e4} 
 \textbf{ Dosing\+Mode} dosing\+Mode\hspace{0.3cm}{\ttfamily [extern]}}
 
+
+
+Aktuální režim dávkování. 
+
 \index{globals.h@{globals.h}!grafData@{grafData}}
 \index{grafData@{grafData}!globals.h@{globals.h}}
 \doxysubsubsection{grafData}
 {\footnotesize\ttfamily \label{globals_8h_a6df13c0ceef9d9081acc0bec9326fa2e} 
 std\+::vector$<$float$>$ graf\+Data\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Data pro grafické zobrazení průběhu dávkování. 
 
 \index{globals.h@{globals.h}!hx711@{hx711}}
 \index{hx711@{hx711}!globals.h@{globals.h}}
@@ -257,6 +285,10 @@ Q2\+HX711 hx711\hspace{0.3cm}{\ttfamily [extern]}}
 {\footnotesize\ttfamily \label{globals_8h_ac211e264eab999f0079c2934f3e43004} 
 String input\+Weight\hspace{0.3cm}{\ttfamily [extern]}}
 
+
+
+Uživatelský vstup pro požadovanou hmotnost. 
+
 \index{globals.h@{globals.h}!keyPressStartTime@{keyPressStartTime}}
 \index{keyPressStartTime@{keyPressStartTime}!globals.h@{globals.h}}
 \doxysubsubsection{keyPressStartTime}
@@ -268,6 +300,10 @@ unsigned long key\+Press\+Start\+Time\hspace{0.3cm}{\ttfamily [extern]}}
 \doxysubsubsection{lastDesiredWeight}
 {\footnotesize\ttfamily \label{globals_8h_a6f9eef639d5605027b165576d3650ffe} 
 float last\+Desired\+Weight\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Poslední požadovaná hmotnost (pro porovnání změn). 
 
 \index{globals.h@{globals.h}!learningAngle@{learningAngle}}
 \index{learningAngle@{learningAngle}!globals.h@{globals.h}}
@@ -353,11 +389,19 @@ const int NEXTION\+\_\+\+TX = 4}
 {\footnotesize\ttfamily \label{globals_8h_adcce6ee751c1469525aec834a4d37ea8} 
 long offset\hspace{0.3cm}{\ttfamily [extern]}}
 
+
+
+Offset pro váhový senzor (nastavuje se během kalibrace). 
+
 \index{globals.h@{globals.h}!offsetServoA@{offsetServoA}}
 \index{offsetServoA@{offsetServoA}!globals.h@{globals.h}}
 \doxysubsubsection{offsetServoA}
 {\footnotesize\ttfamily \label{globals_8h_a2535c42a7d50e299b898731b4a611b21} 
 int offset\+ServoA\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Offset pro výchozí pozici serva A (nastavuje se v režimu učení). 
 
 \index{globals.h@{globals.h}!offsetServoB@{offsetServoB}}
 \index{offsetServoB@{offsetServoB}!globals.h@{globals.h}}
@@ -365,11 +409,19 @@ int offset\+ServoA\hspace{0.3cm}{\ttfamily [extern]}}
 {\footnotesize\ttfamily \label{globals_8h_a6365bacce8751248b8f8549fb63141e0} 
 int offset\+ServoB\hspace{0.3cm}{\ttfamily [extern]}}
 
+
+
+Offset pro výchozí pozici serva B (nastavuje se v režimu učení). 
+
 \index{globals.h@{globals.h}!pinServoA@{pinServoA}}
 \index{pinServoA@{pinServoA}!globals.h@{globals.h}}
 \doxysubsubsection{pinServoA}
 {\footnotesize\ttfamily \label{globals_8h_a7da24347c3e611a973826a4a5d496218} 
 int pin\+ServoA\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+GPIO pin pro servo A. 
 
 \index{globals.h@{globals.h}!pinServoB@{pinServoB}}
 \index{pinServoB@{pinServoB}!globals.h@{globals.h}}
@@ -377,11 +429,19 @@ int pin\+ServoA\hspace{0.3cm}{\ttfamily [extern]}}
 {\footnotesize\ttfamily \label{globals_8h_a9d3aff86d858c4006b27fd52044f49bd} 
 int pin\+ServoB\hspace{0.3cm}{\ttfamily [extern]}}
 
+
+
+GPIO pin pro servo B. 
+
 \index{globals.h@{globals.h}!preferences@{preferences}}
 \index{preferences@{preferences}!globals.h@{globals.h}}
 \doxysubsubsection{preferences}
 {\footnotesize\ttfamily \label{globals_8h_a6ea06cf7b8092a0adaf07614d7ece59d} 
 Preferences preferences\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Instance pro práci s NVS (Non-\/\+Volatile Storage). 
 
 \index{globals.h@{globals.h}!prumerRaw@{prumerRaw}}
 \index{prumerRaw@{prumerRaw}!globals.h@{globals.h}}
@@ -395,11 +455,19 @@ long prumer\+Raw\hspace{0.3cm}{\ttfamily [extern]}}
 {\footnotesize\ttfamily \label{globals_8h_a2e2722f68ec1a8835e1a27ea4092725f} 
 Servo servoA\hspace{0.3cm}{\ttfamily [extern]}}
 
+
+
+Servo motor A. 
+
 \index{globals.h@{globals.h}!servoAOpened@{servoAOpened}}
 \index{servoAOpened@{servoAOpened}!globals.h@{globals.h}}
 \doxysubsubsection{servoAOpened}
 {\footnotesize\ttfamily \label{globals_8h_aadd8d0b69549820e723fb943af35b0fb} 
 bool servo\+AOpened\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Indikátor, zda je servo A otevřené. 
 
 \index{globals.h@{globals.h}!servoB@{servoB}}
 \index{servoB@{servoB}!globals.h@{globals.h}}
@@ -407,11 +475,19 @@ bool servo\+AOpened\hspace{0.3cm}{\ttfamily [extern]}}
 {\footnotesize\ttfamily \label{globals_8h_a33a73c90970fab409fd6faf59d738e58} 
 Servo servoB\hspace{0.3cm}{\ttfamily [extern]}}
 
+
+
+Servo motor B. 
+
 \index{globals.h@{globals.h}!servoBOpened@{servoBOpened}}
 \index{servoBOpened@{servoBOpened}!globals.h@{globals.h}}
 \doxysubsubsection{servoBOpened}
 {\footnotesize\ttfamily \label{globals_8h_abddee9975e36d4f9d2b98fb7d1ac0754} 
 bool servo\+BOpened\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Indikátor, zda je servo B otevřené. 
 
 \index{globals.h@{globals.h}!slozkaA@{slozkaA}}
 \index{slozkaA@{slozkaA}!globals.h@{globals.h}}
@@ -419,11 +495,19 @@ bool servo\+BOpened\hspace{0.3cm}{\ttfamily [extern]}}
 {\footnotesize\ttfamily \label{globals_8h_afcdb9675b3cf7a54c6b87c75720f2d23} 
 int slozkaA\hspace{0.3cm}{\ttfamily [extern]}}
 
+
+
+Poměr složky A (v procentech). 
+
 \index{globals.h@{globals.h}!slozkaB@{slozkaB}}
 \index{slozkaB@{slozkaB}!globals.h@{globals.h}}
 \doxysubsubsection{slozkaB}
 {\footnotesize\ttfamily \label{globals_8h_ae41788ad8ffbd8399d7f1a14250d4cd6} 
 int slozkaB\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Poměr složky B (v procentech). 
 
 \index{globals.h@{globals.h}!targetWeightA@{targetWeightA}}
 \index{targetWeightA@{targetWeightA}!globals.h@{globals.h}}
@@ -431,11 +515,19 @@ int slozkaB\hspace{0.3cm}{\ttfamily [extern]}}
 {\footnotesize\ttfamily \label{globals_8h_aab4b8c1ad818b1ff864939afb26c4fde} 
 float target\+WeightA\hspace{0.3cm}{\ttfamily [extern]}}
 
+
+
+Cílová hmotnost složky A. 
+
 \index{globals.h@{globals.h}!targetWeightB@{targetWeightB}}
 \index{targetWeightB@{targetWeightB}!globals.h@{globals.h}}
 \doxysubsubsection{targetWeightB}
 {\footnotesize\ttfamily \label{globals_8h_ae77a221ae280c342aff3eaaee904f110} 
 float target\+WeightB\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Cílová hmotnost složky B. 
 
 \index{globals.h@{globals.h}!timeCounting@{timeCounting}}
 \index{timeCounting@{timeCounting}!globals.h@{globals.h}}
@@ -449,9 +541,17 @@ bool time\+Counting\hspace{0.3cm}{\ttfamily [extern]}}
 {\footnotesize\ttfamily \label{globals_8h_a52fb80491480ee4990a77b61ebcc0937} 
 float total\+WeightA\hspace{0.3cm}{\ttfamily [extern]}}
 
+
+
+Celková nadávkovaná hmotnost složky A. 
+
 \index{globals.h@{globals.h}!totalWeightB@{totalWeightB}}
 \index{totalWeightB@{totalWeightB}!globals.h@{globals.h}}
 \doxysubsubsection{totalWeightB}
 {\footnotesize\ttfamily \label{globals_8h_ac2781d3aac08d4eed5fb8e24da8692db} 
 float total\+WeightB\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Celková nadávkovaná hmotnost složky B. 
 

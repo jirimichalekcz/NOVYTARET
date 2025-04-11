@@ -1,5 +1,10 @@
 \doxysection{dosing\+\_\+utils.\+h File Reference}
 \label{dosing__utils_8h}\index{dosing\_utils.h@{dosing\_utils.h}}
+
+
+Deklarace funkcí pro dávkování složek a výpočet cílů.  
+
+
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -8,9 +13,22 @@ void \textbf{ davkuj\+Slozku\+AUcenim} (float cilova\+Hmotnost)
 void \textbf{ davkuj\+Slozku\+BUcenim} (float cilova\+Hmotnost)
 \begin{DoxyCompactList}\small\item\em Dávkuje složku B pomocí předem naučených kalibračních dat. \end{DoxyCompactList}\item 
 void \textbf{ vypocitej\+Cile} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Vypočítá cílové hmotnosti složek A a B. \end{DoxyCompactList}\item 
 void \textbf{ davkuj\+Slozku} (float cilova\+Hmotnost, Servo \&servo, int offset\+Servo, const char $\ast$namespace\+Name)
 \begin{DoxyCompactList}\small\item\em Hlavní funkce pro dávkování složky. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Deklarace funkcí pro dávkování složek a výpočet cílů. 
+
+Tento soubor obsahuje deklarace funkcí pro dávkování složek A a B, výpočet cílových hmotností a hlavní dávkovací funkci.
+
+\begin{DoxyAuthor}{Author}
+[jiri michalek] 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+[11042025] 
+\end{DoxyDate}
 
 
 \doxysubsection{Function Documentation}
@@ -65,6 +83,13 @@ void davkuj\+Slozku\+AUcenim (\begin{DoxyParamCaption}\item[{float}]{cilova\+Hmo
 
 Dávkuje složku A pomocí předem naučených kalibračních dat. 
 
+Tato funkce dávkuje složku A na základě cílové hmotnosti a kalibračních dat uložených v prostoru NVS {\ttfamily flowmapA}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cilova\+Hmotnost} & Cílová hmotnost složky A (v gramech).\\
+\hline
+\end{DoxyParams}
 Tato funkce volá hlavní dávkovací funkci {\ttfamily davkuj\+Slozku} s parametry specifickými pro složku A. Používá servo A a kalibrační data uložená v prostoru NVS {\ttfamily flowmapA}.
 
 
@@ -82,6 +107,13 @@ void davkuj\+Slozku\+BUcenim (\begin{DoxyParamCaption}\item[{float}]{cilova\+Hmo
 
 Dávkuje složku B pomocí předem naučených kalibračních dat. 
 
+Tato funkce dávkuje složku B na základě cílové hmotnosti a kalibračních dat uložených v prostoru NVS {\ttfamily flowmapB}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cilova\+Hmotnost} & Cílová hmotnost složky B (v gramech).\\
+\hline
+\end{DoxyParams}
 Tato funkce volá hlavní dávkovací funkci {\ttfamily davkuj\+Slozku} s parametry specifickými pro složku B. Používá servo B a kalibrační data uložená v prostoru NVS {\ttfamily flowmapB}.
 
 
@@ -95,3 +127,8 @@ Tato funkce volá hlavní dávkovací funkci {\ttfamily davkuj\+Slozku} s parame
 {\footnotesize\ttfamily \label{dosing__utils_8h_a1fc83590eab3b392061fae9c31ae5b2c} 
 void vypocitej\+Cile (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
+
+
+Vypočítá cílové hmotnosti složek A a B. 
+
+Tato funkce načte poměry složek 
